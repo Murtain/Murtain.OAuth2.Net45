@@ -15,13 +15,13 @@ namespace Murtain.OAuth2.Web.Configuration
         {
             var users = new List<InMemoryUser>
             {
-                new InMemoryUser{Subject = "10001", Username = "Murtain", Password = "123312", 
+                new InMemoryUser{Subject = "10001", Username = "murtain", Password = "123456", 
                     Claims = new Claim[]
                     {
                         new Claim(Constants.ClaimTypes.Name, "Murtain"),
                         new Claim(Constants.ClaimTypes.GivenName, "松超"),
                         new Claim(Constants.ClaimTypes.FamilyName, "许"),
-                        new Claim(Constants.ClaimTypes.Email, "mobet_net@163.com"),
+                        new Claim(Constants.ClaimTypes.Email, "murtain@163.com"),
                         new Claim(Constants.ClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
                         new Claim(Constants.ClaimTypes.Role, "Admin"),
                         new Claim(Constants.ClaimTypes.Role, "Geek"),

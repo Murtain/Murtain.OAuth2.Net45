@@ -185,6 +185,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\IClientService.cs" />
     <Compile Include="LocalizationService.cs" />
     <Compile Include="Captcha\CaptchaService.cs" />
     <Compile Include="Constants.cs" />
@@ -216,8 +217,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Localization\Sources\XmlSource\Default-zh-CN.xml" />
-    <Content Include="Localization\Sources\XmlSource\Default.xml" />
+    <Folder Include="Scope\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

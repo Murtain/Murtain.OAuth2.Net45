@@ -5,7 +5,7 @@ namespace Murtain.OAuth2.Infrastructure.Migrations.OperationalConfiguration
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<IdentityServer3.EntityFramework.OperationalDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<OperationalDbContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace Murtain.OAuth2.Infrastructure.Migrations.OperationalConfiguration
             MigrationsDirectory = @"Migrations\OperationalConfiguration";
         }
 
-        protected override void Seed(IdentityServer3.EntityFramework.OperationalDbContext context)
+        protected override void Seed(OperationalDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -129,7 +129,7 @@ namespace Murtain.OAuth2.Web.Controllers
                 var response = userAccountService.RegisterWithTelphone(model.MapTo<RegisterWithTelphoneRequestModel>());
                 if (response.Ok)
                 {
-                    return Redirect("/core/" + IdentityServer3.Core.Constants.RoutePaths.Login + "?signin=" + signin);
+                    return Redirect("/connect/" + IdentityServer3.Core.Constants.RoutePaths.Login + "?signin=" + signin);
                 }
 
                 model.ErrorMessage = response.Message;

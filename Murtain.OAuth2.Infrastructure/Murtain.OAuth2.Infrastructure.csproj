@@ -178,25 +178,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201608270333269_01.cs" />
-    <Compile Include="Migrations\201608270333269_01.Designer.cs">
-      <DependentUpon>201608270333269_01.cs</DependentUpon>
+    <Compile Include="ScopeConfigurationDbContext.cs" />
+    <Compile Include="OperationalDbContext.cs" />
+    <Compile Include="ClientConfigurationDbContext.cs" />
+    <Compile Include="Migrations\201610051727369_01.cs" />
+    <Compile Include="Migrations\201610051727369_01.Designer.cs">
+      <DependentUpon>201610051727369_01.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608300941488_02.cs" />
-    <Compile Include="Migrations\201608300941488_02.Designer.cs">
-      <DependentUpon>201608300941488_02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ClientConfiguration\201608270410262_01.cs" />
-    <Compile Include="Migrations\ClientConfiguration\201608270410262_01.Designer.cs">
-      <DependentUpon>201608270410262_01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ClientConfiguration\Configuration.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Migrations\OperationalConfiguration\201608270408258_01.cs" />
-    <Compile Include="Migrations\OperationalConfiguration\201608270408258_01.Designer.cs">
-      <DependentUpon>201608270408258_01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\OperationalConfiguration\Configuration.cs" />
     <Compile Include="Migrations\ScopeConfiguration\201608270403391_01.cs" />
     <Compile Include="Migrations\ScopeConfiguration\201608270403391_01.Designer.cs">
       <DependentUpon>201608270403391_01.cs</DependentUpon>
@@ -215,31 +203,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608270333269_01.resx">
-      <DependentUpon>201608270333269_01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608300941488_02.resx">
-      <DependentUpon>201608300941488_02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ClientConfiguration\201608270410262_01.resx">
-      <DependentUpon>201608270410262_01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\OperationalConfiguration\201608270408258_01.resx">
-      <DependentUpon>201608270408258_01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ScopeConfiguration\201608270403391_01.resx">
-      <DependentUpon>201608270403391_01.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Murtain.OAuth2.Domain\Murtain.OAuth2.Domain.csproj">
       <Project>{4D92E54F-03FF-422F-B77A-F5993C8C1305}</Project>
       <Name>Murtain.OAuth2.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Localization\Sources\XmlSource\Default-zh-CN.xml" />
-    <Content Include="Localization\Sources\XmlSource\Default.xml" />
+    <EmbeddedResource Include="Migrations\201610051727369_01.resx">
+      <DependentUpon>201610051727369_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ScopeConfiguration\201608270403391_01.resx">
+      <DependentUpon>201608270403391_01.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
