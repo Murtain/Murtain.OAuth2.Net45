@@ -11,6 +11,7 @@ using Murtain.Net.Mail;
 using Murtain.OAuth2.SDK.Captcha;
 using Murtain.Utils;
 using Castle.Core.Logging;
+using Murtain.Runtime.Cookie;
 
 namespace Murtain.OAuth2.Core
 {
@@ -34,7 +35,6 @@ namespace Murtain.OAuth2.Core
             this.cacheManager = cacheManager;
             this.emailSender = emailSender;
         }
-
         /// <summary>
         /// 发送短信验证码
         /// </summary>
@@ -117,6 +117,14 @@ namespace Murtain.OAuth2.Core
                     Message = L(Constants.Localization.MessageIds.CAPTCHA_EMAIL_SEND_FAIL)
                 };
             }
+        }
+        /// <summary>
+        /// 获取图形验证码
+        /// </summary>
+        /// <returns></returns>
+        public Task<byte[]> GenderatorImageCaptcha(string cookiename)
+        {
+            return Task.FromResult(Captcha.GetBytes(cookiename));
         }
     }
 }

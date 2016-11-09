@@ -11,15 +11,15 @@ namespace Murtain.OAuth2.SDK.UserAccount
     public class SetPasswordRequestModel : RequestBase
     {
         /// <summary>
-        /// 用户Id
+        /// 手机号
         /// </summary>
         [Required]
-        public string Id { get; set; }
-        /// <summary>
-        /// 原密码
-        /// </summary>
-        [Required]
-        public string OldPassword { get; set; }
+        public string Telphone { get; set; }
+        ///// <summary>
+        ///// 原密码
+        ///// </summary>
+        //[Required]
+        //public string OldPassword { get; set; }
         /// <summary>
         /// 新密码
         /// </summary>

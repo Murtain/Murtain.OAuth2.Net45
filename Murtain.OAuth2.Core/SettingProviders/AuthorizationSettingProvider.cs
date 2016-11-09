@@ -17,7 +17,7 @@ namespace Murtain.OAuth2.Core.SettingProviders
             return new[]
                    {
                        new GlobalSetting {Name = Constants.Settings.Authorization.Domain,DisplayName = "认证服务器地址",Value = "127.0.0.1",Group =  "授权管理", Scope = GlobalSettingScope.Application ,Description = "认证服务器地址"},
-                       new GlobalSetting {Name = Constants.Settings.Authorization.CaptchaAddress ,DisplayName = "图片验证码地址",Value = "https://localhost:44373/Captcha/GetCaptcha",Group =  "授权管理", Scope = GlobalSettingScope.Application ,Description = "图片验证码地址"},
+                       new GlobalSetting {Name = Constants.Settings.Authorization.CaptchaAddress ,DisplayName = "图片验证码地址",Value = "http://murtain.imwork.net/Account/GenderatorImageCaptcha",Group =  "授权管理", Scope = GlobalSettingScope.Application ,Description = "图片验证码地址"},
                    };
         }
     }

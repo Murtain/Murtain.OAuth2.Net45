@@ -178,6 +178,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201610100420398_02.cs" />
+    <Compile Include="Migrations\201610100420398_02.Designer.cs">
+      <DependentUpon>201610100420398_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ScopeConfigurationDbContext.cs" />
     <Compile Include="OperationalDbContext.cs" />
     <Compile Include="ClientConfigurationDbContext.cs" />
@@ -185,11 +190,6 @@
     <Compile Include="Migrations\201610051727369_01.Designer.cs">
       <DependentUpon>201610051727369_01.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ScopeConfiguration\201608270403391_01.cs" />
-    <Compile Include="Migrations\ScopeConfiguration\201608270403391_01.Designer.cs">
-      <DependentUpon>201608270403391_01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ScopeConfiguration\Configuration.cs" />
     <Compile Include="ModelsContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GlobalSettingRepository.cs" />
@@ -212,8 +212,8 @@
     <EmbeddedResource Include="Migrations\201610051727369_01.resx">
       <DependentUpon>201610051727369_01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ScopeConfiguration\201608270403391_01.resx">
-      <DependentUpon>201608270403391_01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610100420398_02.resx">
+      <DependentUpon>201610100420398_02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

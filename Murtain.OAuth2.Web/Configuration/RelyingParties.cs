@@ -34,7 +34,7 @@ namespace Murtain.OAuth2.Web.Configuration
                 {
                     Realm = "urn:owinrp",
                     Enabled = true,
-                    ReplyUrl = "https://localhost:44373/",
+                    ReplyUrl = "http://localhost:31208/account/member",
                     TokenType = TokenTypes.Saml2TokenProfile11,
                     TokenLifeTime = 1,
 
@@ -42,7 +42,7 @@ namespace Murtain.OAuth2.Web.Configuration
                     {
                         { "id", ClaimTypes.NameIdentifier },
                         { "name", ClaimTypes.Name },
-                        { "email", ClaimTypes.Email }
+                        { "email", ClaimTypes.Email },
                     }
                 },
                 new RelyingParty

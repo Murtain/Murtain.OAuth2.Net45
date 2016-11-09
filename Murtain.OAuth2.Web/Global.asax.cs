@@ -76,6 +76,7 @@ namespace Murtain.OAuth2.Web
                 //base.Load(builder);
             }
         }
+
         protected virtual void Application_BeginRequest(object sender, EventArgs e)
         {
             var langCookie = Request.Cookies["Murtain.Localization.CultureName"];
@@ -97,6 +98,8 @@ namespace Murtain.OAuth2.Web
                 }
             }
         }
+
+
 
     }
 }

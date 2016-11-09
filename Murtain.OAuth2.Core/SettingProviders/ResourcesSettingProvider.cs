@@ -14,7 +14,7 @@ namespace Murtain.OAuth2.Core.SettingProviders
         {
             return new[]
             {
-                new GlobalSetting { Name = Constants.Settings.Resources.Domain,DisplayName = "资源站点根目录", Value = "http://172.30.30.190:9000/",Group = "资源设置" ,Description = "资源站点根目录"}
+                new GlobalSetting { Name = Constants.Settings.Resources.Domain,DisplayName = "资源站点根目录", Value = "http://murtain.imwork.net/",Group = "资源设置" ,Description = "资源站点根目录"}
             };
         }
 

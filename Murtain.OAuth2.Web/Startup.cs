@@ -4,31 +4,43 @@ using IdentityServer3.WsFederation.Models;
 using IdentityServer3.WsFederation.Services;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.QQ;
+using Microsoft.Owin.Security.Tencent.QQ;
+using Microsoft.Owin.Security.Tencent.Wechat;
 using Microsoft.Owin.Security.WsFederation;
 using Murtain.OAuth2.Web.Configuration;
 using Owin;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security.DataHandler.Encoder;
+using Microsoft.Owin.Security.DataHandler.Serializer;
+using Microsoft.Owin.Security.DataProtection;
+using Owin.Security.Providers.Weixin;
+using Serilog;
 
 [assembly: OwinStartup(typeof(Murtain.OAuth2.Web.Startup))]
 namespace Murtain.OAuth2.Web
 {
     public class Startup
     {
+        private const string baseUri = "http://localhost:31208/";
         public void Configuration(IAppBuilder app)
         {
+            
+            Log.Logger = new LoggerConfiguration()
+              .MinimumLevel.Debug()
+              .WriteTo.File("C:\\inetpub\\wwwroot\\Murtain.OAuth2.Web\\Log\\2016-10-10.txt")
+              .CreateLogger();
 
-            app.Map("/connect", idsrvApp =>
+            app.Map("/core", idsrvApp =>
             {
                 idsrvApp.UseIdentityServer(new IdentityServerOptions
                 {
-                    IssuerUri = "https://localhost:44373/",                                             //令牌颁发者Uri
+                    IssuerUri = baseUri,                                             //令牌颁发者Uri
                     SiteName = "IdentityServer3 -  Identity",                                           //站点名称
                     SigningCertificate = Certificate.Get(),                                             //X.509证书（和相应的私钥签名的安全令牌）
-                    RequireSsl = true,                                                                  //必须为SSL,默认为True
+                    RequireSsl = false,                                                                  //必须为SSL,默认为True
                     Endpoints = new EndpointOptions                                                     //允许启用或禁用特定的端点（默认的所有端点都是启用的）。
                     {
                         EnableCspReportEndpoint = false
@@ -53,8 +65,8 @@ namespace Murtain.OAuth2.Web
                         EnablePostSignOutAutoRedirect = true,
                         IdentityProviders = ConfigureIdentityProviders,
                         LoginPageLinks = new List<LoginPageLink> {
-                            new LoginPageLink{ Text = "立即注册", Href = "/Account/Registration"},
-                            new LoginPageLink{ Text = "忘记密码？", Href = "/Account/ForgotPassword"}
+                            new LoginPageLink{ Text = "忘记密码？", Href = "#forgot-password"},
+                            new LoginPageLink{ Text = "立即注册", Href = "#local-registration"}
                        }
                     },
 
@@ -75,7 +87,7 @@ namespace Murtain.OAuth2.Web
 
             app.UseWsFederationAuthentication(new WsFederationAuthenticationOptions
             {
-                MetadataAddress = "https://localhost:44373/core/wsfed/metadata",
+                MetadataAddress = baseUri + "/core/wsfed/metadata",
                 Wtrealm = "urn:owinrp",
                 SignInAsAuthenticationType = "Cookies"
             });
@@ -94,24 +106,35 @@ namespace Murtain.OAuth2.Web
 
         private void ConfigureIdentityProviders(IAppBuilder app, string signInAsType)
         {
-            app.UseQQConnectAuthentication(new QQConnectAuthenticationOptions
+            app.UseTencentAuthentication(new TencentAuthenticationOptions()
             {
                 AuthenticationType = "QQ",
                 Caption = "QQ登录",
                 SignInAsAuthenticationType = signInAsType,
 
                 AppId = "1105658137",
-                AppSecret = "MTupHoMGikILy8kw "
+                AppKey = "MTupHoMGikILy8kw "
             });
 
-            //app.UseWeChatAuthentication(new WeChatAuthenticationOptions
+            app.UseWeChatAuthentication(new TencentWeChatAuthenticationOptions()
+            {
+                AuthenticationType = "WeChat",
+                Caption = "微信登录",
+                SignInAsAuthenticationType = signInAsType,
+
+                AppId = "wxe74f55e0fa310f0b",
+                AppSecret = "dd34fff1fe342ad762ccd5c91b561693",
+                AuthorizationEndpoint = "https://open.weixin.qq.com/connect/oauth2/authorize", //微信内部网页授权地址,默认PC扫码登录地址
+                Scope = { "get_user_info" },
+            });
+
+            //app.UseWeixinAuthentication(new WeixinAuthenticationOptions()
             //{
-            //    AuthenticationType = "WeChat",
-            //    Caption = "微信登录",
+            //    AuthenticationType = "weixin",
             //    SignInAsAuthenticationType = signInAsType,
 
             //    AppId = "wxe74f55e0fa310f0b",
-            //    AppSecret = "dd34fff1fe342ad762ccd5c91b561693 "
+            //    AppSecret = "dd34fff1fe342ad762ccd5c91b561693",
             //});
         }
 

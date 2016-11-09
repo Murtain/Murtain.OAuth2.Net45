@@ -11,13 +11,12 @@ using Murtain.AutoMapper;
 namespace Murtain.OAuth2.Web.Models
 {
     [AutoMap(typeof(RegisterWithTelphoneRequestModel))]
-    public class LocalRegisterViewModel : ErrorViewModel
+    public class ValidateImageCaptchaViewModel : ErrorViewModel
     {
-
         [Required]
         public string Telphone { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public string Captcha { get; set; }
     }
 }

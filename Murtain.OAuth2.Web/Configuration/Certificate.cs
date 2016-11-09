@@ -8,7 +8,7 @@ namespace Murtain.OAuth2.Web.Configuration
         public static X509Certificate2 Get()
         {
             var assembly = typeof(Certificate).Assembly;
-            using (var stream = assembly.GetManifestResourceStream("Murtain.OAuth2.Web.Configuration.idsrv3test.pfx"))
+            using (var stream = assembly.GetManifestResourceStream("Murtain.OAuth2.Web.Configuration.Murtian.OAuth2.Web.pfx"))
             {
                 return new X509Certificate2(ReadStream(stream), "idsrv3test");
             }

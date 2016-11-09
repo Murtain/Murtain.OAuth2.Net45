@@ -1,122 +1,97 @@
 ﻿@model IdentityServer3.Core.ViewModels.LoginViewModel
 @{
     ViewBag.Title = L("账号登录");
-    Layout = "~/Views/Shared/_Layout_Login.cshtml";
-    if (Model == null || string.IsNullOrWhiteSpace(Model.LoginUrl)) {
+    Layout = null;//"~/Views/Shared/_Layout_Login.cshtml";
+
+    if (string.IsNullOrWhiteSpace(Model?.LoginUrl))
+    {
         return;
     }
-    var AdditionalLinks = Model.AdditionalLinks == null ?
-                  new List<IdentityServer3.Core.Configuration.LoginPageLink>()
-                : Model.AdditionalLinks.ToList();
 
+    var additionalLinks = Model?.AdditionalLinks?.ToList() ?? new List<IdentityServer3.Core.Configuration.LoginPageLink>();
+    var externalProviders = Model?.ExternalProviders?.ToList() ?? new List<IdentityServer3.Core.Configuration.LoginPageLink>();
 }
-@* This is essentially a copy of the embedded HTML that comes from IdSvr, adapted to access the Model server-side *@
 
-<div class="mainbox" id="login-main">
-    <div><a class="ercode" id="qrcode-trigger" href="javascript:void(0);"></a></div>
-    <div class="lgnheader">
-        <div class="header_tit t_c">
-            <h4 class="header_tit_txt" id="login-title">@L("账号登录")</h4>
-            <div class="site_info"></div>
-        </div>
-    </div>
-    <div id="login_box">
-        <div class="login_area">
-            <form action="@Model.LoginUrl" id="login-main-form" method="post">
-                <input type="hidden" name="@Model.AntiForgery.Name" value="@Model.AntiForgery.Value" />
-                <div class="loginbox c_b">
-                    <div class="lgn_inputbg c_b">
-                        <label class="labelbox c_b" id="label_account">
-                            <input class="item_account" autocomplete="off" type="text" name="Username" id="user_account" placeholder="@L("邮箱/手机号码/帐号")">
-                        </label>
-                        <label class="labelbox c_b" id="label_password">
-                            <input type="password" placeholder="@L("密码")" name="Password" id="password">
-                        </label>
-                    </div>
+<!DOCTYPE html>
 
-                    <div class="err_tip" id="error-outcon">
-                        @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
-                        {
-                            <div class="dis_box"><em class="icon_error"></em><span class="error-con">@Model.ErrorMessage</span></div>
-                        }
-                    </div>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
+    <meta name="description" content="一个关注互联网的科技博客" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
 
 
-                    <div class="btns_bg">
-                        <input class="btnadpt btn_red" id="login-button" type="submit" value="@L("立即登录")">
-                        <span id="custom_display_8" class="sns-default-container sns_default_container" style="display: none;">
-                        </span>
-                    </div>
-                    <div style="display: block;" class="other_login_type sns-login-container" id="custom_display_16">
-                        <fieldset class="oth_type_tit">
-                            <legend class="oth_type_txt">@L("其他方式登录")</legend>
-                        </fieldset>
-                        <div class="oth_type_links">
-                            @foreach (var provider in Model.ExternalProviders)
-                            {
-                                if (provider.Type.ToUpper() == "WECHAT")
-                                {
-                                    <a class="icon_type btn_weixin sns-login-link" data-type="@provider.Type" href="@provider.Href" title="@L(provider.Text)"><i class="btn_sns_icontype icon_default_weixin"></i></a>
-                                }
-                                if (provider.Type.ToUpper() == "QQ")
-                                {
-                                    <a class="icon_type btn_qq sns-login-link" data-type="@provider.Type" href="@provider.Href" title="@L(provider.Text)" target="_blank"><i class="btn_sns_icontype icon_default_qq"></i></a>
-                                }
-                                if (provider.Type.ToUpper() == "WEBO")
-                                {
-                                    <a class="icon_type btn_weibo sns-login-link" data-type="@provider.Type" href="@provider.Href" title="@L(provider.Text)" target="_blank"><i class="btn_sns_icontype icon_default_weibo"></i></a>
-                                }
-                            }
-                        </div>
-                    </div>
+    <link rel="stylesheet" href="~/content/css/font.css">
+    <link rel="stylesheet" href="~/content/css/passport.css">
+
+    <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="/content/js/main.js"></script>
+</head>
+<body>
+    <div ui-view>
+        <div class="container">
+            <input type="hidden" name="@(Model?.AntiForgery.Name)" value="@(Model?.AntiForgery.Value)" />
+            <input type="hidden" name="@(Model?.LoginUrl)" value="@(Model?.LoginUrl)" ng-model="Model.LoginUrl" />
+            <div class="form-group">
+                <div class="logo-image"></div>
+                <div class="title"></div>
+            </div>
+            <div class="form-group">
+                @if (!string.IsNullOrWhiteSpace(Model?.ErrorMessage))
+                    {
+                    <span class="warningicon">@(Model?.ErrorMessage)</span>
+                    <span class="error-message"></span>
+                    }
+                <div class="input">
+                    <span class="icon"><i>@L("手机号/邮箱")</i></span>
+                    <input type="text" placeholder="@("手机号/邮箱")" ng-model="Model.UserName" name="UserName" />
                 </div>
-            </form>
-        </div>
-        <div class="n_links_area">
-            @for (int i = 0; i < AdditionalLinks.Count; i++)
-            {
-                <a class="outer-link" href="@AdditionalLinks[i].Href">@L(AdditionalLinks[i].Text)</a>
-                if (i != AdditionalLinks.Count - 1)
-                {
-                    <span>|</span>
-                }
-            }
+                <div class="input password">
+                    <span class="icon"><i>@L("密码")</i></span>
+                    <input type="password" placeholder="@L("密码")" ng-model="Model.Password" name="Password" />
+                </div>
+                <div class="btn-link">
+                    <input type="checkbox" class="check-box" name="RememberMe" ng-model="Model.RememberMe" />
+                    <label class="check-lable">@L("7天内自动登录")</label>
+                    <a href="#LocalRegistration">@L("立即注册")</a>
+                    <a href="#ForgotPassword" class="split">@L("忘记密码")</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="button" class="btn-submit" value="@L("登录")" ng-click="Login()">
+            </div>
+            <div class="line"></div>
+            <div class="form-group">
+                <ul>
+                    <li>
+                        <ul class="login-three">
+                            <li class="text">@L("其他账号登录")</li>
+                            @foreach (var provider in externalProviders){
+                                <li class="@(provider.Type.ToLower())" link="@provider.Href"></li>
+                             }
+                        </ul>
+                    </li>
+                    <li class="telphone-login"><a href="#">@L("国际手机号登录") <span><i class="arrow"></i></span></a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="ercode_area" id="login-qrcode">
-    <a class="code_close" href="javascript:void(0);" title="@L("关闭")" id="qrcode-close"><span class="icon_code_close"></span></a>
-    <div class="ercode_box">
-        <div class="code_hd">
-            <h3 class="code_tit">@L("帐号扫码登录")</h3>
-            <p>@L("请使用微信进行扫码登录")</p>
-        </div>
-        <div class="code_iframe">
-            <img src="http://qr.api.cli.im/qr?data=https%253A%252F%252Faccount.xiaomi.com%252Fpass%252FserviceLogin%253Fcallback%253Dhttp%253A%252F%252Fmobet.cn&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=812d329bddcb13f4b39cd63069285328" />
+    <div class="copyright">
+        <div class="clearfix">
+            <h2>Copyright © <span>2016</span>, Murtain Digital Co., Ltd. All Rights Reserved.</h2>
+            <h3 class="company">@L("上海MT信息科技有限公司")</h3>
+            <ul class="privacy">
+                <li><a href="http://murtain.imwork.net/localization/culture?name=zh-CN&returnUrl=@(Request.Url.ToString())">@L("简体中文")</a></li>
+                <li><a href="http://murtain.imwork.net/localization/culture?name=en&returnUrl=@(Request.Url.ToString())">@L("英文")</a></li>
+                <li><a href="http://murtain.imwork.net/support/#/agreement">@L("法律声明")</a></li>
+                <li><a href="http://murtain.imwork.net/support/#/privacy">@L("隐私条款")</a></li>
+            </ul>
+            <h4><a href="http://www.miibeian.gov.cn/" target="_blank"><span>@L("京ICP备14041720号-1")</span><span>@L("京ICP证140622号")</span><span>@L("京公网安备11010502025474")</span></a></h4>
         </div>
     </div>
-</div>
+</body>
+</html>
 
-@section scripts{
-    <script>
-        $(function () {
-            $('#qrcode-trigger,#qrcode-close').click(function () {
-                $('#login-main,#login-qrcode').toggle();
-            });
-            $('#login-button').click(function () {
-                $('.labelbox').removeClass('error_bg');
-                if ($('#user_account').val() == "") {
-                    $('#label_account').addClass('error_bg');
-                    $('#error-outcon').html('<div class="dis_box"><em class="icon_error"></em><span class="error-con">@L("请输入账号")</span></div>').show();
-                    return false;
-                }
-                if ($('#password').val() == "") {
-                    $('#label_password').addClass('error_bg');
-                    $('#error-outcon').html('<div class="dis_box"><em class="icon_error"></em><span class="error-con">@L("请输入密码")</span></div>');
-                    return false;
-                }
-            });
-        });
-    </script>
-}

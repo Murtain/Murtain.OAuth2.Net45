@@ -25,10 +25,10 @@ namespace Murtain.OAuth2.Core
             }
             public static class RootNamespace
             {
-                public const string Messages = "Mobet.Authorization.Configuration.Localization.Messages";
-                public const string Events = "Mobet.Authorization.Configuration.Localization.Events";
-                public const string Views = "Mobet.Authorization.Configuration.Localization.Views";
-                public const string Scopes = "Mobet.Authorization.Configuration.Localization.Scopes";
+                public const string Messages = "Murtain.OAuth2.Web.Configuration.Localization.Messages";
+                public const string Events = "Murtain.OAuth2.Web.Configuration.Localization.Events";
+                public const string Views = "Murtain.OAuth2.Web.Configuration.Localization.Views";
+                public const string Scopes = "Murtain.OAuth2.Web.Configuration.Localization.Scopes";
             }
 
 
@@ -98,6 +98,7 @@ namespace Murtain.OAuth2.Core
                 public const string USER_ACCOUNT_ERROR_CAPTCHA = "USER_ACCOUNT_ERROR_CAPTCHA";
                 public const string USER_ACCOUNT_EXPIRED_MESSAGE_CAPTCHA = "USER_ACCOUNT_EXPIRED_MESSAGE_CAPTCHA";
                 public const string USER_ACCOUNT_MESSAGE_CAPTCHA_VALIDATE_OK = "USER_ACCOUNT_MESSAGE_CAPTCHA_VALIDATE_OK";
+                public const string USER_ACCOUNT_PASSWORD_NOT_MATCHA = "USER_ACCOUNT_PASSWORD_NOT_MATCHA";
 
             }
 
@@ -124,9 +125,9 @@ namespace Murtain.OAuth2.Core
 
         public static class CookieNames
         {
-            public const string CaptchaSignup = "__mobet.signup.captcha";
+            public const string CaptchaSignup = "murtain.passport.signup.captcha";
 
-            public const string CaptchSetPassword = "__mobet.passport.setpassword.captch";
+            public const string CaptchSetPassword = "murtain.passport.setpassword.captch";
 
         }
 

@@ -194,6 +194,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Murtain.OAuth2.SDK\Murtain.OAuth2.SDK.csproj">
+      <Project>{f270fc6f-23aa-46db-b8ab-f0dd71ff5dea}</Project>
+      <Name>Murtain.OAuth2.SDK</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

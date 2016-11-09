@@ -8,7 +8,7 @@ using IdentityServer3.Core.Services;
 using Murtain.Dependency;
 using Murtain.Localization;
 using Murtain.Domain.Services;
-
+using Murtain.Runtime.Session;
 using Constants = Murtain.OAuth2.Core.Constants;
 
 namespace Murtain.OAuth2.Web.Configuration.Services
@@ -17,7 +17,6 @@ namespace Murtain.OAuth2.Web.Configuration.Services
     public class IdentityServerLocallizationManager : IIdentityServerLocallizationManager
     {
         public ILocalizationManager LocalizationManager { get; set; }
-
         public IdentityServerLocallizationManager()
         {
             LocalizationManager = NullLocalizationManager.Instance;

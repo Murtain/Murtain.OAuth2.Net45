@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web;
 using System.Web.Http.Owin;
-
+using System.Web.Routing;
 using IdentityServer3.Core.ViewModels;
 using IdentityServer3.Core.Models;
 
@@ -20,14 +20,19 @@ using Murtain.Extensions;
 using Murtain.OAuth2.Web.Models;
 using Murtain.OAuth2.SDK.UserAccount;
 using Murtain.AutoMapper;
+using Murtain.Runtime.Session;
 
 namespace Murtain.OAuth2.Web.Controllers
 {
+
+
     public class AccountController : BaseController
     {
         private readonly ICacheManager cacheManager;
         private readonly ICaptchaService captchaService;
         private readonly IUserAccountService userAccountService;
+
+        public IAppSession AppSession { get; set; }
 
         public AccountController(ICaptchaService messageService, ICacheManager cacheManager, IUserAccountService userAccountService)
         {
@@ -37,11 +42,19 @@ namespace Murtain.OAuth2.Web.Controllers
         }
         public virtual ActionResult Login(LoginViewModel model, SignInMessage message)
         {
-            return this.View(model);
+            return View(model);
         }
-        public virtual ActionResult Registration(string signin)
+        public virtual ActionResult LocalRegistration(string signIn)
         {
             return View();
+        }
+        public virtual ActionResult ValidateCaptcha(ValidateCaptchaViewModel model)
+        {
+            return View(model);
+        }
+        public virtual ActionResult SetPassword(SetPasswordViewModel model)
+        {
+            return View(model);
         }
         public virtual ActionResult Logout(LogoutViewModel model)
         {
@@ -51,52 +64,58 @@ namespace Murtain.OAuth2.Web.Controllers
         {
             return this.View(model);
         }
+
+        public virtual ActionResult ForgotPassword(string signIn)
+        {
+            return View();
+        }
+
+
+        public ActionResult Consent(ConsentViewModel model)
+        {
+            return this.View(model);
+        }
+        public ActionResult Permissions(ClientPermissionsViewModel model)
+        {
+            return this.View(model);
+        }
         public virtual ActionResult SignOut()
         {
             Request.GetOwinContext().Authentication.SignOut();
             return View();
-        }
-        public virtual ActionResult Consent(ConsentViewModel model)
-        {
-            return this.View(model);
-        }
-        public virtual ActionResult Permissions(ClientPermissionsViewModel model)
-        {
-            return View(model);
         }
         public virtual ActionResult Error(IdentityServer3.Core.ViewModels.ErrorViewModel model)
         {
             return this.View(model);
         }
 
-        [HttpGet]
-        public ActionResult GetCaptcha()
+        [Authorize]
+        public virtual ActionResult Manager()
         {
-            return File(Captcha.GetBytes(Constants.CookieNames.CaptchaSignup), @"image/jpeg");
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GenderatorImageCaptcha()
+        {
+            return File(await captchaService.GenderatorImageCaptcha(Constants.CookieNames.CaptchaSignup), @"image/jpeg");
         }
         [HttpPost]
-        public async Task<JsonResult> ValidateCaptchaAndSendMessageCode(string telphone, string captcha)
+        public async Task<JsonResult> ResendMessageCode(string telphone, string captcha)
         {
             if (string.IsNullOrEmpty(telphone))
             {
-                return Json(new MvcAjaxResponse(false, LocalizationManager
-                    .GetSource(Constants.Localization.SourceName.Views)
-                    .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_NOT_EXSIT_MOBILE)
-                    ));
+                return Json(new MvcAjaxResponse(false, "无效的手机号码"));
             }
 
             if (CryptoManager.DecryptDES(CookieManager.GetCookieValue(Constants.CookieNames.CaptchaSignup)) != captcha)
             {
-                return Json(new MvcAjaxResponse(false,
-                    LocalizationManager
-                    .GetSource(Constants.Localization.SourceName.Views)
-                    .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_ERROR_CAPTCHA)
-                    ));
+                return Json(new MvcAjaxResponse(false, "错误的验证码"));
             }
 
             var response = await captchaService.MessageCaptchaSendAsync(new MessageCaptchaSendRequestModel
             {
-                Captcha = SDK.Captcha.MessageCaptcha.Register,
+                Captcha = MessageCaptcha.Register,
                 Telphone = telphone,
                 ExpiredTime = 30
             });
@@ -104,47 +123,148 @@ namespace Murtain.OAuth2.Web.Controllers
             return Json(new MvcAjaxResponse(response.Ok, response.Message));
         }
         [HttpPost]
-        public JsonResult ValidateMessageCaptcha(string captcha, string telphone)
-        {
-            if (this.cacheManager.Get<string>(string.Format(Constants.CacheNames.MessageCaptcha, SDK.Captcha.MessageCaptcha.Register, telphone, captcha)) != captcha)
-            {
-                return Json(new MvcAjaxResponse(false, LocalizationManager
-                    .GetSource(Constants.Localization.SourceName.Views)
-                    .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_EXPIRED_MESSAGE_CAPTCHA)
-                    ));
-            }
-
-            return Json(new MvcAjaxResponse(LocalizationManager
-                    .GetSource(Constants.Localization.SourceName.Views)
-                    .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_MESSAGE_CAPTCHA_VALIDATE_OK)
-                    ));
-        }
-
-        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registration(string signin, LocalRegisterViewModel model)
+        public ActionResult SetPasswordAction(SetPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var response = userAccountService.RegisterWithTelphone(model.MapTo<RegisterWithTelphoneRequestModel>());
-                if (response.Ok)
+                if (model.Password != model.ConfirmPassword)
                 {
-                    return Redirect("/connect/" + IdentityServer3.Core.Constants.RoutePaths.Login + "?signin=" + signin);
+                    model.ErrorMessage = LocalizationManager
+                        .GetSource(Constants.Localization.SourceName.Views)
+                        .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_PASSWORD_NOT_MATCHA);
+                    return View("SetPassword", model);
+                }
+                if (this.cacheManager.Get<string>(string.Format(Constants.CacheNames.MessageCaptcha, MessageCaptcha.Register, model.Telphone, model.Captcha)) != model.Captcha)
+                {
+                    model.ErrorMessage = LocalizationManager
+                        .GetSource(Constants.Localization.SourceName.Views)
+                        .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_EXPIRED_MESSAGE_CAPTCHA);
+                    return View("SetPassword", model);
+                }
+                var result = userAccountService.RegisterWithTelphone(new RegisterWithTelphoneRequestModel
+                {
+                    Telphone = model.Telphone,
+                    Password = model.Password
+                });
+                if (result.Ok)
+                {
+                    return Redirect("/core/" + IdentityServer3.Core.Constants.RoutePaths.Login + "?signin=" + model.SignIn);
+                }
+                model.ErrorMessage = result.Message;
+            }
+            return View("SetPassword", model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPasswordAction(SetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Password != model.ConfirmPassword)
+                {
+                    model.ErrorMessage = LocalizationManager
+                        .GetSource(Constants.Localization.SourceName.Views)
+                        .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_PASSWORD_NOT_MATCHA);
+                    return View("SetPassword", model);
+                }
+                if (this.cacheManager.Get<string>(string.Format(Constants.CacheNames.MessageCaptcha, MessageCaptcha.Register, model.Telphone, model.Captcha)) != model.Captcha)
+                {
+                    model.ErrorMessage = LocalizationManager
+                        .GetSource(Constants.Localization.SourceName.Views)
+                        .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_EXPIRED_MESSAGE_CAPTCHA);
+                    return View("SetPassword", model);
+                }
+                var result = userAccountService.SetPassword(new SetPasswordRequestModel
+                {
+                    UserId = AppSession.UserId,
+                    Password = model.Password
+                });
+                if (result.Ok)
+                {
+                    return Redirect("/core/" + IdentityServer3.Core.Constants.RoutePaths.Login + "?signin=" + model.SignIn);
+                }
+                model.ErrorMessage = result.Message;
+            }
+            return View("SetPassword", model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ValidateCaptchaAction(ValidateCaptchaViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (this.cacheManager.Get<string>(string.Format(Constants.CacheNames.MessageCaptcha, MessageCaptcha.Register, model.Telphone, model.Captcha)) != model.Captcha)
+                {
+                    model.ErrorMessage = LocalizationManager
+                        .GetSource(Constants.Localization.SourceName.Views)
+                        .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_EXPIRED_MESSAGE_CAPTCHA);
+                    return View("ValidateCaptcha", model);
+                }
+                return RedirectToAction("SetPassword", new SetPasswordViewModel { Telphone = model.Telphone, Captcha = model.Captcha, SignIn = model.SignIn, Action = model.Action });
+            }
+            return View("ValidateCaptcha", model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> LocalRegistrationAction(string signIn, ValidateImageCaptchaViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (CryptoManager.DecryptDES(CookieManager.GetCookieValue(Constants.CookieNames.CaptchaSignup)) != model.Captcha)
+                {
+                    model.ErrorMessage = LocalizationManager
+                          .GetSource(Constants.Localization.SourceName.Views)
+                          .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_ERROR_CAPTCHA);
+
+                    return View("LocalRegistration");
                 }
 
-                model.ErrorMessage = response.Message;
+                var result = await captchaService.MessageCaptchaSendAsync(new MessageCaptchaSendRequestModel
+                {
+                    Captcha = MessageCaptcha.Register,
+                    Telphone = model.Telphone,
+                    ExpiredTime = 30
+                });
+
+                if (result.Ok)
+                {
+                    return RedirectToAction("ValidateCaptcha", new ValidateCaptchaViewModel { SignIn = signIn, Captcha = model.Captcha, Telphone = model.Telphone, Action = "SetPasswordAction" });
+                }
+                model.ErrorMessage = result.Message;
             }
-            return View(model);
+            return View("LocalRegistration", model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassowrdAction(string signIn, ValidateImageCaptchaViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (CryptoManager.DecryptDES(CookieManager.GetCookieValue(Constants.CookieNames.CaptchaSignup)) != model.Captcha)
+                {
+                    model.ErrorMessage = LocalizationManager
+                          .GetSource(Constants.Localization.SourceName.Views)
+                          .GetString(Constants.Localization.MessageIds.USER_ACCOUNT_ERROR_CAPTCHA);
+
+                    return View("ForgotPassword");
+                }
+
+                var result = await captchaService.MessageCaptchaSendAsync(new MessageCaptchaSendRequestModel
+                {
+                    Captcha = MessageCaptcha.RetrievePassword,
+                    Telphone = model.Telphone,
+                    ExpiredTime = 30
+                });
+
+                if (result.Ok)
+                {
+                    return RedirectToAction("ValidateCaptcha", new ValidateCaptchaViewModel { SignIn = signIn, Captcha = model.Captcha, Telphone = model.Telphone, Action = "ResetPasswordAction" });
+                }
+                model.ErrorMessage = result.Message;
+            }
+            return View("LocalRegistration", model);
         }
 
-        [HttpPost]
-        public JsonResult GetUserProfileData()
-        {
-            var model = userAccountService.GetUserProfileData(new GetProfileDataRequestModel
-            {
-                UserId = AppSession.UserId
-            });
-            return Json(new MvcAjaxResponse(model));
-        }
     }
 }

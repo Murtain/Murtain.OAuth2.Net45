@@ -3,38 +3,38 @@
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>@ViewBag.Title</title>
-    <link href="~/Content/Login.css" rel="stylesheet" />
-    @RenderSection("styles", required: false)
+    <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
+    <meta name="description" content="一个关注互联网的科技博客" />
+
+    <link rel="stylesheet" href="~/content/css/font.css">
+    <link rel="stylesheet" href="~/content/css/passport.css">
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 </head>
+
 <body>
-    <div class="wrapper">
-        <div class="wrap">
-            <div class="layout" id="layout">
-                @RenderBody()
-            </div>
-        </div>
+<div class="container">
+    @RenderBody()
+</div>
+
+<div class="copyright">
+    <div class="clearfix">
+        <h2>Copyright © <span>2016</span>, Murtain Digital Co., Ltd. All Rights Reserved.</h2>
+        <h3 class="company">@L("上海MT信息科技有限公司")</h3>
+        <ul class="privacy">
+            <li><a href="http://murtain.imwork.net/localization/culture?name=zh-CN&returnUrl=@(Request.Url.ToString())">@L("简体中文")</a></li>
+            <li><a href="http://murtain.imwork.net/localization/culture?name=en&returnUrl=@(Request.Url.ToString())">@L("英文")</a></li>
+            <li><a href="http://murtain.imwork.net/support/#/agreement">@L("法律声明")</a></li>
+            <li><a href="http://murtain.imwork.net/support/#/privacy">@L("隐私条款")</a></li>
+        </ul>
+        <h4><a href="http://www.miibeian.gov.cn/" target="_blank"><span>@L("京ICP备14041720号-1")</span><span>@L("京ICP证140622号")</span><span>@L("京公网安备11010502025474")</span></a></h4>
     </div>
-    @* footer layout *@
-    <div class="n-footer">
-        <div class="nf-link-area clearfix">
-            <ul class="lang-select-list">
-                <li><a href="/Localization/ChangeCulture?CultureName=zh-CN&ReturnUrl=@(Request.Url.ToString())" data-lang="zh-CN" class="lang-select-li @(Culture == "zh-CN" ? "current" : "")">简体</a>|</li>
-                <li><a href="/Localization/ChangeCulture?CultureName=zh-TW&ReturnUrl=@(Request.Url.ToString())" data-lang="zh-TW" class="lang-select-li @(Culture == "zh-TW" ? "current" : "")">繁体</a>|</li>
-                <li><a href="/Localization/ChangeCulture?CultureName=en&ReturnUrl=@(Request.Url.ToString())" data-lang="en" class="lang-select-li @(Culture == "en" ? "current" : "")">English</a>|</li>
-                <li><a href="#" target="_blank">@L("常见问题")</a></li>
-            </ul>
-        </div>
-        <p class="nf-intro"><span>@L("版权所有")-@L("京ICP备10046444")-<a class="beian-record-link" target="_blank" href="#"><span></span>@L("京公网安备11010802020134号")</a>-@L("京ICP证110507号")</span></p>
-    </div>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    @RenderSection("scripts", required: false)
+</div>
+@RenderSection("scripts", required: false)
 </body>
 </html>

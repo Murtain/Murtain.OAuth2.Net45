@@ -5,16 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Murtain.AutoMapper;
 
 namespace Murtain.OAuth2.Domain.Entities
 {
+    [AutoMap(typeof(SDK.UserAccount.RegisterWithTelphoneRequestModel)
+            ,typeof(SDK.UserAccount.UserAccount)
+        )]
     public class UserAccount : SoftDeleteEntityBase
     {
-        /// <summary>
-        /// 第三方登录提供程序Open Connect ID
-        /// </summary>
-        [MaxLength(50)]
-        public virtual string OpenId { get; set; }
         /// <summary>
         /// 真实姓名
         /// </summary>
@@ -89,5 +88,15 @@ namespace Murtain.OAuth2.Domain.Entities
         [Required]
         [MaxLength(50)]
         public virtual string Subject { get; set; }
+        /// <summary>
+        /// 登录提供程序
+        /// </summary>
+        [MaxLength(50)]
+        public virtual string LoginProvider { get; set; }
+        /// <summary>
+        /// 登录提供程序Id
+        /// </summary>
+        [MaxLength(50)]
+        public virtual string LoginProviderId { get; set; }
     }
 }
