@@ -32,13 +32,20 @@ namespace Murtain.OAuth2.Web.Controllers
         private readonly ICaptchaService captchaService;
         private readonly IUserAccountService userAccountService;
 
-        public IAppSession AppSession { get; set; }
-
         public AccountController(ICaptchaService messageService, ICacheManager cacheManager, IUserAccountService userAccountService)
         {
             this.captchaService = messageService;
             this.cacheManager = cacheManager;
             this.userAccountService = userAccountService;
+        }
+
+
+        public virtual ActionResult Login(string id) {
+            return View();
+        }
+
+        public virtual ActionResult Index() {
+            return View();
         }
         public virtual ActionResult Login(LoginViewModel model, SignInMessage message)
         {
@@ -64,18 +71,15 @@ namespace Murtain.OAuth2.Web.Controllers
         {
             return this.View(model);
         }
-
         public virtual ActionResult ForgotPassword(string signIn)
         {
             return View();
         }
-
-
-        public ActionResult Consent(ConsentViewModel model)
+        public virtual ActionResult Consent(ConsentViewModel model)
         {
             return this.View(model);
         }
-        public ActionResult Permissions(ClientPermissionsViewModel model)
+        public virtual ActionResult Permissions(ClientPermissionsViewModel model)
         {
             return this.View(model);
         }
@@ -89,18 +93,13 @@ namespace Murtain.OAuth2.Web.Controllers
             return this.View(model);
         }
 
-        [Authorize]
-        public virtual ActionResult Manager()
-        {
-            return View();
-        }
-
         [HttpGet]
         public async Task<ActionResult> GenderatorImageCaptcha()
         {
             return File(await captchaService.GenderatorImageCaptcha(Constants.CookieNames.CaptchaSignup), @"image/jpeg");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<JsonResult> ResendMessageCode(string telphone, string captcha)
         {
             if (string.IsNullOrEmpty(telphone))

@@ -1,15 +1,15 @@
 ﻿"use strict";
 
-define(['angular', 'angular-ui-router', 'angular-loading-bar', 'angular-animate', 'angular-toastr', 'angular-AMD', 'angular-AMD-ngload'], function (angular, angularAMD) {
+define(['angular', 'angular-AMD', 'angular-AMD-ngload', 'angular-ui-router', 'angular-loading-bar', 'angular-animate', 'angular-toastr'], function (angular, angularAMD) {
 
     var app = angular.module('app', ['ui.router', 'angular-loading-bar']);
-    app.run(function ($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-    });
 
     app.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = true;
+    }]);
+
+    app.config(['$locationProvider', function ($locationProvider) {
+        $locationProvider.html5Mode({ enable: true, requireBase: false });
     }]);
 
     return angularAMD.bootstrap(app);

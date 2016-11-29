@@ -12,6 +12,7 @@ using Murtain.Dependency;
 using Murtain.OAuth2.Core;
 using Murtain.OAuth2.Web.Configuration.Services;
 using Murtain.OAuth2.Web.Controllers;
+using Murtain.OAuth2.Core.UserAccount;
 
 namespace Murtain.OAuth2.Web.Configuration
 {
@@ -35,7 +36,7 @@ namespace Murtain.OAuth2.Web.Configuration
 
 
             //自定义登录页面
-            factory.UserService = new Registration<IUserService>(resolver => IocManager.Instance.Resolve<IUserAccountService>());
+            factory.UserService = new Registration<IUserService, UserAccountService>();
             factory.ViewService = new Registration<IViewService, AccountViewService<AccountController>>();
             factory.LocalizationService = new Registration<ILocalizationService>(resolver => IocManager.Instance.Resolve<IIdentityServerLocallizationManager>());
 

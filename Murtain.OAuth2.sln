@@ -13,38 +13,51 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.SDK", "Murta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.Web", "Murtain.OAuth2.Web\Murtain.OAuth2.Web.csproj", "{83BA8B4F-8360-428A-AAD2-73E3C9A967D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Owin.Security.Tencent.Wechat", "..\Murtain.Microsoft.Owin.Security\Microsoft.Owin.Security.Tencent.Wechat\Microsoft.Owin.Security.Tencent.Wechat.csproj", "{B854278A-CAE3-4153-809B-967CA97B6016}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.Application", "Murtain.OAuth2.Application\Murtain.OAuth2.Application.csproj", "{472D404A-0B37-44D4-A79B-B2B936CC5067}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AzureWebSites|Any CPU = AzureWebSites|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
 		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
 		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
 		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F270FC6F-23AA-46DB-B8AB-F0DD71FF5DEA}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{F270FC6F-23AA-46DB-B8AB-F0DD71FF5DEA}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
 		{F270FC6F-23AA-46DB-B8AB-F0DD71FF5DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F270FC6F-23AA-46DB-B8AB-F0DD71FF5DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F270FC6F-23AA-46DB-B8AB-F0DD71FF5DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F270FC6F-23AA-46DB-B8AB-F0DD71FF5DEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83BA8B4F-8360-428A-AAD2-73E3C9A967D2}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{83BA8B4F-8360-428A-AAD2-73E3C9A967D2}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
 		{83BA8B4F-8360-428A-AAD2-73E3C9A967D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83BA8B4F-8360-428A-AAD2-73E3C9A967D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83BA8B4F-8360-428A-AAD2-73E3C9A967D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83BA8B4F-8360-428A-AAD2-73E3C9A967D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B854278A-CAE3-4153-809B-967CA97B6016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B854278A-CAE3-4153-809B-967CA97B6016}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B854278A-CAE3-4153-809B-967CA97B6016}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B854278A-CAE3-4153-809B-967CA97B6016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{472D404A-0B37-44D4-A79B-B2B936CC5067}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{472D404A-0B37-44D4-A79B-B2B936CC5067}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
+		{472D404A-0B37-44D4-A79B-B2B936CC5067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472D404A-0B37-44D4-A79B-B2B936CC5067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472D404A-0B37-44D4-A79B-B2B936CC5067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472D404A-0B37-44D4-A79B-B2B936CC5067}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

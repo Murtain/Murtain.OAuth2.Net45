@@ -24,6 +24,7 @@ using System.Reflection;
 using Autofac.Extras.DynamicProxy2;
 using Murtain.OAuth2.Core.Stores;
 using Murtain.GlobalSettings.Store;
+using Murtain.OAuth2.Core.UserAccount;
 
 namespace Murtain.OAuth2.Web
 {
@@ -67,8 +68,8 @@ namespace Murtain.OAuth2.Web
         {
             protected override void Load(Autofac.ContainerBuilder builder)
             {
-                //builder.RegisterType<GlobalSettingStore>()
-                //    .As<IGlobalSettingStore>()
+                //builder.RegisterType<UserAccountService>()
+                //    .As<IUserAccountService>()
                 //    .AsImplementedInterfaces()
                 //    .EnableInterfaceInterceptors()
                 //    .InterceptedBy(typeof(UnitOfWorkInterceptor))

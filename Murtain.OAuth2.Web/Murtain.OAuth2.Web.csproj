@@ -183,6 +183,10 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Tencent.QQ.1.0.0\lib\net452\Microsoft.Owin.Security.Tencent.QQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Owin.Security.Tencent.Wechat, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Tencent.Wechat.1.0.0.2\lib\net452\Microsoft.Owin.Security.Tencent.Wechat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Owin.Security.WsFederation, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.WsFederation.3.0.1\lib\net45\Microsoft.Owin.Security.WsFederation.dll</HintPath>
       <Private>True</Private>
@@ -367,12 +371,13 @@
     <Compile Include="Configuration\Session\AppSession.cs" />
     <Compile Include="Configuration\Users.cs" />
     <Content Include="Content\js\app.module.js" />
-    <Content Include="Content\js\Controllers\FogotPasswordController.js" />
-    <Content Include="Content\js\Controllers\LocalRegistrationController.js" />
+    <Content Include="Content\js\controllers\FogotPasswordController.js" />
+    <Content Include="Content\js\controllers\LocalRegistrationController.js" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Shared\BaseController.cs" />
     <Compile Include="Controllers\TencentController.cs" />
+    <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -413,12 +418,14 @@
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\ui-p_6b80ebe114.png" />
     <Content Include="Content\js\app.js" />
-    <Content Include="Content\js\Controllers\SetPasswordController.js" />
-    <Content Include="Content\js\Controllers\ValidateCaptchaController.js" />
-    <Content Include="Content\js\Factories\Browser.js" />
-    <Content Include="Content\js\Factories\Logger.js" />
+    <Content Include="Content\js\controllers\LoginController.js" />
+    <Content Include="Content\js\controllers\SetPasswordController.js" />
+    <Content Include="Content\js\controllers\ValidateCaptchaController.js" />
+    <Content Include="Content\js\factories\browser.js" />
+    <Content Include="Content\js\factories\logger.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\app.router.js" />
+    <Content Include="Content\js\services\AccountService.js" />
     <Content Include="Content\Login.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -428,6 +435,7 @@
     <Content Include="Content\fonts\myriad-set-pro_medium.woff" />
     <Content Include="Content\fonts\myriad-set-pro_text.woff" />
     <Content Include="Content\fonts\myriad-set-pro_thin.woff" />
+    <Content Include="Content\js\app.constants.js" />
     <None Include="Properties\PublishProfiles\Murtain.OAuth2.Web.Dev.pubxml" />
     <Content Include="Views\Account\authorization.css" />
     <Content Include="Web.config" />
@@ -458,16 +466,12 @@
     <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\js\Directives\" />
+    <Folder Include="Content\js\directives\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Murtain.Microsoft.Owin.Security\Microsoft.Owin.Security.Tencent.Wechat\Microsoft.Owin.Security.Tencent.Wechat.csproj">
-      <Project>{b854278a-cae3-4153-809b-967ca97b6016}</Project>
-      <Name>Microsoft.Owin.Security.Tencent.Wechat</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Murtain.OAuth2.Core\Murtain.OAuth2.Core.csproj">
       <Project>{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}</Project>
       <Name>Murtain.OAuth2.Core</Name>

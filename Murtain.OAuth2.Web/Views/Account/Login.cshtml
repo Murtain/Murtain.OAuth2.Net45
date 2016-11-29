@@ -1,15 +1,6 @@
 ﻿@model IdentityServer3.Core.ViewModels.LoginViewModel
 @{
-    ViewBag.Title = L("账号登录");
     Layout = null;//"~/Views/Shared/_Layout_Login.cshtml";
-
-    if (string.IsNullOrWhiteSpace(Model?.LoginUrl))
-    {
-        return;
-    }
-
-    var additionalLinks = Model?.AdditionalLinks?.ToList() ?? new List<IdentityServer3.Core.Configuration.LoginPageLink>();
-    var externalProviders = Model?.ExternalProviders?.ToList() ?? new List<IdentityServer3.Core.Configuration.LoginPageLink>();
 }
 
 <!DOCTYPE html>
@@ -17,11 +8,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>账号登录</title>
     <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
     <meta name="description" content="一个关注互联网的科技博客" />
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css"rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
 
 
@@ -31,67 +22,21 @@
     <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="/content/js/main.js"></script>
 </head>
 <body>
-    <div ui-view>
-        <div class="container">
-            <input type="hidden" name="@(Model?.AntiForgery.Name)" value="@(Model?.AntiForgery.Value)" />
-            <input type="hidden" name="@(Model?.LoginUrl)" value="@(Model?.LoginUrl)" ng-model="Model.LoginUrl" />
-            <div class="form-group">
-                <div class="logo-image"></div>
-                <div class="title"></div>
-            </div>
-            <div class="form-group">
-                @if (!string.IsNullOrWhiteSpace(Model?.ErrorMessage))
-                    {
-                    <span class="warningicon">@(Model?.ErrorMessage)</span>
-                    <span class="error-message"></span>
-                    }
-                <div class="input">
-                    <span class="icon"><i>@L("手机号/邮箱")</i></span>
-                    <input type="text" placeholder="@("手机号/邮箱")" ng-model="Model.UserName" name="UserName" />
-                </div>
-                <div class="input password">
-                    <span class="icon"><i>@L("密码")</i></span>
-                    <input type="password" placeholder="@L("密码")" ng-model="Model.Password" name="Password" />
-                </div>
-                <div class="btn-link">
-                    <input type="checkbox" class="check-box" name="RememberMe" ng-model="Model.RememberMe" />
-                    <label class="check-lable">@L("7天内自动登录")</label>
-                    <a href="#LocalRegistration">@L("立即注册")</a>
-                    <a href="#ForgotPassword" class="split">@L("忘记密码")</a>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="button" class="btn-submit" value="@L("登录")" ng-click="Login()">
-            </div>
-            <div class="line"></div>
-            <div class="form-group">
-                <ul>
-                    <li>
-                        <ul class="login-three">
-                            <li class="text">@L("其他账号登录")</li>
-                            @foreach (var provider in externalProviders){
-                                <li class="@(provider.Type.ToLower())" link="@provider.Href"></li>
-                             }
-                        </ul>
-                    </li>
-                    <li class="telphone-login"><a href="#">@L("国际手机号登录") <span><i class="arrow"></i></span></a></li>
-                </ul>
-            </div>
-        </div>
+    <input type="hidden" name="model" id="IdentityModelString" value="@(Newtonsoft.Json.JsonConvert.SerializeObject(Model))" />
+    <div ui-view class="container wrapper">
     </div>
     <div class="copyright">
         <div class="clearfix">
             <h2>Copyright © <span>2016</span>, Murtain Digital Co., Ltd. All Rights Reserved.</h2>
-            <h3 class="company">@L("上海MT信息科技有限公司")</h3>
+            <h3 class="company">上海MT信息科技有限公司</h3>
             <ul class="privacy">
-                <li><a href="http://murtain.imwork.net/localization/culture?name=zh-CN&returnUrl=@(Request.Url.ToString())">@L("简体中文")</a></li>
-                <li><a href="http://murtain.imwork.net/localization/culture?name=en&returnUrl=@(Request.Url.ToString())">@L("英文")</a></li>
-                <li><a href="http://murtain.imwork.net/support/#/agreement">@L("法律声明")</a></li>
-                <li><a href="http://murtain.imwork.net/support/#/privacy">@L("隐私条款")</a></li>
+                <li><a href="http://murtain.imwork.net/localization/culture?name=zh-CN&returnUrl=@(Request.Url.ToString())">简体中文</a></li>
+                <li><a href="http://murtain.imwork.net/localization/culture?name=en&returnUrl=@(Request.Url.ToString())">英文</a></li>
+                <li><a href="http://murtain.imwork.net/support/#/agreement">法律声明</a></li>
+                <li><a href="http://murtain.imwork.net/support/#/privacy">隐私条款</a></li>
             </ul>
-            <h4><a href="http://www.miibeian.gov.cn/" target="_blank"><span>@L("京ICP备14041720号-1")</span><span>@L("京ICP证140622号")</span><span>@L("京公网安备11010502025474")</span></a></h4>
+            <h4><a href="http://www.miibeian.gov.cn/" target="_blank"><span>京ICP备14041720号-1</span><span>京ICP证140622号</span><span>京公网安备11010502025474</span></a></h4>
         </div>
     </div>
 </body>
 </html>
-

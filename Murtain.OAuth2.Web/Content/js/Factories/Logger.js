@@ -1,7 +1,7 @@
 ﻿'use strict';
 defined(['app.module'], function () {
 
-    angular.module('app').factory('Logger', ['$log', 'toastr', function ($log, toastr) {
+    angular.module('app').factory('logger', ['$log', 'toastr', function ($log, toastr) {
         var factory = {
             toastr: true,
 

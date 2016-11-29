@@ -3,37 +3,49 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
-    <meta name="description" content="一个关注互联网的科技博客" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet" />
-
-    <link rel="stylesheet" href="~/content/css/font.css">
-    <link rel="stylesheet" href="~/content/css/passport.css">
-
-    <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="/content/js/main.js"></script>
-</head>
-<body>
-    <div class="container">
-        <div ui-view></div>
-    </div>
-    <div class="copyright">
-        <div class="clearfix">
-            <h2>Copyright © <span>2016</span>, Murtain Digital Co., Ltd. All Rights Reserved.</h2>
-            <h3 class="company">@L("上海MT信息科技有限公司")</h3>
-            <ul class="privacy">
-                <li><a href="http://murtain.imwork.net/localization/culture?name=zh-CN&returnUrl=@(Request.Url.ToString())">@L("简体中文")</a></li>
-                <li><a href="http://murtain.imwork.net/localization/culture?name=en&returnUrl=@(Request.Url.ToString())">@L("英文")</a></li>
-                <li><a href="http://murtain.imwork.net/support/#/agreement">@L("法律声明")</a></li>
-                <li><a href="http://murtain.imwork.net/support/#/privacy">@L("隐私条款")</a></li>
-            </ul>
-            <h4><a href="http://www.miibeian.gov.cn/" target="_blank"><span>@L("京ICP备14041720号-1")</span><span>@L("京ICP证140622号")</span><span>@L("京公网安备11010502025474")</span></a></h4>
+<div class="animated ">
+    <form name="form" method="post" action="{{LoginViewModel.Identity.LoginUrl}}" novalidate ="novalidate">
+        <input type="hidden" name="{{LoginViewModel.Identity.AntiForgery.Name}}" value="{{LoginViewModel.Identity.AntiForgery.Value}}"/>
+        <div class="form-group">
+            <div class="logo-image"></div>
+            <div class="title"></div>
         </div>
-    </div>
-</body>
-</html>
+        <div class="form-group">
+            <div ng-show="LoginViewModel.Identity.ErrorMessage != null">
+                <span class="warningicon">{{LoginViewModel.Identity.ErrorMessage}}</span>
+                <span class="error-message"></span>
+            </div>
+
+            <div class="input">
+                <span class="icon"><i>@L("手机号/邮箱")</i></span>
+                <input type="text" placeholder="@L("手机号/邮箱")" name="username"  ng-model="LoginViewModel.LoginModel.UserName"/>
+            </div>
+            <div class="input password">
+                <span class="icon"><i>@L("密码")</i></span>
+                <input type="password" placeholder="@L("密码")" name="password"  ng-model="LoginViewModel.LoginModel.Password"/>
+            </div>
+            <div class="btn-link">
+                <input type="checkbox" class="check-box" name="RememberMe" ng-model="LoginViewModel.LoginModel.RememberMe" />
+                <label class="check-lable">@L("7天内自动登录")</label>
+                <a href="#LocalRegistration">@L("立即注册")</a>
+                <a href="#ForgotPassword" class="split">@L("忘记密码")</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn-submit" value="@L("登录")">
+        </div>
+        <div class="line"></div>
+        <div class="form-group">
+            <ul>
+                <li>
+                    <ul class="login-three">
+                        <li class="text">@L("其他账号登录")</li>
+                        <li ng-repeat="provider in LoginViewModel.Identity.ExternalProviders" class="{{provider.Type.toLowerCase()}}" link="{{provider.Href}}"></li>
+                    </ul>
+                </li>
+                <li class="telphone-login"><a href="#">@L("国际手机号登录") <span><i class="arrow"></i></span></a></li>
+            </ul>
+        </div>
+    </form>
+</div>
+

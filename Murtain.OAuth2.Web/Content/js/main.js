@@ -15,17 +15,11 @@ require.config({
         'angular-AMD': "https://cdn.jsdelivr.net/angular.amd/0.2.1/angularAMD.min",
         'angular-AMD-ngload': "https://cdn.jsdelivr.net/angular.amd/0.2.1/ngload.min",
         'angular-bindonce': "https://pasvaz.github.io/bindonce/javascripts/bindonce-0.3.1/bindonce.min",
-        'angular-loading-bar': "https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min",
+        'angular-loading-bar': "https://cdn.bootcss.com/angular-loading-bar/0.9.0/loading-bar.min",
         'angular-ui-router': "https://cdn.bootcss.com/angular-ui-router/1.0.0-beta.3/angular-ui-router.min",
         'angular-toastr':'https://unpkg.com/angular-toastr@2.1.1/dist/angular-toastr.tpls',
 
         'app': '/content/js/app',
-        'app-module': '/content/js/app.module',
-        'config': '/config',
-        'constants':'/constants',
-        'logger': '/factories/logger',
-        'browser': '/factories/browser',
-
 
     },
     shim: {

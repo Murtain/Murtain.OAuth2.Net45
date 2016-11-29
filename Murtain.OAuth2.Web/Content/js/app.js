@@ -1,9 +1,6 @@
 ﻿"use strict";
 
-define(['app.module', 'app.router'], function () {
-   
-    app.controller('LoginController', ['$scope', function ($scope) {
-        var vm = this;
-    }]);
 
+define(['app.module', 'app.router' ,'app.constants'], function (app) {
+    return app;
 });
