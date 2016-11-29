@@ -35,10 +35,12 @@ namespace Murtain.OAuth2.Web.Configuration
             factory.RegisterOperationalServices(efConfig);
 
 
-            //自定义登录页面
-            factory.UserService = new Registration<IUserService, UserAccountService>();
+            // These registration to use customer user service and view service
+            factory.UserService = new Registration<IUserService, UserService>();
             factory.ViewService = new Registration<IViewService, AccountViewService<AccountController>>();
-            factory.LocalizationService = new Registration<ILocalizationService>(resolver => IocManager.Instance.Resolve<IIdentityServerLocallizationManager>());
+
+
+            factory.LocalizationService = new Registration<ILocalizationService, IdentityServerLocallizationManager>();
 
             // These registrations are also needed since these are dealt with using non-standard construction
             factory.Register(new Registration<HttpContext>(resolver => HttpContext.Current));

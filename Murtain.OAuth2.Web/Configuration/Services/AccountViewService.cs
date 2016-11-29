@@ -55,7 +55,7 @@ namespace Murtain.OAuth2.Web.Configuration.Services
 
         private readonly ViewEngineCollection viewEngineCollection;
 
-        #region [    构造函数    ]
+        #region [    Constructor    ]
 
         public AccountViewService(HttpContextBase httpContext)
             : this(

@@ -3,6 +3,8 @@
     Layout = null;
 }
 <div class="animated fadeIn">
+    <form name="form" method="post" action="/Account/LocalRegistration" novalidate="novalidate">
+        <input type="hidden" name="{{LocalRegistrationViewModel.Identity.AntiForgery.Name}}" value="{{LocalRegistrationViewModel.Identity.AntiForgery.Value}}" />
         <div class="form-group">
             <div class="logo-image"></div>
             <div class="title"></div>
@@ -30,7 +32,7 @@
         </div>
         <div class="form-group">
             <div class="btn-submit">
-                <input type="button" class="btn-submit" value="@L("注册")" ng-click="LocalRegistrationViewModel.Register()">
+                <input type="submit" class="btn-submit" value="@L("注册")">
             </div>
         </div>
         <div class="line"></div>
@@ -39,4 +41,5 @@
                 <a href="{{LocalRegistrationViewModel.LoginEndpoint}}" class="">@("如果您已拥有账号，则可在此") <span>@L("登录")</span></a>
             </p>
         </div>
+    </form>
 </div>

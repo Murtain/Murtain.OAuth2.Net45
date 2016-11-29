@@ -1,31 +1,39 @@
-﻿using IdentityServer3.Core.Extensions;
-using IdentityServer3.Core.Models;
-using IdentityServer3.Core.Services;
-using IdentityServer3.Core.Services.Default;
-using Microsoft.Owin;
-using Murtain.Dependency;
-using Murtain.Runtime.Security;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System.Text;
+using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using static IdentityServer3.Core.Constants;
+using IdentityServer3.Core.Extensions;
+using IdentityServer3.Core.Models;
+using IdentityServer3.Core.Services.Default;
+using IdentityServer3.Core.Services;
+using Microsoft.Owin;
+using Newtonsoft.Json.Linq;
+using Murtain.OAuth2.SDK.UserAccount;
+using Murtain.Caching;
+using Murtain.Domain.UnitOfWork;
+using Murtain.Localization;
+using Murtain.Runtime.Security;
+using Murtain.AutoMapper;
+using Murtain.Extensions;
+using Murtain.Exceptions;
+using Murtain.EntityFramework.Queries;
+using Murtain.Dependency;
+using Murtain.OAuth2.Core;
+using Murtain.OAuth2.Core.UserAccount;
 
-namespace Murtain.OAuth2.Core.UserAccount
+namespace Murtain.OAuth2.Application.UserAccount
 {
     public class UserService : UserServiceBase
     {
-        private readonly IUserAccountService userAccountService;
+        private readonly IUserAccountManager userAccountManager;
         private readonly OwinContext ctx;
 
         public UserService(OwinEnvironmentService owinEnv)
         {
             ctx = new OwinContext(owinEnv.Environment);
 
-            userAccountService = IocManager.Instance.Resolve<IUserAccountService>();
+            userAccountManager = IocManager.Instance.Resolve<IUserAccountManager>();
         }
 
         #region [ UserServiceBase method override . ]
@@ -37,8 +45,8 @@ namespace Murtain.OAuth2.Core.UserAccount
         /// <returns></returns>
         public override Task PreAuthenticateAsync(PreAuthenticationContext context)
         {
-            var id = ctx.Request.Query.Get("signin");
-            context.AuthenticateResult = new AuthenticateResult("~/Account/Login?id=" + id, (IEnumerable<Claim>)null);
+            //var id = ctx.Request.Query.Get("signin");
+            //context.AuthenticateResult = new AuthenticateResult("~/account/login?id=" + id, (IEnumerable<Claim>)null);
             return Task.FromResult(0);
         }
         /// <summary>
@@ -46,14 +54,15 @@ namespace Murtain.OAuth2.Core.UserAccount
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        public override async Task AuthenticateLocalAsync(LocalAuthenticationContext context)
+        public override Task AuthenticateLocalAsync(LocalAuthenticationContext context)
         {
-            var model = await userAccountService.AuthenticateLocalAsync(context.UserName, context.Password);
+            var model =  userAccountManager.AuthenticateLocalAsync(context.UserName, context.Password);
 
             if (model != null)
             {
                 context.AuthenticateResult = new AuthenticateResult(model.Subject, model.Telphone);
             }
+            return Task.FromResult(0);
         }
         /// <summary>
         /// This method gets called when the user uses an external identity provider to authenticate.
@@ -62,11 +71,11 @@ namespace Murtain.OAuth2.Core.UserAccount
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        public override async Task AuthenticateExternalAsync(ExternalAuthenticationContext context)
+        public override Task AuthenticateExternalAsync(ExternalAuthenticationContext context)
         {
             var claims = context.ExternalIdentity.Claims;
 
-            var user = await userAccountService.AuthenticateExternalAsync(new AuthenticateExternalRequest
+            var user = userAccountManager.AuthenticateExternalAsync(new AuthenticateExternalRequest
             {
                 LoginProvider = context.ExternalIdentity.Provider,
                 LoginProviderId = context.ExternalIdentity.ProviderId,
@@ -78,6 +87,7 @@ namespace Murtain.OAuth2.Core.UserAccount
             {
                 context.AuthenticateResult = new AuthenticateResult(user.Subject, GetDisplayName(claims), identityProvider: context.ExternalIdentity.Provider);
             }
+            return Task.FromResult(0);
         }
         /// <summary>
         /// This method is called prior to the user being issued a login cookie for IdentityServer.
@@ -93,11 +103,11 @@ namespace Murtain.OAuth2.Core.UserAccount
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        public override async Task GetProfileDataAsync(ProfileDataRequestContext context)
+        public override Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             var subjectId = context.Subject.GetSubjectId();
 
-            var user = await userAccountService.GetProfileDataAsync(subjectId);
+            var user =  userAccountManager.GetProfileDataAsync(subjectId);
             if (user != null)
             {
                 List<Claim> claims = new List<Claim>();
@@ -109,12 +119,13 @@ namespace Murtain.OAuth2.Core.UserAccount
 
                 context.IssuedClaims = claims;
             }
+            return Task.FromResult(0);
         }
 
         #endregion
 
 
-        private  string GetDisplayName(IEnumerable<Claim> claims)
+        private string GetDisplayName(IEnumerable<Claim> claims)
         {
             var nameClaim = claims.FirstOrDefault(x => x.Type == IdentityServer3.Core.Constants.ClaimTypes.Name);
             if (nameClaim != null)

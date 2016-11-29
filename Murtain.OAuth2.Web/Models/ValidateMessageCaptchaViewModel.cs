@@ -7,15 +7,17 @@ using System.Web;
 using IdentityServer3.Core.ViewModels;
 using Murtain.OAuth2.SDK.UserAccount;
 using Murtain.AutoMapper;
+using Murtain.OAuth2.SDK.Captcha;
 
 namespace Murtain.OAuth2.Web.Models
 {
-    [AutoMap(typeof(RegisterWithTelphoneRequestModel))]
-    public class ValidateImageCaptchaViewModel : ErrorViewModel
+    [AutoMap(typeof(ValidateMessageCaptchaRequestModel))]
+    public class ValidateMessageCaptchaViewModel : ErrorViewModel
     {
         [Required]
-        public string Telphone { get; set; }
-
+        public MessageCaptcha MessageCaptchaType { get; set; }
+        [Required]
+        public string Mobile { get; set; }
         [Required]
         public string Captcha { get; set; }
     }

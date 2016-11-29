@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using IdentityServer3.Core.Extensions;
 using IdentityServer3.Core.Models;
 using IdentityServer3.Core.Services.Default;
+using IdentityServer3.Core.Services;
+using Microsoft.Owin;
+using Newtonsoft.Json.Linq;
 using Murtain.OAuth2.SDK.UserAccount;
 using Murtain.OAuth2.Domain.Repositories;
 using Murtain.Caching;
@@ -16,15 +20,11 @@ using Murtain.AutoMapper;
 using Murtain.Extensions;
 using Murtain.Exceptions;
 using Murtain.EntityFramework.Queries;
-using System.Security.Claims;
-using Newtonsoft.Json.Linq;
-using IdentityServer3.Core.Services;
-using Microsoft.Owin;
 using Murtain.OAuth2.Domain.Entities;
 
 namespace Murtain.OAuth2.Core.UserAccount
 {
-    public class UserAccountService : IUserAccountService
+    public class UserAccountManager : IUserAccountManager
     {
         private readonly IUserAccountRepository userAccountRepository;
         private readonly ICacheManager cacheManager;
@@ -32,7 +32,7 @@ namespace Murtain.OAuth2.Core.UserAccount
         public ILocalizationManager LocalizationManager { get; set; }
 
 
-        public UserAccountService(IUserAccountRepository userAccountRepository, ICacheManager cacheManager, IUnitOfWorkManager unitOfWorkManager)
+        public UserAccountManager(IUserAccountRepository userAccountRepository, ICacheManager cacheManager, IUnitOfWorkManager unitOfWorkManager)
         {
             this.userAccountRepository = userAccountRepository;
             this.cacheManager = cacheManager;
@@ -162,18 +162,18 @@ namespace Murtain.OAuth2.Core.UserAccount
 
 
 
-        public Task<Domain.Entities.UserAccount> AuthenticateLocalAsync(string username, string password)
+        public Domain.Entities.UserAccount AuthenticateLocalAsync(string username, string password)
         {
             var user = userAccountRepository.FirstOrDefault(x => x.Telphone == username || x.Email == username);
 
             if (user == null && user.Password == CryptoManager.EncryptMD5(password + user.Salt).ToUpper())
             {
-                return Task.FromResult(user);
+                return user;
             }
 
             return null;
         }
-        public Task<Domain.Entities.UserAccount> AuthenticateExternalAsync(AuthenticateExternalRequest input)
+        public Domain.Entities.UserAccount AuthenticateExternalAsync(AuthenticateExternalRequest input)
         {
             var user = userAccountRepository.FirstOrDefault(x => x.LoginProvider == input.LoginProvider && x.LoginProviderId == input.LoginProviderId);
 
@@ -185,13 +185,13 @@ namespace Murtain.OAuth2.Core.UserAccount
                 userAccountRepository.Add(entity);
             }
 
-            return Task.FromResult(user);
+            return user;
         }
-        public Task<Domain.Entities.UserAccount> GetProfileDataAsync(string subjectId)
+        public Domain.Entities.UserAccount GetProfileDataAsync(string subjectId)
         {
             var user = userAccountRepository.FirstOrDefault(x => x.Subject == subjectId);
 
-            return Task.FromResult(user);
+            return user;
         }
 
 

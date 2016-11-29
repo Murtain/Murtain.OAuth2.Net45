@@ -90,8 +90,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Murtain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Murtain.1.0.0\lib\net452\Murtain.dll</HintPath>
+    <Reference Include="Murtain, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Murtain.1.0.0.2\lib\net452\Murtain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Murtain.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

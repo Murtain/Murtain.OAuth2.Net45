@@ -195,8 +195,8 @@
       <HintPath>..\packages\MsieJavaScriptEngine.1.7.0\lib\net40\MsieJavaScriptEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Murtain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Murtain.1.0.0\lib\net452\Murtain.dll</HintPath>
+    <Reference Include="Murtain, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Murtain.1.0.0.2\lib\net452\Murtain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Murtain.AutoMapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -381,12 +381,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LocalRegisterCaptchaViewModel.cs" />
-    <Compile Include="Models\LocalRegisterImageCaptchaViewModel.cs" />
-    <Compile Include="Models\LocalRegisterViewModel.cs" />
-    <Compile Include="Models\PassportSecurityViewModel.cs" />
-    <Compile Include="Models\PassportUserViewModel.cs" />
-    <Compile Include="Models\LocalRegisterSetPasswordViewModel.cs" />
+    <Compile Include="Models\LocalRegistrationViewModel.cs" />
+    <Compile Include="Models\ResetPasswordViewModel.cs" />
+    <Compile Include="Models\ValidateMessageCaptchaViewModel.cs" />
+    <Compile Include="Models\ValidateGraphicCaptchaAndResendMessageCaptchaViewModel.cs" />
+    <Compile Include="Models\ValidateGraphicCaptchaAndSendMessageCaptchaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -472,6 +471,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Murtain.OAuth2.Application\Murtain.OAuth2.Application.csproj">
+      <Project>{472D404A-0B37-44D4-A79B-B2B936CC5067}</Project>
+      <Name>Murtain.OAuth2.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Murtain.OAuth2.Core\Murtain.OAuth2.Core.csproj">
       <Project>{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}</Project>
       <Name>Murtain.OAuth2.Core</Name>

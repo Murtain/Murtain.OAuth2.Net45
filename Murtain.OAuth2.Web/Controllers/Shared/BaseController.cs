@@ -52,5 +52,10 @@ namespace Murtain.OAuth2.Web.Controllers.Shared
         {
             return new NewtonJsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+        public string L(string messageId)
+        {
+            return LocalizationManager.GetSource(Murtain.OAuth2.Core.Constants.Localization.SourceName.Messages).GetString(messageId);
+        }
     }
 }

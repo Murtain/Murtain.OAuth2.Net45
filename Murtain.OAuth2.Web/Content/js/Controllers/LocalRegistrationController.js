@@ -47,12 +47,6 @@ define(['app', 'app.constants', 'services/AccountService'], function (app) {
 
         }
 
-        function _Register() {
-            AccountService.Register()
-                          .then(function (data) {
-                          });
-        }
-
     };
     return LocalRegistrationController;
 });

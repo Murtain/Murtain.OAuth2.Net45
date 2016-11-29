@@ -13,7 +13,7 @@ namespace Murtain.OAuth2.Core
     /// <summary>
     /// This interface is about the user account services.
     /// </summary>
-    public interface IUserAccountService : IApplicationService
+    public interface IUserAccountManager : IApplicationService
     {
         /// <summary>
         /// This method get the user account entity by username and password.
@@ -21,7 +21,7 @@ namespace Murtain.OAuth2.Core
         /// <param name="username">username</param>
         /// <param name="password">password</param>
         /// <returns></returns>
-        Task<Domain.Entities.UserAccount> AuthenticateLocalAsync(string username, string password);
+        Domain.Entities.UserAccount AuthenticateLocalAsync(string username, string password);
         /// <summary>
         /// This method get the user account entity by username and password.
         /// If the user does not exist, create a user by user cliams. 
@@ -29,13 +29,13 @@ namespace Murtain.OAuth2.Core
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        Task<Domain.Entities.UserAccount> AuthenticateExternalAsync(AuthenticateExternalRequest input);
+        Domain.Entities.UserAccount AuthenticateExternalAsync(AuthenticateExternalRequest input);
         /// <summary>
         /// This method get the user account entity by subject id.
         /// </summary>
         /// <param name="subjectId"></param>
         /// <returns></returns>
-        Task<Domain.Entities.UserAccount> GetProfileDataAsync(string subjectId);
+        Domain.Entities.UserAccount GetProfileDataAsync(string subjectId);
         ///// <summary>
         ///// 分页查询
         ///// </summary>

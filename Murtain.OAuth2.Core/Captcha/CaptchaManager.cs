@@ -15,7 +15,7 @@ using Murtain.Runtime.Cookie;
 
 namespace Murtain.OAuth2.Core
 {
-    public class CaptchaService : LocalizationService, ICaptchaService
+    public class CaptchaManager : LocalizationService, ICaptchaManager
     {
 
         private readonly ICacheManager cacheManager;
@@ -29,7 +29,7 @@ namespace Murtain.OAuth2.Core
         /// <param name="globalSettingManager"></param>
         /// <param name="cacheManager"></param>
         /// <param name="emailSender"></param>
-        public CaptchaService(IGlobalSettingManager globalSettingManager, ICacheManager cacheManager, IEmailSender emailSender)
+        public CaptchaManager(IGlobalSettingManager globalSettingManager, ICacheManager cacheManager, IEmailSender emailSender)
         {
             this.globalSettingManager = globalSettingManager;
             this.cacheManager = cacheManager;
@@ -122,7 +122,7 @@ namespace Murtain.OAuth2.Core
         /// 获取图形验证码
         /// </summary>
         /// <returns></returns>
-        public Task<byte[]> GenderatorImageCaptcha(string cookiename)
+        public Task<byte[]> GenderatorCaptchaPicture(string cookiename)
         {
             return Task.FromResult(Captcha.GetBytes(cookiename));
         }

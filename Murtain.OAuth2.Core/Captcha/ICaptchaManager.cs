@@ -9,7 +9,7 @@ using Murtain.Domain.Services;
 
 namespace Murtain.OAuth2.Core
 {
-    public interface ICaptchaService : IApplicationService
+    public interface ICaptchaManager : IApplicationService
     {
         /// <summary>
         /// 发送短信验证码
@@ -28,6 +28,6 @@ namespace Murtain.OAuth2.Core
         /// </summary>
         /// <param name="cookiename"></param>
         /// <returns></returns>
-        Task<byte[]> GenderatorImageCaptcha(string cookiename);
+        Task<byte[]> GenderatorCaptchaPicture(string cookiename);
     }
 }

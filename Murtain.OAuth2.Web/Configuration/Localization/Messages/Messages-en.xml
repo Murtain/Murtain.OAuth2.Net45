@@ -3,5 +3,6 @@
   <texts>
     <text name="UsernameRequired" value="Email or telphone is required" />
     <text name="PasswordRequired" value="Password is required" />
+    <text name="InvalidUsernameOrPassword" value="Invalid user name or password" />
   </texts>
 </localizationDictionary>

@@ -90,8 +90,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Murtain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Murtain.1.0.0\lib\net452\Murtain.dll</HintPath>
+    <Reference Include="Murtain, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Murtain.1.0.0.2\lib\net452\Murtain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Murtain.AutoMapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -192,18 +192,17 @@
   <ItemGroup>
     <Compile Include="Client\IClientService.cs" />
     <Compile Include="LocalizationService.cs" />
-    <Compile Include="Captcha\CaptchaService.cs" />
+    <Compile Include="Captcha\CaptchaManager.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Captcha\ICaptchaService.cs" />
+    <Compile Include="Captcha\ICaptchaManager.cs" />
     <Compile Include="SettingProviders\AuthorizationSettingProvider.cs" />
     <Compile Include="SettingProviders\MessageSettingProvider.cs" />
     <Compile Include="SettingProviders\ResourcesSettingProvider.cs" />
     <Compile Include="Stores\GlobalSettingStore.cs" />
     <Compile Include="UserAccount\AuthenticateExternalRequest.cs" />
-    <Compile Include="UserAccount\IUserAccountService.cs" />
+    <Compile Include="UserAccount\IUserAccountManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserAccount\UserAccountService.cs" />
-    <Compile Include="UserAccount\UserService.cs" />
+    <Compile Include="UserAccount\UserAccountManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
