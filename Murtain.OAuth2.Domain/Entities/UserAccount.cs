@@ -9,9 +9,9 @@ using Murtain.AutoMapper;
 
 namespace Murtain.OAuth2.Domain.Entities
 {
-    [AutoMap(typeof(SDK.UserAccount.RegisterWithTelphoneRequestModel)
-            ,typeof(SDK.UserAccount.UserAccount)
-        )]
+    //[AutoMap(typeof(SDK.UserAccount.RegisterWithTelphoneRequestModel)
+    //        ,typeof(SDK.UserAccount.UserAccount)
+    //    )]
     public class UserAccount : SoftDeleteEntityBase
     {
         /// <summary>
@@ -32,7 +32,7 @@ namespace Murtain.OAuth2.Domain.Entities
         /// 手机号码
         /// </summary>
         [MaxLength(50)]
-        public virtual string Telphone { get; set; }
+        public virtual string Mobile { get; set; }
         /// <summary>
         /// 邮箱
         /// </summary>
@@ -66,7 +66,7 @@ namespace Murtain.OAuth2.Domain.Entities
         /// 头像地址
         /// </summary>
         [MaxLength(2000)]
-        public virtual string Headimageurl { get; set; }
+        public virtual string Avatar { get; set; }
         /// <summary>
         /// 身份证号
         /// </summary>
@@ -87,7 +87,7 @@ namespace Murtain.OAuth2.Domain.Entities
         /// </summary>
         [Required]
         [MaxLength(50)]
-        public virtual string Subject { get; set; }
+        public virtual string SubjectId { get; set; }
         /// <summary>
         /// 登录提供程序
         /// </summary>

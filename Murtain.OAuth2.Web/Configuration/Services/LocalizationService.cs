@@ -14,28 +14,18 @@ using Constants = Murtain.OAuth2.Core.Constants;
 namespace Murtain.OAuth2.Web.Configuration.Services
 {
 
-    public class IdentityServerLocallizationManager : ILocalizationService
+    public class LocalizationService : ILocalizationService,IDependency
     {
         public ILocalizationManager LocalizationManager { get; set; }
-        public IdentityServerLocallizationManager()
+
+        public LocalizationService()
         {
             LocalizationManager = NullLocalizationManager.Instance;
         }
 
         public virtual string GetString(string category, string id)
         {
-            switch (category)
-            {
-                case Constants.Localization.LocalizationCategories.Messages:
-                    return LocalizationManager.GetSource(Constants.Localization.SourceName.Messages).GetString(id);
-
-                case Constants.Localization.LocalizationCategories.Events:
-                    return LocalizationManager.GetSource(Constants.Localization.SourceName.Events).GetString(id);
-
-                case Constants.Localization.LocalizationCategories.Scopes:
-                    return LocalizationManager.GetSource(Constants.Localization.SourceName.Scopes).GetString(id);
-            }
-            return null;
+           return LocalizationManager.GetSource(category).GetString(id);
         }
     }
 }

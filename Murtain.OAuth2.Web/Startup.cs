@@ -24,13 +24,13 @@ namespace Murtain.OAuth2.Web
 {
     public class Startup
     {
-        private const string baseUri = "http://localhost:31208/";
+        private const string baseUri = "https://localhost:44373/";
         public void Configuration(IAppBuilder app)
         {
-            
+
             Log.Logger = new LoggerConfiguration()
               .MinimumLevel.Debug()
-              .WriteTo.File("C:\\inetpub\\wwwroot\\Murtain.OAuth2.Web\\Log\\2016-10-10.txt")
+              .WriteTo.File("C:\\inetpub\\wwwroot\\Murtain.OAuth2.Web\\Log\\log.html")
               .CreateLogger();
 
             app.Map("/core", idsrvApp =>
@@ -63,6 +63,7 @@ namespace Murtain.OAuth2.Web
                     AuthenticationOptions = new IdentityServer3.Core.Configuration.AuthenticationOptions //授权配置
                     {
                         EnablePostSignOutAutoRedirect = true,
+                        
                         IdentityProviders = ConfigureIdentityProviders,
                         LoginPageLinks = new List<LoginPageLink> {
                             new LoginPageLink{ Text = "忘记密码？", Href = "#forgot-password"},
@@ -82,7 +83,7 @@ namespace Murtain.OAuth2.Web
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationType = "Cookies"
+                AuthenticationType = "Cookies",
             });
 
             app.UseWsFederationAuthentication(new WsFederationAuthenticationOptions

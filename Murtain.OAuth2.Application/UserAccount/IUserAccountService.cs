@@ -13,7 +13,7 @@ namespace Murtain.OAuth2.Application.UserAccount
         Task ValidateGraphicCaptchaAndSendMessageCaptchaAsync(ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel input);
         Task ValidateMessageCaptchaAsync(ValidateMessageCaptchaRequestModel input);
         Task LocalRegistrationAsync(LocalRegistrationRequestModel input);
-        Task ValidateGraphicCaptchaAndResendMessageCaptchaAsync(ValidateGraphicCaptchaAndResendMessageCaptchaRequestModel input);
+        Task ResendMessageCaptchaAsync(ResendMessageCaptchaRequestModel input);
         Task ResetPasswordAsync(ResetPasswordRequestModel resetPasswordRequestModel);
         Task<byte[]> GetLocalRistrationGraphicCaptcha();
         Task<byte[]> GetResetPasswordGraphicCaptcha();

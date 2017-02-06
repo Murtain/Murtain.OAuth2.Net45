@@ -45,8 +45,8 @@ namespace Murtain.OAuth2.Application.UserAccount
         /// <returns></returns>
         public override Task PreAuthenticateAsync(PreAuthenticationContext context)
         {
-            //var id = ctx.Request.Query.Get("signin");
-            //context.AuthenticateResult = new AuthenticateResult("~/account/login?id=" + id, (IEnumerable<Claim>)null);
+            //var signin = ctx.Request.Query.Get("signin");
+            //context.AuthenticateResult = new AuthenticateResult("/core/login?signin=" + signin, (IEnumerable<Claim>)null);
             return Task.FromResult(0);
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace Murtain.OAuth2.Application.UserAccount
 
             if (model != null)
             {
-                context.AuthenticateResult = new AuthenticateResult(model.Subject, model.Telphone);
+                context.AuthenticateResult = new AuthenticateResult(model.SubjectId, model.Mobile);
             }
             return Task.FromResult(0);
         }
@@ -85,7 +85,7 @@ namespace Murtain.OAuth2.Application.UserAccount
 
             if (user != null)
             {
-                context.AuthenticateResult = new AuthenticateResult(user.Subject, GetDisplayName(claims), identityProvider: context.ExternalIdentity.Provider);
+                context.AuthenticateResult = new AuthenticateResult(user.SubjectId, GetDisplayName(claims), identityProvider: context.ExternalIdentity.Provider);
             }
             return Task.FromResult(0);
         }
@@ -113,9 +113,9 @@ namespace Murtain.OAuth2.Application.UserAccount
                 List<Claim> claims = new List<Claim>();
 
                 claims.Add(new Claim(System.Security.Claims.ClaimTypes.NameIdentifier, user.Id.ToString()));
-                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Name, user.NickName));
-                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Subject, user.Subject));
-                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Picture, user.Headimageurl));
+                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Name, user.NickName ?? user.Mobile));
+                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Subject, user.SubjectId));
+                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Picture, user.Avatar ?? "https://localhost:44373/content/images/avtar.jpg"));
 
                 context.IssuedClaims = claims;
             }

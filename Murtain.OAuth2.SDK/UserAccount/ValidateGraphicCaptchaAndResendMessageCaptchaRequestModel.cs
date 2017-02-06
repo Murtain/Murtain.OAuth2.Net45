@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Murtain.OAuth2.SDK.UserAccount
 {
-    public class ValidateGraphicCaptchaAndResendMessageCaptchaRequestModel
+    public class ResendMessageCaptchaRequestModel
     {
         public string GraphicCaptcha { get; set; }
         public MessageCaptcha MessageCaptchaType { get; set; }

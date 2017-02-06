@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 using Murtain.Domain.Services;
 using Murtain.OAuth2.Core.UserAccount;
 using System.Security.Claims;
+using Murtain.OAuth2.SDK.UserAccount;
+using Murtain.Domain.UnitOfWork;
 
 namespace Murtain.OAuth2.Core
 {
     /// <summary>
     /// This interface is about the user account services.
     /// </summary>
-    public interface IUserAccountManager : IApplicationService
+    public interface IUserAccountManager : IApplicationService,IUnitOfWorkService
     {
         /// <summary>
         /// This method get the user account entity by username and password.
@@ -54,12 +56,12 @@ namespace Murtain.OAuth2.Core
         ///// <param name="request"></param>
         ///// <returns></returns>
         //SaveResponseModel Save(SaveRequestModel request);
-        ///// <summary>
-        ///// 使用手机号码注册
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //RegisterWithTelphoneResponseModel RegisterWithTelphone(RegisterWithTelphoneRequestModel request);
+        /// <summary>
+        /// 手机号注册
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task LocalRegistrationAsync(LocalRegistrationRequestModel request);
         ///// <summary>
         ///// 获取登录用户信息
         ///// </summary>

@@ -3,43 +3,39 @@
     Layout = null;
 }
 <div class="animated fadeIn">
-    <form name="form" method="post" action="/Account/LocalRegistration" novalidate="novalidate">
-        <input type="hidden" name="{{LocalRegistrationViewModel.Identity.AntiForgery.Name}}" value="{{LocalRegistrationViewModel.Identity.AntiForgery.Value}}" />
-        <div class="form-group">
-            <div class="logo-image"></div>
-            <div class="title"></div>
+    <div class="form-group">
+        <div class="logo-image"></div>
+        <div class="title"></div>
+    </div>
+    <div class="form-group">
+        <div ng-show="!!model.error.message">
+            <span class="warningicon">{{model.error.message}}</span>
         </div>
-        <div class="form-group">
-            <div ng-hide="LocalRegistrationViewModel.Identity.ErrorMessage == undenfined || LocalRegistrationViewModel.Identity.ErrorMessage == ''" style="display:none">
-                <span class="warningicon">{{LocalRegistrationViewModel.Identity.ErrorMessage}}</span>
-                <span class="error-message"></span>
-            </div>
-            <div class="input">
-                <span class="icon"><i>@L("手机号/邮箱")</i></span>
-                <input type="text" placeholder="@L("手机号/邮箱")" name="telphone" />
-            </div>
-            <div class="input password">
-                <span class="icon"><i>@L("验证码")</i></span>
-                <input type="text" class="captcha" placeholder="@L("验证码")" name="captcha" />
-                <img class="img-captcha" ng-src="{{LocalRegistrationViewModel.CaptchaEndpoint}}" ng-click="LocalRegistrationViewModel.RefreshCaptcha()" />
-            </div>
-            <div class="btn-link">
-                <p class="agreement">
-                    <input type="checkbox" class="check-box" />
-                    <label class="check-lable">@L("我已阅读并同意遵守")<a href="{{LocalRegistrationViewModel.AgreementEndpoint}}" target="_blank">@L("法律声明")</a> @L("和")<a href="{{LocalRegistrationViewModel.PrivacyEndpoint}}" target="_blank">@L("隐私条款")</a></label>
-                </p>
-            </div>
+        <div class="input">
+            <span class="icon"><i>@L("手机号")</i></span>
+            <input type="text" placeholder="@L("手机号")" name="mobile"  ng-model="model.payload.mobile" />
         </div>
-        <div class="form-group">
-            <div class="btn-submit">
-                <input type="submit" class="btn-submit" value="@L("注册")">
-            </div>
+        <div class="input password">
+            <span class="icon"><i>@L("验证码")</i></span>
+            <input type="text" class="captcha" placeholder="@L("验证码")" name="captcha" ng-model="model.payload.graphic_captcha" />
+            <img class="img-captcha" ng-src={{model.endpoint.captcha}} ng-click="model.fnRefreshCaptcha()" />
         </div>
-        <div class="line"></div>
-        <div class="form-group">
-            <p class="go-signin">
-                <a href="{{LocalRegistrationViewModel.LoginEndpoint}}" class="">@("如果您已拥有账号，则可在此") <span>@L("登录")</span></a>
+        <div class="btn-link">
+            <p class="agreement">
+                <input type="checkbox" class="check-box" checked="checked" disabled="disabled" />
+                <label class="check-lable">@L("我已阅读并同意遵守")<a href="{{model.endpoint.agreement}}" target="_blank">@L("法律声明")</a> @L("和")<a href="{{model.endpoint.privacy}}" target="_blank">@L("隐私条款")</a></label>
             </p>
         </div>
-    </form>
+    </div>
+    <div class="form-group">
+        <div class="btn-submit">
+            <input type="button" class="btn-submit" ng-click="model.fnNext()" value="@L("下一步")">
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="form-group">
+        <p class="go-signin">
+            <a href="{{model.endpoint.login}}" class="">@("如果您已拥有账号，则可在此") <span>@L("登录")</span></a>
+        </p>
+    </div>
 </div>

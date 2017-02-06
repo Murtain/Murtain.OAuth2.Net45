@@ -1,90 +1,41 @@
-﻿@model Murtain.OAuth2.Web.Models.ValidateCaptchaViewModel
-@{
-    ViewBag.Title = L("注册账号");
-    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+﻿@{
+    ViewBag.Title = L("短信验证码验证");
+    Layout = null;
 }
 
-<form method="post" action="/Account/ValidateCaptchaAction">
-    <input type="hidden" name="telphone" value="@Model.Telphone" id="telphone" />
-    <input type="hidden" name="imgcaptcha" value="@Model.Captcha" id="imgcaptcha" />
-    <input type="hidden" name="signIn" value="@Model.SignIn"/>
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        <div class="logo-image"></div>
-        <div class="title"></div>
+<div class="form-group">
+    <div class="logo-image"></div>
+    <div class="title"></div>
+</div>
+<div class="form-group captcha-tip">
+    <p>@L("我们已经发送一条验证短信至") +86 {{model.payload.mobile}}</p>
+    <p>@L("请输入短信中的验证码")</p>
+</div>
+<div class="form-group">
+    <div ng-show="!!model.error.message">
+        <span class="warningicon">{{model.error.message}}</span>
     </div>
-    <div class="form-group captcha-tip">
-        <p>@L("我们已经发送一条验证短信至") +86 @Model.Telphone</p>
-        <p>@L("请输入短信中的验证码")</p>
+    <div class="input password">
+        <span class="icon"><i>@L("验证码")</i></span>
+        <input type="text" placeholder="@L("验证码")" name="captcha" class="captcha" ng-model="model.payload.captcha"/>
+        <a placeholder="获取验证码" class="refresh-captcha" ng-bind="model.timer.text" ng-click="model.fnResendCaptcha()">@L("重新发送")</a>
     </div>
-    <div class="form-group">
-        @if (!string.IsNullOrWhiteSpace(Model?.ErrorMessage))
-        {
-            <span class="warningicon">@Model.ErrorMessage</span>
-            <span class="error-message"></span>
-        }
-        <div class="input password">
-            <span class="icon"><i>@L("验证码")</i></span>
-            <input type="text" placeholder="@L("验证码")" name="captcha" class="captcha"/>
-            <a placeholder="获取验证码" class="refresh-captcha" >@L("重新发送")</a>
-        </div>
-        <div class="btn-link">
-            <p class="agreement">
-                <input type="checkbox" class="check-box"/>
-                <label class="check-lable">@L("我已阅读并同意遵守")<a href="http://murtain.imwork.net/support/#/agreement" target="_blank">@L("我已阅读并同意遵守")</a> @L("和")<a href="http://murtain.imwork.net/support/#/privacy" target="_blank">@L("隐私条款")</a></label>
-            </p>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="btn-submit">
-            <input type="submit" class="btn-submit" value="@L("下一步")">
-        </div>
-    </div>
-
-    <div class="line"></div>
-    <div class="form-group">
-        <p class="go-signin">
-            <a href="@("/core/" + IdentityServer3.Core.Constants.RoutePaths.Login + "?signin=" + Model.SignIn)" class="">@L("隐私条款") <span>@L("登录")</span></a>
+    <div class="btn-link">
+        <p class="agreement">
+            <input type="checkbox" class="check-box" checked="checked" disabled="disabled" />
+            <label class="check-lable">@L("我已阅读并同意遵守")<a href="{{model.endpoint.agreement}}" target="_blank">@L("法律声明")</a> @L("和")<a href="{{model.endpoint.privacy}}" target="_blank">@L("隐私条款")</a></label>
         </p>
     </div>
-</form>
+</div>
+<div class="form-group">
+    <div class="btn-submit">
+        <input type="button" class="btn-submit" value="@L("下一步")" ng-click="model.fnNext()">
+    </div>
+</div>
 
-@section scripts{
-    <script>
-        function CaptchaTimerStart() {
-            if ($('.refresh-captcha').hasClass('disabled')) {
-                return false;
-            }
-            var second = 60;
-            var timer = setInterval(function() {
-                $('.refresh-captcha').text('@(L("重新发送"))(' + second-- + ')');
-                    if (second <= 0) {
-                        $('.refresh-captcha').text('@(L("重新发送"))');
-                        $('.refresh-captcha').removeClass('disabled');
-                        clearInterval(timer);
-                    }
-                },
-                1 * 1000);
-            $('.refresh-captcha').addClass('disabled');
-        }
-        function ValidateCaptchaAndSendMessageCode() {
-            $.post('/Account/ResendMessageCode',
-                { Telphone: $('#telphone').val(), Captcha: $('#imgcaptcha').val() },
-                function(data) {
-                    if (data.Result) {
-                        CaptchaTimerStart();
-                        return false;
-                    }
-                });
-        }
-        $(function() {
-            CaptchaTimerStart();
-            $('.refresh-captcha').click(function() {
-                    if ($(this).hasClass('disabled')) {
-                        return false;
-                    }
-                    ValidateCaptchaAndSendMessageCode();
-                });
-        });
-    </script>
-}
+<div class="line"></div>
+<div class="form-group">
+    <p class="go-signin">
+        <a href="{{model.endpoint.login}}" class="">@("如果您已拥有账号，则可在此") <span>@L("登录")</span></a>
+    </p>
+</div>

@@ -15,7 +15,7 @@ using Murtain.AutoMapper;
 
 namespace Murtain.OAuth2.Core.Stores
 {
-    public class GlobalSettingStore : IGlobalSettingStore, IApplicationService
+    public class GlobalSettingStore : IGlobalSettingStore, IUnitOfWorkService
     {
         public IGlobalSettingRepository GlobalSettingRepository { get; set; }
 

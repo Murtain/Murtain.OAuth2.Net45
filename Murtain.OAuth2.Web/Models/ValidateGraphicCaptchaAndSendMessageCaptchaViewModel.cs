@@ -15,8 +15,6 @@ namespace Murtain.OAuth2.Web.Models
     public class ValidateGraphicCaptchaAndSendMessageCaptchaViewModel : ErrorViewModel
     {
         [Required]
-        public MessageCaptcha MessageCaptchaType { get; set; }
-        [Required]
         public string Mobile { get; set; }
         [Required]
         public string GraphicCaptcha { get; set; }

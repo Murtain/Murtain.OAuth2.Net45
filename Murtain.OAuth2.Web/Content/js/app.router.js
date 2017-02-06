@@ -11,39 +11,43 @@ define(['angular-AMD', 'app.module'], function ( angularAMD,app) {
 
         $uiViewScrollProvider.useAnchorScroll();
 
-        $urlRouterProvider.otherwise("/Login");
+        $urlRouterProvider.otherwise("/login-web");
 
-        $stateProvider.state('Login', angularAMD.route({
-            url: '/Login',
-            controllerUrl: '/content/js/controllers/LoginController.js',
-            templateUrl: '/Account/Index',
-            controllerAs: 'LoginViewModel',
+        $stateProvider.state('login-web', angularAMD.route({
+            url: '/login-web',
+            controllerUrl: '/content/js/controllers/login-web.js',
+            templateUrl: '/account/index',
+            controllerAs: 'model',
         }))
-        $stateProvider.state('LocalRegistration', angularAMD.route({
-            url: '/LocalRegistration',
-            controllerUrl: '/content/js/controllers/LocalRegistrationController.js',
-            templateUrl: '/Account/LocalRegistration',
-            controllerAs: 'LocalRegistrationViewModel',
+        $stateProvider.state('registration-local', angularAMD.route({
+            url: '/registration-local',
+            controllerUrl: '/content/js/controllers/registration-local.js',
+            templateUrl: '/account/localregistration',
+            controllerAs: 'model',
         }))
-        .state('ValidateCaptcha', angularAMD.route({
-            url: '/ValidateCaptcha',
-            controllerUrl: '/content/js/controllers/ValidateCaptchaController.js',
-            templateUrl: '/Account/ValidateCaptcha'
+        .state('captcha-validate', angularAMD.route({
+            url: '/captcha-validate/:mobile',
+            controllerUrl: '/content/js/controllers/captcha-validate.js',
+            templateUrl: '/account/validatecaptcha',
+            controllerAs: 'model',
         }))
-        .state('FogotPassword', angularAMD.route({
-            url: '/FogotPassword',
-            controllerUrl: '/content/js/controllers/FogotPasswordController.js',
-            templateUrl: '/Account/FogotPassword'
+        .state('password-fogot', angularAMD.route({
+            url: '/password-fogot',
+            controllerUrl: '/content/js/controllers/password-fogot.js',
+            templateUrl: '/account/fogotpassword',
+            controllerAs: 'model',
         }))
-        .state('SetPassword', angularAMD.route({
-            url: '/FogotPassword',
-            controllerUrl: '/content/js/controllers/SetPasswordController.js',
-            templateUrl: '/Account/SetPassword'
+        .state('password-set', angularAMD.route({
+            url: '/password-set/:mobile',
+            controllerUrl: '/content/js/controllers/password-set.js',
+            templateUrl: '/account/setpassword',
+            controllerAs: 'model',
         }))
-        .state('ResetPassword', angularAMD.route({
-            url: '/FogotPassword',
-            controllerUrl: '/content/js/controllers/ResetPasswordController.js',
-            templateUrl: '/Account/ResetPassword'
+        .state('password-reset', angularAMD.route({
+            url: '/password-reset',
+            controllerUrl: '/content/js/controllers/password-reset.js',
+            templateUrl: '/account/resetpassword',
+            controllerAs: 'model',
         }));
     }]);
 })

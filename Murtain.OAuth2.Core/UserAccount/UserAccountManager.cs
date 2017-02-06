@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Security.Claims;
-using IdentityServer3.Core.Extensions;
-using IdentityServer3.Core.Models;
-using IdentityServer3.Core.Services.Default;
-using IdentityServer3.Core.Services;
-using Microsoft.Owin;
-using Newtonsoft.Json.Linq;
 using Murtain.OAuth2.SDK.UserAccount;
 using Murtain.OAuth2.Domain.Repositories;
 using Murtain.Caching;
@@ -17,10 +7,7 @@ using Murtain.Domain.UnitOfWork;
 using Murtain.Localization;
 using Murtain.Runtime.Security;
 using Murtain.AutoMapper;
-using Murtain.Extensions;
 using Murtain.Exceptions;
-using Murtain.EntityFramework.Queries;
-using Murtain.OAuth2.Domain.Entities;
 
 namespace Murtain.OAuth2.Core.UserAccount
 {
@@ -97,33 +84,25 @@ namespace Murtain.OAuth2.Core.UserAccount
         //        Model = model.MapTo<SDK.UserAccount.UserAccount>()
         //    };
         //}
-        //public RegisterWithTelphoneResponseModel RegisterWithTelphone(RegisterWithTelphoneRequestModel request)
-        //{
-        //    if (userAccountRepository.Any(x => x.Telphone == request.Telphone))
-        //        return new RegisterWithTelphoneResponseModel
-        //        {
-        //            Ok = false,
-        //            Message = LocalizationManager
-        //                            .GetSource(Constants.Localization.SourceName.Messages)
-        //                            .GetString(Constants.Localization.MessageIds.UserAlreadyExists)
-        //        };
+        public async Task LocalRegistrationAsync(LocalRegistrationRequestModel input)
+        {
+            if (userAccountRepository.Any(x => x.Mobile == input.Mobile))
+            {
+                throw new UserFriendlyExceprion(UserAccountManagerServer.USER_ALREADY_EXISTS);
+            }
 
-        //    var model = request.MapTo<Domain.Entities.UserAccount>();
+            var salt = Guid.NewGuid().ToString().ToUpper();
 
-        //    model.Salt = Guid.NewGuid().ToString().ToUpper();
-        //    model.Subject = Guid.NewGuid().ToString().ToUpper();
-        //    model.Password = CryptoManager.EncryptMD5(request.Password + model.Salt).ToUpper();
+            var entity = new Domain.Entities.UserAccount
+            {
+                Mobile = input.Mobile,
+                Salt = salt,
+                Password = CryptoManager.EncryptMD5(input.Password + salt).ToUpper(),
+                SubjectId = GeneratorSubjectId()
+            };
 
-        //    userAccountRepository.Add(model);
-
-        //    return new RegisterWithTelphoneResponseModel
-        //    {
-        //        Ok = true,
-        //        Message = LocalizationManager
-        //                        .GetSource(Constants.Localization.SourceName.Messages)
-        //                        .GetString(Constants.Localization.MessageIds.UserAddComplete)
-        //    };
-        //}
+            await userAccountRepository.InsertAsync(entity);
+        }
         //public SaveResponseModel Save(SaveRequestModel request)
         //{
         //    throw new NotImplementedException();
@@ -164,9 +143,9 @@ namespace Murtain.OAuth2.Core.UserAccount
 
         public Domain.Entities.UserAccount AuthenticateLocalAsync(string username, string password)
         {
-            var user = userAccountRepository.FirstOrDefault(x => x.Telphone == username || x.Email == username);
+            var user = userAccountRepository.FirstOrDefault(x => x.Mobile == username || x.Email == username);
 
-            if (user == null && user.Password == CryptoManager.EncryptMD5(password + user.Salt).ToUpper())
+            if (user != null && user.Password == CryptoManager.EncryptMD5(password + user.Salt).ToUpper())
             {
                 return user;
             }
@@ -180,7 +159,7 @@ namespace Murtain.OAuth2.Core.UserAccount
             if (user == null)
             {
                 var entity = input.MapTo<Domain.Entities.UserAccount>();
-                entity.Subject = GeneratorSubjectId();
+                entity.SubjectId = GeneratorSubjectId();
 
                 userAccountRepository.Add(entity);
             }
@@ -189,7 +168,7 @@ namespace Murtain.OAuth2.Core.UserAccount
         }
         public Domain.Entities.UserAccount GetProfileDataAsync(string subjectId)
         {
-            var user = userAccountRepository.FirstOrDefault(x => x.Subject == subjectId);
+            var user = userAccountRepository.FirstOrDefault(x => x.SubjectId == subjectId);
 
             return user;
         }

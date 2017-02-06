@@ -12,7 +12,7 @@ a { color: #5079d9; cursor: pointer; text-decoration: none; }
 .logo-image { background: url(../images/logo.png) no-repeat 50% bottom; height: 230px; padding: 30px 0px; }
 .title { font-family: xihei; }
 
-.warningicon { width: 27px; height: 27px; background: url(../images/ui-p_6b80ebe114.png) -34px -590px no-repeat; display: inline-block; padding-left: 37px; line-height: 27px; color: #e66f6f; margin-bottom: 10px; margin-left: 15px; }
+.warningicon { width: 100%; height: 27px; background: url(../images/ui-p_6b80ebe114.png) -34px -590px no-repeat; display: inline-block; padding-left: 37px; line-height: 27px; color: #e66f6f; margin-bottom: 10px; margin-left: 15px; }
 .input { margin-top: 30px; background: #fff; border: #ccc solid 1px; border-radius: 3px; font-size: 18px; opacity: .618; position: relative; margin: 0px auto; margin-bottom: 15px; }
 .input .icon { background: -webkit-linear-gradient(#f8f8f8,#fafafa); background: -moz-linear-gradient(#f8f8f8,#fafafa); background: -ms-linear-gradient(#f8f8f8,#fafafa); background: -o-linear-gradient(#f8f8f8,#fafafa); border-radius: 6px 0 0 6px; border-right: solid 1px #ccc; box-shadow: 1px 0 3px -1px rgba(0,0,0,.1); float: left; height: 46px; width: 46px; overflow: hidden; }
 .input .icon i { background: url(../images/dialog-input-icons_e7e327a2b8.png) no-repeat; background-position: -1px 0; cursor: pointer; display: block; height: 46px; text-indent: -9999em; width: 46px; }
@@ -61,6 +61,6 @@ a { color: #5079d9; cursor: pointer; text-decoration: none; }
 .tips { height: 50px; z-index: 20; border: 1px solid #dadada; background-color: #fff; border-radius: 6px; position: absolute; -webkit-box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),0 18px 20px -10px rgba(0,0,0,.04),0 18px 20px -10px rgba(0,0,0,.04),0 10px 20px -10px rgba(0,0,0,.04); -moz-box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),0 18px 20px -10px rgba(0,0,0,.04),0 18px 20px -10px rgba(0,0,0,.04),0 10px 20px -10px rgba(0,0,0,.04); box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),0 18px 20px -10px rgba(0,0,0,.04),0 18px 20px -10px rgba(0,0,0,.04),0 10px 20px -10px rgba(0,0,0,.04); }
 .tips .delta { background: #fcfcfc; border-radius: 3px; box-shadow: rgba(0,0,0,.38) 0 2px 8px; float: left; position: absolute; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); z-index: 3; width: 20px; height: 20px; top: -6px; left: 67px; border: 1px solid #dadada; background-color: #fff; box-shadow: none; }
 .tips .deltapatch { background: #fcfcfc; border-radius: 8px 0 0 8px; box-shadow: none; height: 45px; width: 30px; position: absolute; left: 5px; top: 4px; z-index: 4; }
-.tips .warningicon { width: 27px; height: 27px; background: url(../images/ui-p_6b80ebe114.png) -34px -590px no-repeat; position: absolute; z-index: 5; float: left; left: 18px; top: 10px; box-shadow: none; }
+.tips .warningicon { width: 100%; height: 27px; background: url(../images/ui-p_6b80ebe114.png) -34px -590px no-repeat; position: absolute; z-index: 5; float: left; left: 18px; top: 10px; box-shadow: none; }
 .tips .message { font-size: 12px; z-index: 30; width: auto; padding: 0 0 0 15px; line-height: 50px; background: #fff; color: #999; border: 0; box-shadow: none; text-align: left; border-radius: 12px; overflow: hidden; top: 0; position: relative; margin-left: 43px; margin-right: 20px; }
 .tips .message p { width: 100%; }

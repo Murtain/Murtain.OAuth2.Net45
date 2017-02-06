@@ -13,6 +13,7 @@ using Murtain.OAuth2.Core;
 using Murtain.OAuth2.Web.Configuration.Services;
 using Murtain.OAuth2.Web.Controllers;
 using Murtain.OAuth2.Core.UserAccount;
+using Murtain.OAuth2.Application.UserAccount;
 
 namespace Murtain.OAuth2.Web.Configuration
 {
@@ -40,7 +41,7 @@ namespace Murtain.OAuth2.Web.Configuration
             factory.ViewService = new Registration<IViewService, AccountViewService<AccountController>>();
 
 
-            factory.LocalizationService = new Registration<ILocalizationService, IdentityServerLocallizationManager>();
+            factory.LocalizationService = new Registration<ILocalizationService>(resolver => IocManager.Instance.Resolve<ILocalizationService>());
 
             // These registrations are also needed since these are dealt with using non-standard construction
             factory.Register(new Registration<HttpContext>(resolver => HttpContext.Current));

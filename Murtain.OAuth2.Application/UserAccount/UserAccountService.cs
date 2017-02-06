@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Murtain.OAuth2.SDK.UserAccount;
 using Murtain.Caching;
 using Murtain.OAuth2.Core;
+using Murtain.Runtime.Cookie;
+using Murtain.Exceptions;
+using Murtain.Threading;
 
 namespace Murtain.OAuth2.Application.UserAccount
 {
@@ -15,24 +18,34 @@ namespace Murtain.OAuth2.Application.UserAccount
         private readonly ICaptchaManager captchaManager;
         private readonly IUserAccountManager userAccountManager;
 
+        public UserAccountService(ICacheManager cacheManager, ICaptchaManager captchaManager, IUserAccountManager userAccountManager)
+        {
+            this.cacheManager = cacheManager;
+            this.captchaManager = captchaManager;
+            this.userAccountManager = userAccountManager;
+        }
+
         public Task ValidateMessageCaptchaAsync(ValidateMessageCaptchaRequestModel input)
         {
-            throw new NotImplementedException();
+            throw new UserFriendlyExceprion(ValidateMessageCaptcha.INVALID_CAPTCHA);
         }
 
-        public Task LocalRegistrationAsync(LocalRegistrationRequestModel input)
+        public async Task LocalRegistrationAsync(LocalRegistrationRequestModel input)
         {
-            throw new NotImplementedException();
+           await userAccountManager.LocalRegistrationAsync(input);
         }
 
-        public Task ValidateGraphicCaptchaAndResendMessageCaptchaAsync(ValidateGraphicCaptchaAndResendMessageCaptchaRequestModel input)
+        public async Task ValidateGraphicCaptchaAndResendMessageCaptchaAsync(ValidateMessageCaptchaRequestModel input)
         {
-            throw new NotImplementedException();
+            await captchaManager.ValidateMessageCaptchaAsync(SDK.Captcha.MessageCaptcha.Register,input.Mobile,input.Captcha);
         }
 
-        public Task ValidateGraphicCaptchaAndSendMessageCaptchaAsync(ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel input)
+        public async Task ValidateGraphicCaptchaAndSendMessageCaptchaAsync(ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel input)
         {
-            throw new NotImplementedException();
+            await captchaManager.ValidateGraphicCaptchaAsync(Constants.CookieNames.LocalRistration, input.GraphicCaptcha);
+            
+            await captchaManager.MessageCaptchaSendAsync(SDK.Captcha.MessageCaptcha.Register, input.Mobile, 10);
+
         }
 
         public Task ResetPasswordAsync(ResetPasswordRequestModel resetPasswordRequestModel)
@@ -42,10 +55,15 @@ namespace Murtain.OAuth2.Application.UserAccount
 
         public Task<byte[]> GetLocalRistrationGraphicCaptcha()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(GraphicCaptchaManager.GetBytes(Constants.CookieNames.LocalRistration));
         }
 
         public Task<byte[]> GetResetPasswordGraphicCaptcha()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ResendMessageCaptchaAsync(ResendMessageCaptchaRequestModel input)
         {
             throw new NotImplementedException();
         }

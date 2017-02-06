@@ -125,9 +125,8 @@ namespace Murtain.OAuth2.Core
 
         public static class CookieNames
         {
-            public const string CaptchaSignup = "murtain.passport.signup.captcha";
-
-            public const string CaptchSetPassword = "murtain.passport.setpassword.captch";
+            public const string LocalRistration = "Murtain.Passport.Restration.Local";
+            public const string LocalRestrationSetPassword = "Murtain.Passport.Restration.SetPassword";
 
         }
 

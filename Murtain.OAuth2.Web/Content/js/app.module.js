@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-define(['angular', 'angular-AMD', 'angular-AMD-ngload', 'angular-ui-router', 'angular-loading-bar', 'angular-animate', 'angular-toastr'], function (angular, angularAMD) {
+define(['angular', 'angular-ui-router', 'angular-loading-bar', 'angular-animate', 'angular-toastr'], function (angular) {
 
     var app = angular.module('app', ['ui.router', 'angular-loading-bar']);
 
@@ -12,6 +12,20 @@ define(['angular', 'angular-AMD', 'angular-AMD-ngload', 'angular-ui-router', 'an
         $locationProvider.html5Mode({ enable: true, requireBase: false });
     }]);
 
-    return angularAMD.bootstrap(app);
+    app.config(['$provide', function ($provide) {
+        $provide.decorator('$rootScope', ['$delegate', function ($delegate) {
+            Object.defineProperty($delegate.constructor.prototype, '$onRootScope', {
+                value: function (name, listener) {
+                    var unsubscribe = $delegate.$on(name, listener);
+                    this.$on('$destroy', unsubscribe);
+                    return unsubscribe;
+                }, enumerable: false
+            });
+
+            return $delegate;
+        }]);
+    }]);
+
+    return app;
 
 });

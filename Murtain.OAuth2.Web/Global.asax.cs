@@ -13,7 +13,6 @@ using Murtain.Configuration.Startup;
 using Murtain.OAuth2.Core.SettingProviders;
 using Murtain.Localization.Settings;
 using Murtain.Localization.Dictionaries;
-using Murtain.EntityFramework.Startup;
 using Murtain.Auditing.Startup;
 using Murtain.Domain.UnitOfWork.ConventionalRegistras;
 using Murtain.Localization;
@@ -25,6 +24,10 @@ using Autofac.Extras.DynamicProxy2;
 using Murtain.OAuth2.Core.Stores;
 using Murtain.GlobalSettings.Store;
 using Murtain.OAuth2.Core.UserAccount;
+using System.Web.Http;
+using Murtain.Web.ContractResolver;
+using Murtain.Web.Attributes;
+using Murtain.Web.MessageHandlers;
 
 namespace Murtain.OAuth2.Web
 {
@@ -33,35 +36,42 @@ namespace Murtain.OAuth2.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            //Remove and JsonValueProviderFactory and add JsonDotNetValueProviderFactory
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new SnakeCaseContractResolver();
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new DefaultHandler());
+
             StartupConfig.RegisterDependency(config =>
-            {
+                {
                 //应用程序配置
                 config.GlobalSettingsConfiguration.Providers.Add<AuthorizationSettingProvider>();
-                config.GlobalSettingsConfiguration.Providers.Add<LocalizationSettingProvider>();
-                config.GlobalSettingsConfiguration.Providers.Add<ResourcesSettingProvider>();
-                config.GlobalSettingsConfiguration.Providers.Add<MessageSettingProvider>();
+                    config.GlobalSettingsConfiguration.Providers.Add<LocalizationSettingProvider>();
+                    config.GlobalSettingsConfiguration.Providers.Add<ResourcesSettingProvider>();
+                    config.GlobalSettingsConfiguration.Providers.Add<MessageSettingProvider>();
 
                 //本地化
                 config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Messages, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Messages)));
-                config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Events, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Events)));
-                config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Scopes, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Scopes)));
-                config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Views, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Views)));
+                    config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Events, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Events)));
+                    config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Scopes, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Scopes)));
+                    config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Views, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Views)));
 
                 //EF 连接字符串
                 config.UseDataAccessEntityFramework(cfg =>
-                {
-                    cfg.DefaultNameOrConnectionString = "DefaultConnection";
+                    {
+                        cfg.DefaultNameOrConnectionString = "DefaultConnection";
+                    });
+
+                    config.UseAuditing();
+                    config.UseAutoMapper();
+
+                    config.RegisterWebMvcApplication(new ConventionalRegistrarConfig());
+                    config.RegisterWebApiApplication();
                 });
-
-                config.UseAuditing();
-                config.UseAutoMapper();
-
-                config.RegisterWebMvcApplication(new ConventionalRegistrarConfig());
-            });
         }
 
         public class ConventionalRegistrarConfig : Autofac.Module

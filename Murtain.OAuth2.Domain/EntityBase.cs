@@ -24,7 +24,7 @@ namespace Murtain.OAuth2.Domain
 
     public abstract class PassivableEntityBase : AuditedEntityBase, IPassivable
     {
-        public virtual bool IsActive { get; set; }
+        public virtual bool IsActived { get; set; }
     }
 
 
@@ -35,7 +35,7 @@ namespace Murtain.OAuth2.Domain
 
     public abstract class PassivableSoftDeleteEntityBase : AuditedEntityBase, IPassivable, ISoftDelete
     {
-        public virtual bool IsActive { get; set; }
+        public virtual bool IsActived { get; set; }
         public virtual bool IsDeleted { get; set; }
     }
 }

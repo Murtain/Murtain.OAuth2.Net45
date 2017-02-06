@@ -10,7 +10,7 @@ namespace Murtain.OAuth2.SDK.UserAccount
     public class ResetPasswordRequestModel
     {
         [Required]
-        public string Telphone { get; set; }
+        public string Mobile { get; set; }
         [Required]
         public string Captcha { get; set; }
         [Required]
