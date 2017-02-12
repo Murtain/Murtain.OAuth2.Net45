@@ -25,9 +25,9 @@ namespace Murtain.OAuth2.Application.UserAccount
             this.userAccountManager = userAccountManager;
         }
 
-        public Task ValidateMessageCaptchaAsync(ValidateMessageCaptchaRequestModel input)
+        public async Task ValidateMessageCaptchaAsync(ValidateMessageCaptchaRequestModel input)
         {
-            throw new UserFriendlyExceprion(ValidateMessageCaptcha.INVALID_CAPTCHA);
+            await captchaManager.ValidateMessageCaptchaAsync(SDK.Captcha.MessageCaptcha.Register, input.Mobile, input.Captcha);
         }
 
         public async Task LocalRegistrationAsync(LocalRegistrationRequestModel input)

@@ -1,15 +1,14 @@
-﻿using Murtain.OAuth2.SDK.Captcha;
-using Murtain.Web.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Murtain.Web;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using Murtain.SDK;
+using Murtain.SDK.Attributes;
 
 namespace Murtain.OAuth2.SDK.UserAccount
 {
@@ -26,14 +25,14 @@ namespace Murtain.OAuth2.SDK.UserAccount
     public enum ValidateMessageCaptcha
     {
         [Description("参数无效")]
-        [HttpStatus(HttpStatusCode.BadRequest)]
+        [HttpCorresponding(HttpStatusCode.BadRequest)]
         INVALID_PARAMETERS = SystemReturnCode.INVALID_PARAMETERS,
 
         [Description("验证码无效")]
-        [HttpStatus(HttpStatusCode.BadRequest)]
+        [HttpCorresponding(HttpStatusCode.BadRequest)]
         INVALID_CAPTCHA = 21000,
 
-        [HttpStatus(HttpStatusCode.BadRequest)]
+        [HttpCorresponding(HttpStatusCode.BadRequest)]
         [Description("验证码已过期，请重新获取验证码")]
         EXPIRED_CAPTCHA,
 

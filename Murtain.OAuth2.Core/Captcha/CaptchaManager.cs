@@ -15,6 +15,7 @@ using Murtain.Runtime.Cookie;
 using Murtain.Runtime.Security;
 using Murtain.Exceptions;
 using Murtain.GlobalSettings.Extensions;
+using Murtain.Web.Exceptions;
 
 namespace Murtain.OAuth2.Core
 {

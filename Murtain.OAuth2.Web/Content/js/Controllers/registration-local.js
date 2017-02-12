@@ -55,7 +55,7 @@ define(['app', 'app.constants', 'services/account-service', 'services/captcha-se
 
             captcha_service.fnValidateGraphicCapthcaAndSendMessage(that.payload)
                            .then(function (data) {
-                               if (data) {
+                               if (!data) {
                                    $state.go('captcha-validate', { mobile: that.payload.mobile })
                                    return;
                                }

@@ -8,6 +8,7 @@ using Murtain.Localization;
 using Murtain.Runtime.Security;
 using Murtain.AutoMapper;
 using Murtain.Exceptions;
+using Murtain.Web.Exceptions;
 
 namespace Murtain.OAuth2.Core.UserAccount
 {

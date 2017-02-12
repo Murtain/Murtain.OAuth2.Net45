@@ -64,7 +64,7 @@
     <Compile Include="UserAccount\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\IdentityServer3-master\Core\Core.csproj">
+    <ProjectReference Include="..\..\..\GitHub\IdentityServer3\source\Core\Core.csproj">
       <Project>{fb9e026e-bab3-498a-a954-b93b05c146a5}</Project>
       <Name>Core</Name>
     </ProjectReference>

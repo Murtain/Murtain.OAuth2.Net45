@@ -63,7 +63,7 @@ define(['app', 'app.constants', 'services/account-service', 'services/captcha-se
 
             captcha_service.fnValidateMessageCaptcha(that.payload)
                            .then(function (data) {
-                               if (data) {
+                               if (!data) {
                                    $state.go('password-set', { mobile: that.payload.mobile })
                                    return;
                                }

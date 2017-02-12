@@ -57,9 +57,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Murtain\Murtain\Murtain.csproj">
-      <Project>{1F77D738-26F1-4838-A44B-D88702D72319}</Project>
-      <Name>Murtain</Name>
+    <ProjectReference Include="..\..\Murtain\Murtain.SDK\Murtain.SDK.csproj">
+      <Project>{08d9807e-c4a2-42ac-9ba0-c408f07c6016}</Project>
+      <Name>Murtain.SDK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

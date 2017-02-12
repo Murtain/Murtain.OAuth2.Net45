@@ -1,7 +1,6 @@
-﻿using Murtain.Domain.Services;
-using Murtain.OAuth2.SDK.Captcha;
-using Murtain.Web;
-using Murtain.Web.Attributes;
+﻿using Murtain.OAuth2.SDK.Captcha;
+using Murtain.SDK;
+using Murtain.SDK.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,23 +32,23 @@ namespace Murtain.OAuth2.SDK.UserAccount
     public enum ValidateGraphicCaptchaAndSendMessageCaptcha
     {
         [Description("参数无效")]
-        [HttpStatus(HttpStatusCode.BadRequest)]
+        [HttpCorresponding(HttpStatusCode.BadRequest)]
         INVALID_PARAMETERS = SystemReturnCode.INVALID_PARAMETERS,
 
         [Description("图形验证码无效")]
-        [HttpStatus(HttpStatusCode.BadRequest)]
+        [HttpCorresponding(HttpStatusCode.BadRequest)]
         INVALID_GRAPHIC_CAPTCHA = MessageCaptchaServer.INVALID_GRAPHIC_CAPTCHA,
 
         [Description("短信发送次数超出限制")]
-        [HttpStatus(HttpStatusCode.BadRequest)]
+        [HttpCorresponding(HttpStatusCode.BadRequest)]
         MESSAGES_SENT_OVER_LIMIT = MessageCaptchaServer.MESSAGES_SENT_OVER_LIMIT,
 
         [Description("短信服务不可用")]
-        [HttpStatus(HttpStatusCode.BadGateway)]
+        [HttpCorresponding(HttpStatusCode.BadGateway)]
         SMS_SERVICE_NOT_AVAILABLE = MessageCaptchaServer.SMS_SERVICE_NOT_AVAILABLE,
 
         [Description("短信发送失败")]
-        [HttpStatus(HttpStatusCode.BadGateway)]
+        [HttpCorresponding(HttpStatusCode.BadGateway)]
         MESSAGE_CAPTCHA_SEND_FAILED = MessageCaptchaServer.MESSAGE_CAPTCHA_SEND_FAILED,
     }
 

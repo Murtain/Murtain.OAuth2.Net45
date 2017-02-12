@@ -1,6 +1,6 @@
 ﻿using Murtain.OAuth2.Core.UserAccount;
-using Murtain.Web;
-using Murtain.Web.Attributes;
+using Murtain.SDK;
+using Murtain.SDK.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,11 +23,11 @@ namespace Murtain.OAuth2.SDK.UserAccount
     public enum LocalRegistration
     {
         [Description("参数无效")]
-        [HttpStatus(HttpStatusCode.BadRequest)]
+        [HttpCorresponding(HttpStatusCode.BadRequest)]
         INVALID_PARAMETERS = SystemReturnCode.INVALID_PARAMETERS,
 
         [Description("手机号码已存在")]
-        [HttpStatus(HttpStatusCode.BadRequest)]
+        [HttpCorresponding(HttpStatusCode.BadRequest)]
         USER_ALREADY_EXISTS = UserAccountManagerServer.USER_ALREADY_EXISTS
 
     }

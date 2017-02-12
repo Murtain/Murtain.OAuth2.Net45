@@ -128,15 +128,6 @@ namespace Murtain.OAuth2.Web
                 AuthorizationEndpoint = "https://open.weixin.qq.com/connect/oauth2/authorize", //微信内部网页授权地址,默认PC扫码登录地址
                 Scope = { "get_user_info" },
             });
-
-            //app.UseWeixinAuthentication(new WeixinAuthenticationOptions()
-            //{
-            //    AuthenticationType = "weixin",
-            //    SignInAsAuthenticationType = signInAsType,
-
-            //    AppId = "wxe74f55e0fa310f0b",
-            //    AppSecret = "dd34fff1fe342ad762ccd5c91b561693",
-            //});
         }
 
     }

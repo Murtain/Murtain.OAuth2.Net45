@@ -7,9 +7,9 @@ namespace Murtain.OAuth2.Infrastructure.Migrations
     {
         public override void Up()
         {
-            //AddColumn("dbo.UserAccounts", "LoginProvider", c => c.String(maxLength: 50));
-            //AddColumn("dbo.UserAccounts", "LoginProviderId", c => c.String(maxLength: 50));
-            //DropColumn("dbo.UserAccounts", "OpenId");
+            AddColumn("dbo.UserAccounts", "LoginProvider", c => c.String(maxLength: 50));
+            AddColumn("dbo.UserAccounts", "LoginProviderId", c => c.String(maxLength: 50));
+            DropColumn("dbo.UserAccounts", "OpenId");
         }
         
         public override void Down()

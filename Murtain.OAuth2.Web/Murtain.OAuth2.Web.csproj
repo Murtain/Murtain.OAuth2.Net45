@@ -328,7 +328,9 @@
     <Content Include="Content\js\app.constants.js" />
     <None Include="Properties\PublishProfiles\Murtain.OAuth2.Web.Dev.pubxml" />
     <Content Include="Views\Account\authorization.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -364,7 +366,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\IdentityServer3-master\Core\Core.csproj">
+    <ProjectReference Include="..\..\..\GitHub\IdentityServer3\source\Core\Core.csproj">
       <Project>{fb9e026e-bab3-498a-a954-b93b05c146a5}</Project>
       <Name>Core</Name>
     </ProjectReference>
@@ -375,6 +377,14 @@
     <ProjectReference Include="..\..\Murtain\Murtain.EntityFramework\Murtain.EntityFramework.csproj">
       <Project>{c8965502-47b6-4499-8d3d-d75f24d30a9d}</Project>
       <Name>Murtain.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Murtain\Murtain.SDK\Murtain.SDK.csproj">
+      <Project>{08d9807e-c4a2-42ac-9ba0-c408f07c6016}</Project>
+      <Name>Murtain.SDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Murtain\Murtain.Web\Murtain.Web.csproj">
+      <Project>{60b9d99c-2829-4fb9-982a-f8d26639edcc}</Project>
+      <Name>Murtain.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Murtain\Murtain\Murtain.csproj">
       <Project>{1f77d738-26f1-4838-a44b-d88702d72319}</Project>

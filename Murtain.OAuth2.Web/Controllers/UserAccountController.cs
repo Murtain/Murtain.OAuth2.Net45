@@ -8,6 +8,7 @@ using System.Web.Http;
 using Murtain.OAuth2.SDK.UserAccount;
 using Murtain.OAuth2.Application.UserAccount;
 using Murtain.Web.Attributes;
+using Murtain.SDK.Attributes;
 
 namespace Murtain.OAuth2.Web.Controllers
 {
@@ -41,14 +42,14 @@ namespace Murtain.OAuth2.Web.Controllers
 
         [HttpPost]
         [Route("api/account/sms")]
-        [ResponseCode(typeof(ValidateGraphicCaptchaAndSendMessageCaptcha))]
+        [ReturnCode(typeof(ValidateGraphicCaptchaAndSendMessageCaptcha))]
         public async Task ValidateGraphicCaptchaAndSendMessageCaptchaAsync([FromBody]ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel input)
         {
             await userAccountService.ValidateGraphicCaptchaAndSendMessageCaptchaAsync(input);
         }
 
         [HttpPut]
-        [ResponseCode(typeof(ValidateMessageCaptcha))]
+        [ReturnCode(typeof(ValidateMessageCaptcha))]
         [Route("api/account/sms-validate")]
         public async Task ValidateMessageCaptchaAsync([FromBody] ValidateMessageCaptchaRequestModel input)
         {

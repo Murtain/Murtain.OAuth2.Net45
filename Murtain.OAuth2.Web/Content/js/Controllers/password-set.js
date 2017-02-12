@@ -46,7 +46,7 @@ define(['app', 'app.constants', 'services/account-service', 'services/captcha-se
 
             account_service.fnLocalRegistration(that.payload)
                            .then(function (data) {
-                               if (data) {
+                               if (!data) {
                                    $state.go('login-web')
                                    return;
                                }
