@@ -9,9 +9,38 @@ namespace Murtain.OAuth2.Core
     public static class Constants
     {
 
-        public enum Exception
+        public static class ClaimTypes
         {
-            NOT_FIND_BY_PRIMARY_KEY = 10001,
+
+            public const string Name = "name";
+            public const string NickName = "nick_name";
+            public const string Birthday = "birthday";
+            public const string Age = "age";
+            public const string Gender = "gender";
+            public const string Avatar = "avatar";
+            public const string Mobile = "mobile";
+            public const string Email = "email";
+            public const string Country = "country";
+            public const string Province = "province";
+            public const string City = "city";
+            public const string Address = "address";
+
+            public static class Wechat 
+            {
+                public const string Name = "name";
+                public const string NickName = "nick_name";
+                public const string Birthday = "birthday";
+                public const string Age = "age";
+                public const string Gender = "sex";
+                public const string Avatar = "headimgurl";
+                public const string Mobile = "mobile";
+                public const string Email = "email";
+                public const string Country = "country";
+                public const string Province = "province";
+                public const string City = "city";
+                public const string Address = "address";
+
+            }
         }
 
         public static class Localization

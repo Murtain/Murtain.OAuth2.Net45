@@ -23,7 +23,7 @@ namespace Murtain.OAuth2.Core
         /// <param name="username">username</param>
         /// <param name="password">password</param>
         /// <returns></returns>
-        Domain.Entities.UserAccount AuthenticateLocalAsync(string username, string password);
+        Task<Domain.Entities.UserAccount> AuthenticateLocalAsync(string username, string password);
         /// <summary>
         /// This method get the user account entity by username and password.
         /// If the user does not exist, create a user by user cliams. 
@@ -31,43 +31,19 @@ namespace Murtain.OAuth2.Core
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        Domain.Entities.UserAccount AuthenticateExternalAsync(AuthenticateExternalRequest input);
+        Task<Domain.Entities.UserAccount> AuthenticateExternalAsync(AuthenticateExternalRequest input);
         /// <summary>
         /// This method get the user account entity by subject id.
         /// </summary>
-        /// <param name="subjectId"></param>
+        /// <param name="subId"></param>
         /// <returns></returns>
-        Domain.Entities.UserAccount GetProfileDataAsync(string subjectId);
-        ///// <summary>
-        ///// 分页查询
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //GetPagingResponseModel GetPaging(GetPagingRequestModel request);
-        ///// <summary>
-        ///// 添加
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //AddResponseModel Add(AddRequestModel request);
-        ///// <summary>
-        ///// 修改
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //SaveResponseModel Save(SaveRequestModel request);
+        Task<Domain.Entities.UserAccount> GetProfileDataAsync(string subId);
         /// <summary>
         /// 手机号注册
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task LocalRegistrationAsync(LocalRegistrationRequestModel request);
-        ///// <summary>
-        ///// 获取登录用户信息
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //GetProfileDataResponseModel GetUserProfileData(GetProfileDataRequestModel request);
         ///// <summary>
         ///// 设置/修改密码
         ///// </summary>

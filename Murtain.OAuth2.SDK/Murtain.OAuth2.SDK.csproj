@@ -45,13 +45,16 @@
     <Compile Include="Captcha\EmailCaptcha.cs" />
     <Compile Include="Captcha\MessageCaptcha.cs" />
     <Compile Include="Captcha\MessageCaptchaServer.cs" />
+    <Compile Include="OAUTH2_LOGIN_PROVIDER_TYPE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RETURN_CODE_SEED.cs" />
     <Compile Include="UserAccount\LocalRegistrationRequestModel.cs" />
     <Compile Include="UserAccount\ResetPasswordRequestModel.cs" />
     <Compile Include="UserAccount\UserAccountManagerServer.cs" />
     <Compile Include="UserAccount\ValidateGraphicCaptchaAndResendMessageCaptchaRequestModel.cs" />
     <Compile Include="UserAccount\ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel.cs" />
     <Compile Include="UserAccount\ValidateMessageCaptchaRequestModel.cs" />
+    <Compile Include="IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

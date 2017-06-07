@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Murtain.OAuth2.SDK</name>
+    </assembly>
+    <members>
+        <member name="T:Murtain.OAuth2.SDK.Captcha.EmailCaptcha">
+            <summary>
+            邮件验证码类型
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Captcha.EmailCaptcha.Bind">
+            <summary>
+            绑定
+            </summary>
+        </member>
+        <!-- 对于成员“F:Murtain.OAuth2.SDK.Captcha.EmailCaptcha.Change”忽略有格式错误的 XML 注释 -->
+        <member name="T:Murtain.OAuth2.SDK.Captcha.MessageCaptcha">
+            <summary>
+            短信验证码类型
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Captcha.MessageCaptcha.Register">
+            <summary>
+            注册
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Captcha.MessageCaptcha.RetrievePassword">
+            <summary>
+            找回密码
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel">
+            <summary>
+            验证图形验证码并发送短信验证码
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel.GraphicCaptcha">
+            <summary>
+            图形验证码
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel.Mobile">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptcha">
+            <summary>
+            验证图形验证码
+            </summary>
+        </member>
+    </members>
+</doc>

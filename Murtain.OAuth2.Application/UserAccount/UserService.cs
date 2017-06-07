@@ -21,6 +21,8 @@ using Murtain.EntityFramework.Queries;
 using Murtain.Dependency;
 using Murtain.OAuth2.Core;
 using Murtain.OAuth2.Core.UserAccount;
+using Murtain.Web.Exceptions;
+using Murtain.OAuth2.SDK;
 
 namespace Murtain.OAuth2.Application.UserAccount
 {
@@ -29,14 +31,12 @@ namespace Murtain.OAuth2.Application.UserAccount
         private readonly IUserAccountManager userAccountManager;
         private readonly OwinContext ctx;
 
-        public UserService(OwinEnvironmentService owinEnv)
+        public UserService(OwinEnvironmentService owinEnv, IUserAccountManager userAccountManager)
         {
             ctx = new OwinContext(owinEnv.Environment);
 
-            userAccountManager = IocManager.Instance.Resolve<IUserAccountManager>();
+            this.userAccountManager = userAccountManager;
         }
-
-        #region [ UserServiceBase method override . ]
 
         /// <summary>
         /// This method gets called before the login page is shown. This allows you to determine if the user should be authenticated by some out of band mechanism (e.g. client certificates or trusted headers).
@@ -45,8 +45,6 @@ namespace Murtain.OAuth2.Application.UserAccount
         /// <returns></returns>
         public override Task PreAuthenticateAsync(PreAuthenticationContext context)
         {
-            //var signin = ctx.Request.Query.Get("signin");
-            //context.AuthenticateResult = new AuthenticateResult("/core/login?signin=" + signin, (IEnumerable<Claim>)null);
             return Task.FromResult(0);
         }
         /// <summary>
@@ -54,15 +52,14 @@ namespace Murtain.OAuth2.Application.UserAccount
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        public override Task AuthenticateLocalAsync(LocalAuthenticationContext context)
+        public override async Task AuthenticateLocalAsync(LocalAuthenticationContext context)
         {
-            var model =  userAccountManager.AuthenticateLocalAsync(context.UserName, context.Password);
+            var model = await userAccountManager.AuthenticateLocalAsync(context.UserName, context.Password);
 
             if (model != null)
             {
-                context.AuthenticateResult = new AuthenticateResult(model.SubjectId, model.Mobile);
+                context.AuthenticateResult = new AuthenticateResult(model.SubId, model.Mobile);
             }
-            return Task.FromResult(0);
         }
         /// <summary>
         /// This method gets called when the user uses an external identity provider to authenticate.
@@ -71,23 +68,48 @@ namespace Murtain.OAuth2.Application.UserAccount
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        public override Task AuthenticateExternalAsync(ExternalAuthenticationContext context)
+        public override async Task AuthenticateExternalAsync(ExternalAuthenticationContext context)
         {
-            var claims = context.ExternalIdentity.Claims;
-
-            var user = userAccountManager.AuthenticateExternalAsync(new AuthenticateExternalRequest
+            AuthenticateExternalRequest req = new AuthenticateExternalRequest
             {
                 LoginProvider = context.ExternalIdentity.Provider,
-                LoginProviderId = context.ExternalIdentity.ProviderId,
-                NickName = GetDisplayName(claims),
-                Headimageurl = GetUserData(claims)?.Value<string>("HeadimgUrl")
-            });
+                LoginProviderId = context.ExternalIdentity.ProviderId
+            };
 
-            if (user != null)
+            switch (context.ExternalIdentity.Provider.TryEmun<OAUTH2_LOGIN_PROVIDER_TYPE>())
             {
-                context.AuthenticateResult = new AuthenticateResult(user.SubjectId, GetDisplayName(claims), identityProvider: context.ExternalIdentity.Provider);
+                case OAUTH2_LOGIN_PROVIDER_TYPE.WECHAT:
+                    req.NickName = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.Wechat.Name);
+                    req.Gender = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.Wechat.Gender);
+                    req.City = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.Wechat.City);
+                    req.Country = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.Wechat.Country);
+                    req.Province = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.Wechat.Province);
+                    req.Avatar = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.Wechat.Avatar);
+                    break;
+                case OAUTH2_LOGIN_PROVIDER_TYPE.QQ:
+                    break;
+                case OAUTH2_LOGIN_PROVIDER_TYPE.TAOBAO:
+                    break;
+                case OAUTH2_LOGIN_PROVIDER_TYPE.BAIDU:
+                    break;
+                case OAUTH2_LOGIN_PROVIDER_TYPE.ALIPAY:
+                    break;
+                case OAUTH2_LOGIN_PROVIDER_TYPE.MI:
+                    break;
             }
-            return Task.FromResult(0);
+
+            var user = await userAccountManager.AuthenticateExternalAsync(req);
+            if (user == null)
+            {
+                throw new UserFriendlyExceprion(IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.AUTHENTICATEEXTERNAL_FAILED);
+            }
+
+            context.AuthenticateResult = new AuthenticateResult(
+                    user.SubId,
+                    _TryValue(context.ExternalIdentity.Claims, user.NickName),
+                    identityProvider: context.ExternalIdentity.Provider
+                    );
+
         }
         /// <summary>
         /// This method is called prior to the user being issued a login cookie for IdentityServer.
@@ -103,46 +125,34 @@ namespace Murtain.OAuth2.Application.UserAccount
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        public override Task GetProfileDataAsync(ProfileDataRequestContext context)
+        public override async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
-            var subjectId = context.Subject.GetSubjectId();
+            var model = await userAccountManager.GetProfileDataAsync(context.Subject.GetSubjectId());
 
-            var user =  userAccountManager.GetProfileDataAsync(subjectId);
-            if (user != null)
+            if (model == null)
             {
-                List<Claim> claims = new List<Claim>();
-
-                claims.Add(new Claim(System.Security.Claims.ClaimTypes.NameIdentifier, user.Id.ToString()));
-                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Name, user.NickName ?? user.Mobile));
-                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Subject, user.SubjectId));
-                claims.Add(new Claim(IdentityServer3.Core.Constants.ClaimTypes.Picture, user.Avatar ?? "https://localhost:44373/content/images/avtar.jpg"));
-
-                context.IssuedClaims = claims;
+                throw new UserFriendlyExceprion(IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.GET_PROFILE_DATA_FAILED);
             }
-            return Task.FromResult(0);
+
+            context.IssuedClaims = new List<Claim> {
+                    new Claim(Constants.ClaimTypes.Name,model.Name),
+                    new Claim(Constants.ClaimTypes.NickName,model.Name),
+                    new Claim(Constants.ClaimTypes.Age,model.Age.TryString()),
+                    new Claim(Constants.ClaimTypes.Birthday,model.Birthday),
+                    new Claim(Constants.ClaimTypes.Gender,model.Gender),
+                    new Claim(Constants.ClaimTypes.Avatar,model.Avatar),
+                    new Claim(Constants.ClaimTypes.Mobile,model.Mobile),
+                    new Claim(Constants.ClaimTypes.Email,model.Email),
+                    new Claim(Constants.ClaimTypes.Country,model.Country),
+                    new Claim(Constants.ClaimTypes.Province,model.Province),
+                    new Claim(Constants.ClaimTypes.City,model.City),
+                    new Claim(Constants.ClaimTypes.Address,model.Address)
+                };
         }
 
-        #endregion
-
-
-        private string GetDisplayName(IEnumerable<Claim> claims)
+        private string _TryValue(IEnumerable<Claim> claims, string name)
         {
-            var nameClaim = claims.FirstOrDefault(x => x.Type == IdentityServer3.Core.Constants.ClaimTypes.Name);
-            if (nameClaim != null)
-            {
-                return nameClaim.Value;
-            }
-            return null;
-        }
-
-        private JObject GetUserData(IEnumerable<Claim> claims)
-        {
-            var userData = claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.UserData);
-            if (userData != null)
-            {
-                return JObject.Parse(userData.Value);
-            }
-            return null;
+            return claims.FirstOrDefault(x => x.Type == name)?.Value;
         }
     }
 }

@@ -14,6 +14,20 @@ namespace Murtain.OAuth2.Web.Configuration
         {
             return new List<RelyingParty>
             {
+
+                /////////////////////////////////////////////////////////////
+                // MVC WsFederation （Murtain.OAuth2.MVC.WsFederationAuthentication）
+                /////////////////////////////////////////////////////////////
+                new RelyingParty
+                {
+                    Realm = "urn:owinrp:murtain_oauth2_mvc_wsfederationauthentication",
+                    Enabled = true,
+                    ReplyUrl = "https://localhost:44327/",
+                    TokenType = TokenTypes.Saml2TokenProfile11,
+                    TokenLifeTime = 1
+                },
+
+
                 new RelyingParty
                 {
                     Realm = "urn:testrp",

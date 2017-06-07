@@ -9,10 +9,11 @@ using Murtain.OAuth2.Core;
 using Murtain.Runtime.Cookie;
 using Murtain.Exceptions;
 using Murtain.Threading;
+using IdentityServer3.Core.Services.Default;
 
 namespace Murtain.OAuth2.Application.UserAccount
 {
-    public class UserAccountService : ApplicationServiceBase, IUserAccountService
+    public class UserAccountService : IUserAccountService
     {
         private readonly ICacheManager cacheManager;
         private readonly ICaptchaManager captchaManager;
@@ -29,21 +30,21 @@ namespace Murtain.OAuth2.Application.UserAccount
         {
             await captchaManager.ValidateMessageCaptchaAsync(SDK.Captcha.MessageCaptcha.Register, input.Mobile, input.Captcha);
         }
-
+        
         public async Task LocalRegistrationAsync(LocalRegistrationRequestModel input)
         {
-           await userAccountManager.LocalRegistrationAsync(input);
+            await userAccountManager.LocalRegistrationAsync(input);
         }
 
         public async Task ValidateGraphicCaptchaAndResendMessageCaptchaAsync(ValidateMessageCaptchaRequestModel input)
         {
-            await captchaManager.ValidateMessageCaptchaAsync(SDK.Captcha.MessageCaptcha.Register,input.Mobile,input.Captcha);
+            await captchaManager.ValidateMessageCaptchaAsync(SDK.Captcha.MessageCaptcha.Register, input.Mobile, input.Captcha);
         }
 
         public async Task ValidateGraphicCaptchaAndSendMessageCaptchaAsync(ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel input)
         {
             await captchaManager.ValidateGraphicCaptchaAsync(Constants.CookieNames.LocalRistration, input.GraphicCaptcha);
-            
+
             await captchaManager.MessageCaptchaSendAsync(SDK.Captcha.MessageCaptcha.Register, input.Mobile, 10);
 
         }

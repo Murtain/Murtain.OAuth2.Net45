@@ -1,41 +1,70 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 
+@model IEnumerable<System.Security.Claims.Claim>
 <!DOCTYPE html>
-
-<html>
+<html class="ltr " lang="en" data-rtl="false">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>账号登录</title>
-    <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
-    <meta name="description" content="一个关注互联网的科技博客" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="Author" content="392327013@qq.com">
+    <meta name="omni_page" content="X-DVA - X-DVA ID">
+    <meta name="Category" content="">
+    <meta name="Description" content="Your X-DVA ID is the account you use for all X-DVA services.">
+    <meta name="Title" content="X-DVA ID">
+    <meta name="keywords" content="X-DVA ID, Sign In, Account, Password, Manage">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+    <title>X-DVA ID</title>
 
+    <link rel="shortcut icon" type="image/x-icon" href="https://appleid.cdn-apple.com/static/bin/cb3606853004/images/favicon.ico">
 
-    <link rel="stylesheet" href="~/content/css/font.css">
-    <link rel="stylesheet" href="~/content/css/passport.css">
+    <link rel="stylesheet" href="/content/www/index.css" />
 
-    <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="/content/js/main.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        function authorize() {
+            location.href = "/Home/Authorize"
+        }
+
+        function userinfo() {
+            $.get('/Home/GetUserInfoAsync', function (data) {
+                $('.user_info').text(data)
+            })
+        }
+        function accessToken() {
+            $.get('/Home/GetAccessTokenAsync', function (data) {
+                $('.token').text(data.Raw)
+            })
+        }
+        function logout() {
+            location.href = "/Home/Logout"
+        }
+    </script>
 </head>
 <body>
-    <div ui-view class="animated fadeIn">
+    <button onclick="authorize()">授权登录</button>
+    <button onclick="userinfo()">获取用户信息</button>
+    <button onclick="accessToken()">获取AccessToken</button>
+    <button onclick="logout()">注销</button>
+    <p>用户信息</p>
+    <hr />
+
+    <div class="user_info">
     </div>
-    <div class="copyright">
-        <div class="clearfix">
-            <h2>Copyright © <span>2016</span>, Murtain Digital Co., Ltd. All Rights Reserved.</h2>
-            <h3 class="company">上海MT信息科技有限公司</h3>
-            <ul class="privacy">
-                <li><a href="http://murtain.imwork.net/localization/culture?name=zh-CN&returnUrl=@(Request.Url.ToString())">简体中文</a></li>
-                <li><a href="http://murtain.imwork.net/localization/culture?name=en&returnUrl=@(Request.Url.ToString())">英文</a></li>
-                <li><a href="http://murtain.imwork.net/support/#/agreement">法律声明</a></li>
-                <li><a href="http://murtain.imwork.net/support/#/privacy">隐私条款</a></li>
-            </ul>
-            <h4><a href="http://www.miibeian.gov.cn/" target="_blank"><span>京ICP备14041720号-1</span><span>京ICP证140622号</span><span>京公网安备11010502025474</span></a></h4>
-        </div>
+    <p>用户声明信息</p>
+    <hr />
+
+    <div>
+        @foreach (var claim in Model)
+        {
+            <dt>@claim.Type</dt>
+            <dd>@claim.Value</dd>
+        }
     </div>
+    <p>AccessToken</p>
+    <hr />
+    <div class="token"></div>
 </body>
 </html>

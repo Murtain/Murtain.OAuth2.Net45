@@ -17,24 +17,23 @@ namespace Murtain.OAuth2.Core.Stores
 {
     public class GlobalSettingStore : IGlobalSettingStore, IUnitOfWorkService
     {
-        public IGlobalSettingRepository GlobalSettingRepository { get; set; }
+        private readonly IGlobalSettingRepository globalSettingRepository;
 
         public GlobalSettingStore(IGlobalSettingRepository globalSettingRepository)
         {
-            GlobalSettingRepository = globalSettingRepository;
+            this.globalSettingRepository = globalSettingRepository;
         }
 
-        public Task<GlobalSetting> GetSettingAsync(string name)
+        public async Task<GlobalSetting> GetSettingAsync(string name)
         {
-            return Task.FromResult(GlobalSettingRepository.FirstOrDefault(x => x.Name == name).MapTo<GlobalSetting>());
+            return (await globalSettingRepository.FirstOrDefaultAsync(x => x.Name == name))?.MapTo<GlobalSetting>();
         }
-        public Task<GlobalSetting> AddOrUpdateSettingAsync(GlobalSetting setting)
+        public async Task AddOrUpdateSettingAsync(GlobalSetting setting)
         {
-            var model = GlobalSettingRepository.FirstOrDefault(x => x.Name == setting.Name);
+            var model = await globalSettingRepository.FirstOrDefaultAsync(x => x.Name == setting.Name);
             if (model == null)
             {
-                var result = GlobalSettingRepository.Add(setting.MapTo<Domain.Entities.GlobalSetting>()).MapTo<GlobalSetting>();
-                return Task.FromResult(result);
+                await globalSettingRepository.AddAsync(setting.MapTo<Domain.Entities.GlobalSetting>());
             }
 
             model.Name = setting.Name;
@@ -44,18 +43,16 @@ namespace Murtain.OAuth2.Core.Stores
             model.Value = setting.Value;
             model.DisplayName = setting.DisplayName;
 
-            return Task.FromResult(GlobalSettingRepository.Update(model).MapTo<GlobalSetting>());
+            await globalSettingRepository.UpdateAsync(model);
         }
-        public Task<GlobalSetting> DeleteSettingAsync(string name)
+        public async Task DeleteSettingAsync(string name)
         {
-            var result = GlobalSettingRepository.Remove(GlobalSettingRepository.FirstOrDefault(x => x.Name == name));
-            return Task.FromResult(result.MapTo<GlobalSetting>());
+            var entity = await globalSettingRepository.FirstOrDefaultAsync(x => x.Name == name);
+            await globalSettingRepository.RemoveAsync(entity);
         }
-        public Task<List<GlobalSetting>> GetAllSettingsAsync()
+        public async Task<List<GlobalSetting>> GetAllSettingsAsync()
         {
-            var models = GlobalSettingRepository.Models.ToList().MapTo<List<GlobalSetting>>();
-
-            return Task.FromResult(models);
+            return (await globalSettingRepository.GetAsync(x => true))?.MapTo<List<GlobalSetting>>();
         }
     }
 }

@@ -9,9 +9,6 @@ using Murtain.AutoMapper;
 
 namespace Murtain.OAuth2.Domain.Entities
 {
-    //[AutoMap(typeof(SDK.UserAccount.RegisterWithTelphoneRequestModel)
-    //        ,typeof(SDK.UserAccount.UserAccount)
-    //    )]
     public class UserAccount : SoftDeleteEntityBase
     {
         /// <summary>
@@ -27,7 +24,12 @@ namespace Murtain.OAuth2.Domain.Entities
         /// <summary>
         /// 生日
         /// </summary>
-        public DateTime? Birthday { get; set; }
+        [MaxLength(50)]
+        public string Birthday { get; set; }
+        /// <summary>
+        /// 年龄
+        /// </summary>
+        public int? Age { get; set; }
         /// <summary>
         /// 手机号码
         /// </summary>
@@ -42,7 +44,7 @@ namespace Murtain.OAuth2.Domain.Entities
         /// 街道地址
         /// </summary>
         [MaxLength(250)]
-        public virtual string Street { get; set; }
+        public virtual string Address { get; set; }
         /// <summary>
         /// 所在城市
         /// </summary>
@@ -61,33 +63,24 @@ namespace Murtain.OAuth2.Domain.Entities
         /// <summary>
         /// 性别
         /// </summary>
-        public virtual byte? Sex { get; set; }
+        [MaxLength(50)]
+        public virtual string Gender { get; set; }
         /// <summary>
         /// 头像地址
         /// </summary>
         [MaxLength(2000)]
         public virtual string Avatar { get; set; }
         /// <summary>
-        /// 身份证号
-        /// </summary>
-        [MaxLength(50)]
-        public virtual string IdentityNo { get; set; }
-        /// <summary>
         /// 密码
         /// </summary>
         [MaxLength(250)]
         public virtual string Password { get; set; }
         /// <summary>
-        /// 加密盐
-        /// </summary>
-        [MaxLength(50)]
-        public virtual string Salt { get; set; }
-        /// <summary>
         /// Subject
         /// </summary>
         [Required]
         [MaxLength(50)]
-        public virtual string SubjectId { get; set; }
+        public virtual string SubId { get; set; }
         /// <summary>
         /// 登录提供程序
         /// </summary>

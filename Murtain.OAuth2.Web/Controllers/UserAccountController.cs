@@ -15,7 +15,7 @@ namespace Murtain.OAuth2.Web.Controllers
     /// <summary>
     /// 用户账户服务
     /// </summary>
-    [ValidateModelAttribute]
+    [ValidateModel]
     public class UserAccountController : ApiController
     {
 
