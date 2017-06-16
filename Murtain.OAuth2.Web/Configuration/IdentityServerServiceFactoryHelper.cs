@@ -43,7 +43,9 @@ namespace Murtain.OAuth2.Web.Configuration
 
             // These registration to use customer user service and view service
             factory.UserService = new Registration<IUserService, UserService>();
-            factory.ViewService = new Registration<IViewService, AccountViewService<AccountController>>();
+
+            //factory.ViewService = new Registration<IViewService, AccountViewService<PassportController>>();
+            factory.ViewService = new Registration<IViewService, PassportViewService>();
 
             factory.LocalizationService = new Registration<ILocalizationService>(resolver => IocManager.Container.Resolve<ILocalizationService>());
 

@@ -42,20 +42,35 @@ namespace Murtain.OAuth2.Web.Controllers.Shared
 
         protected override JsonResult Json(object data, string contentType, Encoding contentEncoding)
         {
-            return new NewtonJsonResult { Data = data, ContentType = contentType, ContentEncoding = contentEncoding };
+            return new NewtonJsonResult
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding
+            };
         }
         public new JsonResult Json(object data, JsonRequestBehavior jsonRequest)
         {
-            return new NewtonJsonResult { Data = data, JsonRequestBehavior = jsonRequest };
+            return new NewtonJsonResult
+            {
+                Data = data,
+                JsonRequestBehavior = jsonRequest
+            };
         }
         public new JsonResult Json(object data)
         {
-            return new NewtonJsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new NewtonJsonResult
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
         public string L(string messageId)
         {
-            return LocalizationManager.GetSource(Murtain.OAuth2.Core.Constants.Localization.SourceName.Messages).GetString(messageId);
+            return LocalizationManager
+                        .GetSource(Murtain.OAuth2.Core.Constants.Localization.SourceName.Messages)
+                        .GetString(messageId);
         }
     }
 }

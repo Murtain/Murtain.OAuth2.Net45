@@ -1,0 +1,41 @@
+﻿@model IdentityServer3.Core.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>账号登录</title>
+    <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
+    <meta name="description" content="一个关注互联网的科技博客" />
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+
+
+    <link rel="stylesheet" href="~/content/css/font.css">
+    <link rel="stylesheet" href="~/content/css/passport.css">
+
+    <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="/content/app/main.js"></script>
+</head>
+<body ng-controller="index as app">
+    <input type="hidden" name="model" id="IdentityModelString" value="@(Newtonsoft.Json.JsonConvert.SerializeObject(Model))" />
+    <div ui-view class="container wrapper">
+    </div>
+    <div class="copyright">
+        <div class="clearfix">
+            <h2>Copyright © <span>2016</span>, {{app.company.en}} All Rights Reserved.</h2>
+            <h3 class="company">{{app.company.zh}}</h3>
+            <ul class="privacy">
+                <li><a href="http://murtain.imwork.net/localization/culture?name=zh-CN&returnUrl=@(Request.Url.ToString())">简体中文</a></li>
+                <li><a href="http://murtain.imwork.net/localization/culture?name=en&returnUrl=@(Request.Url.ToString())">英文</a></li>
+                <li><a ng-href={{app.support.agreement}}>法律声明</a></li>
+                <li><a ng-href={{app.support.privacy}}>隐私条款</a></li>
+            </ul>
+            <h4><a href="http://www.miibeian.gov.cn/" target="_blank"><span>{{app.recordation}}</span></a></h4>
+        </div>
+    </div>
+</body>
+</html>

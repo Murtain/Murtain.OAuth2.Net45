@@ -24,8 +24,9 @@ namespace Murtain.OAuth2.Core
             public const string Province = "province";
             public const string City = "city";
             public const string Address = "address";
+            public const string SubId = "sub";
 
-            public static class Wechat 
+            public static class Wechat
             {
                 public const string Name = "name";
                 public const string NickName = "nick_name";

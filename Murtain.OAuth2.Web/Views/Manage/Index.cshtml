@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>帐户管理</title>
+    <meta name="keywords" content="创业, 想创业, 投资, 融资, 创投媒体, 创业公司, 科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
+    <meta name="description" content="一个关注互联网创业的科技博客" />
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/content/css/font.css">
+    <link rel="stylesheet" href="~/content/css/index.css">
+
+   <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="https://localhost:44373/content/mg/main.js"></script>
+
+</head>
+<body>
+    <div class="x-backgroud">
+        <div class='x-backgroud-frosted-glass'></div>
+        <div class="x-welcome">
+            <div class="x-welcome-text-container">
+                <div class="x-welcome-text">
+                    <p>﹏穆轻寒</p>
+                    <p>您的 账户ID 是 392327013@qq.com</p>
+                </div>
+            </div>
+            <button class="x-welcome-logout x-btn" href="/passport/signout">注销</button>
+        </div>
+    </div>
+    <div class="x-nav">
+        <div class="x-nav-box">
+            <ul class="pull-left">
+                <li class="x-nav-avatar"><img src="~/content/images/avtar.jpg" alt="" /></li>
+                <li class="x-nav-brand"></li>
+            </ul>
+            <ul class="pull-right">
+                <li class="active"><a href="#/profile">个人信息</a></li>
+                <li><a href="#/security">账号安全</a></li>
+                <li><a href="#/permissions">应用授权</a></li>
+                <li><a href="#/support">技术支持</a></li>
+            </ul>
+        </div>
+    </div>
+    <div ui-view class="x-container x-block"></div>
+    <div class="x-footer">
+        <section class="x-footer-content">
+            <div class="x-footer-shop">
+                更多选购方式：前往 <span class="nowrap"><a href="//www.apple.com/cn/retail/">Apple Store 零售店</a></span>，致电 400-666-8800 或查找在你附近的<span class="nowrap"><a href="https://locate.apple.com/cn/zh/">授权经销商</a>。</span>
+            </div>
+            <div class="x-footer-locale">
+                <a class="x-footer-locale-link choose" title="选择您所在的国家或地区" href="/choose-your-country">
+                    <img src="https://appleid.cdn-apple.com/static/bin/cb2310540974/images/countryFooterFlags/22x22/CHNflag.png" alt="China" width="17" class="x-footer-locale-flag" height="17">
+                    中国
+                </a>
+            </div>
+            <div class="x-footer-legal">
+                <div class="x-footer-legal-copyright">Copyright © 2017 Apple Inc. 保留所有权利。</div>
+                <div class="x-footer-legal-links">
+                    <a class="x-footer-legal-link" href="//www.apple.com/cn/privacy/privacy-policy/">隐私政策</a>
+                    <a class="x-footer-legal-link" href="//www.apple.com/cn/legal/terms/site.html">使用条款</a>
+                    <a class="x-footer-legal-link" href="//www.apple.com/cn/shop/goto/help/sales_refunds">销售政策</a>
+                    <a class="x-footer-legal-link" href="//www.apple.com/cn/legal/">法律信息</a>
+                    <a class="x-footer-legal-link" href="//www.apple.com/cn/sitemap/">网站地图</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

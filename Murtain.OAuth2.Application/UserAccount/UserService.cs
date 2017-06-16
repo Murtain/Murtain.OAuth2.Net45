@@ -134,19 +134,21 @@ namespace Murtain.OAuth2.Application.UserAccount
                 throw new UserFriendlyExceprion(IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.GET_PROFILE_DATA_FAILED);
             }
 
-            context.IssuedClaims = new List<Claim> {
-                    new Claim(Constants.ClaimTypes.Name,model.Name),
-                    new Claim(Constants.ClaimTypes.NickName,model.Name),
-                    new Claim(Constants.ClaimTypes.Age,model.Age.TryString()),
-                    new Claim(Constants.ClaimTypes.Birthday,model.Birthday),
-                    new Claim(Constants.ClaimTypes.Gender,model.Gender),
-                    new Claim(Constants.ClaimTypes.Avatar,model.Avatar),
-                    new Claim(Constants.ClaimTypes.Mobile,model.Mobile),
-                    new Claim(Constants.ClaimTypes.Email,model.Email),
-                    new Claim(Constants.ClaimTypes.Country,model.Country),
-                    new Claim(Constants.ClaimTypes.Province,model.Province),
-                    new Claim(Constants.ClaimTypes.City,model.City),
-                    new Claim(Constants.ClaimTypes.Address,model.Address)
+
+            context.IssuedClaims = new List<Claim>
+            {
+                    new Claim(Constants.ClaimTypes.SubId, model.SubId),
+                    //new Claim(Constants.ClaimTypes.NickName, model.Name),
+                    //new Claim(Constants.ClaimTypes.Age, model.Age.TryString()),
+                    //new Claim(Constants.ClaimTypes.Birthday, model.Birthday),
+                    //new Claim(Constants.ClaimTypes.Gender, model.Gender),
+                    //new Claim(Constants.ClaimTypes.Avatar, model.Avatar),
+                    //new Claim(Constants.ClaimTypes.Mobile, model.Mobile),
+                    //new Claim(Constants.ClaimTypes.Email, model.Email),
+                    //new Claim(Constants.ClaimTypes.Country, model.Country),
+                    //new Claim(Constants.ClaimTypes.Province, model.Province),
+                    //new Claim(Constants.ClaimTypes.City, model.City),
+                    //new Claim(Constants.ClaimTypes.Address, model.Address)
                 };
         }
 
