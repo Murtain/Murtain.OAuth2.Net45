@@ -1,26 +1,32 @@
-﻿@model IdentityServer3.Core.ViewModels.LoginViewModel
-@{
-    Layout = null;
-}
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Serialization;
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>账号登录</title>
     <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
     <meta name="description" content="一个关注互联网的科技博客" />
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
-    <link href="https://cdn.bootcss.com/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/angular-loading-bar/0.9.0/loading-bar.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
 
 
-    <link rel="stylesheet" href="~/content/css/font.css">
-    <link rel="stylesheet" href="~/content/css/passport.css">
+    <link rel="stylesheet" href="~/wwwroot/css/font.css">
+    <link rel="stylesheet" href="~/wwwroot/css/index.css">
+    <link rel="stylesheet" href="~/wwwroot/css/passport.css">
 
-    <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="/content/app/main.js"></script>
+    <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="/wwwroot/main.js"></script>
 </head>
-<body>
+<body ng-controller="index as app" style="background: url(/wwwroot/images/blur.jpg);background-repeat: no-repeat;">
+
+    <input type="hidden" name="model" id="IdentityModelString" value="@(JsonConvert.SerializeObject(Model,Formatting.None,new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }))" />
+
+    @RenderBody()
+    @Html.Partial("_Partial_Layout_Footer")
 
 </body>
 </html>

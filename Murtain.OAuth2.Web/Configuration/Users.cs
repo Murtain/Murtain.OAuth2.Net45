@@ -15,7 +15,7 @@ namespace Murtain.OAuth2.Web.Configuration
         {
             var users = new List<InMemoryUser>
             {
-                new InMemoryUser{Subject = "10001", Username = "murtain", Password = "123456", 
+                new InMemoryUser{Subject = "10001", Username = "15618275259", Password = "qwe123", 
                     Claims = new Claim[]
                     {
                         new Claim(Constants.ClaimTypes.Name, "Murtain"),

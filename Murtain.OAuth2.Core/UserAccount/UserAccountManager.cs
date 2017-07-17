@@ -9,6 +9,7 @@ using Murtain.Runtime.Security;
 using Murtain.AutoMapper;
 using Murtain.Exceptions;
 using Murtain.Web.Exceptions;
+using Murtain.OAuth2.SDK.Enum;
 
 namespace Murtain.OAuth2.Core.UserAccount
 {
@@ -25,59 +26,93 @@ namespace Murtain.OAuth2.Core.UserAccount
             this.LocalizationManager = NullLocalizationManager.Instance;
         }
 
-        public async Task LocalRegistrationAsync(LocalRegistrationRequestModel input)
+        public async Task LocalRegistrationAsync(string mobile, string password)
         {
-            if (userAccountRepository.Any(x => x.Mobile == input.Mobile))
+            if (userAccountRepository.Any(x => x.Mobile == mobile))
             {
-                throw new UserFriendlyExceprion(UserAccountManagerServer.USER_ALREADY_EXISTS);
+                throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_ALREADY_EXISTS);
             }
 
             var entity = new Domain.Entities.UserAccount
             {
-                Mobile = input.Mobile,
-                Password = _EncryptPassword(input.Password),
-                SubId = _Take32Id()
+                Mobile = mobile,
+                Password = encryptPassword(password),
+                SubId = take32Id()
             };
 
             await userAccountRepository.AddAsync(entity);
         }
         public async Task<Domain.Entities.UserAccount> AuthenticateLocalAsync(string username, string password)
         {
-            var entity = await userAccountRepository.FirstOrDefaultAsync(x => x.Mobile == username || x.Email == username);
+            var user = await userAccountRepository.FirstOrDefaultAsync(x => x.Mobile == username || x.Email == username);
 
-            if (entity?.Password == _EncryptPassword(password))
+            if (user == null || user.Password != encryptPassword(password))
             {
-                return entity;
+                return null;
             }
 
-            return null;
+            return user;
         }
         public async Task<Domain.Entities.UserAccount> AuthenticateExternalAsync(AuthenticateExternalRequest input)
         {
-            var entity = await userAccountRepository.FirstOrDefaultAsync(x => x.LoginProvider == input.LoginProvider && x.LoginProviderId == input.LoginProviderId);
+            // try find user with login provider and provider id
+            var user = await userAccountRepository.FirstOrDefaultAsync(x => x.LoginProvider == input.LoginProvider && x.LoginProviderId == input.LoginProviderId);
 
-            if (entity == null)
+            // if not found create an new user
+            if (user == null)
             {
-                var u = input.MapTo<Domain.Entities.UserAccount>();
+                var entity = input.MapTo<Domain.Entities.UserAccount>();
+                entity.SubId = take32Id();
 
-                u.SubId = _Take32Id();
-
-                return await userAccountRepository.AddAsync(u);
+                return await userAccountRepository.AddAsync(entity);
             }
 
-            return entity;
+            return user;
         }
         public async Task<Domain.Entities.UserAccount> GetProfileDataAsync(string subId)
         {
             return await userAccountRepository.FirstOrDefaultAsync(x => x.SubId == subId);
         }
 
+        public async Task<Domain.Entities.UserAccount> FindAsync(string mobile)
+        {
+            return await userAccountRepository.FirstOrDefaultAsync(x => x.Mobile == mobile);
+        }
 
-        private string _EncryptPassword(string password)
+        public async Task SavePasswordAsync(string mobile, string password)
+        {
+            var user = await userAccountRepository.FirstOrDefaultAsync(x => x.Mobile == mobile);
+
+            if (user == null)
+            {
+                throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS);
+            }
+
+            user.Password = encryptPassword(password);
+
+            await userAccountRepository.UpdatePropertyAsync(user, x => new { x.Password });
+        }
+
+        public async Task SaveEmailAsync(string mobile, string email)
+        {
+            var user = await userAccountRepository.FirstOrDefaultAsync(x => x.Mobile == mobile);
+
+            if (user == null)
+            {
+                throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS);
+            }
+
+            user.Email = email;
+
+            await userAccountRepository.UpdatePropertyAsync(user, x => new { x.Password });
+        }
+
+
+        private string encryptPassword(string password)
         {
             return CryptoManager.EncryptMD5(password).ToUpper();
         }
-        private string _Take32Id()
+        private string take32Id()
         {
             return Guid.NewGuid().ToString("N").ToUpper();
         }

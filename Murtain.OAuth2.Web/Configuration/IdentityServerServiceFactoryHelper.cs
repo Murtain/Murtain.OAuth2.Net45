@@ -19,6 +19,7 @@ using Murtain.OAuth2.Infrastructure.Repositories;
 using Murtain.EntityFramework;
 using Murtain.OAuth2.Infrastructure;
 using Murtain.Domain.UnitOfWork;
+using IdentityServer3.Core.Services.Default;
 
 namespace Murtain.OAuth2.Web.Configuration
 {
@@ -40,12 +41,16 @@ namespace Murtain.OAuth2.Web.Configuration
             factory.RegisterConfigurationServices(efConfig);
             factory.RegisterOperationalServices(efConfig);
 
+            factory.CorsPolicyService = new Registration<ICorsPolicyService>(new DefaultCorsPolicyService
+            {
+                AllowAll = true
+            });
 
             // These registration to use customer user service and view service
             factory.UserService = new Registration<IUserService, UserService>();
 
-            //factory.ViewService = new Registration<IViewService, AccountViewService<PassportController>>();
-            factory.ViewService = new Registration<IViewService, PassportViewService>();
+            factory.ViewService = new Registration<IViewService, AccountViewService<PassportController>>();
+            //factory.ViewService = new Registration<IViewService, PassportViewService>();
 
             factory.LocalizationService = new Registration<ILocalizationService>(resolver => IocManager.Container.Resolve<ILocalizationService>());
 
@@ -63,38 +68,35 @@ namespace Murtain.OAuth2.Web.Configuration
 
             return factory;
         }
-
         public static void ConfigureClients(IEnumerable<Client> clients, EntityFrameworkServiceOptions options)
         {
             using (var db = new IdentityServer3.EntityFramework.ClientConfigurationDbContext(options.ConnectionString, options.Schema))
             {
-                foreach (var c in clients)
+                if (!db.Clients.Any())
                 {
-                    if (db.Clients.Any(x => x.ClientId == c.ClientId))
+                    foreach (var c in clients)
                     {
-                        db.Clients.Remove(db.Clients.First(x => x.ClientId == c.ClientId));
+                        var e = c.ToEntity();
+                        db.Clients.Add(e);
                     }
-
-                    var e = c.ToEntity();
-                    db.Clients.Add(e);
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
             }
         }
+
         public static void ConfigureScopes(IEnumerable<Scope> scopes, EntityFrameworkServiceOptions options)
         {
             using (var db = new IdentityServer3.EntityFramework.ScopeConfigurationDbContext(options.ConnectionString, options.Schema))
             {
-                foreach (var s in scopes)
+                if (!db.Scopes.Any())
                 {
-                    if (db.Scopes.Any(x => x.Name == s.Name))
+                    foreach (var s in scopes)
                     {
-                        db.Scopes.Remove(db.Scopes.First(x => x.Name == s.Name));
+                        var e = s.ToEntity();
+                        db.Scopes.Add(e);
                     }
-                    var e = s.ToEntity();
-                    db.Scopes.Add(e);
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
             }
         }
     }

@@ -22,7 +22,7 @@ using Murtain.Dependency;
 using Murtain.OAuth2.Core;
 using Murtain.OAuth2.Core.UserAccount;
 using Murtain.Web.Exceptions;
-using Murtain.OAuth2.SDK;
+using Murtain.OAuth2.SDK.Enum;
 
 namespace Murtain.OAuth2.Application.UserAccount
 {
@@ -87,6 +87,12 @@ namespace Murtain.OAuth2.Application.UserAccount
                     req.Avatar = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.Wechat.Avatar);
                     break;
                 case OAUTH2_LOGIN_PROVIDER_TYPE.QQ:
+                    req.NickName = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.qq.Name);
+                    req.Gender = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.qq.Gender);
+                    req.City = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.qq.City);
+                    req.Country = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.qq.Country);
+                    req.Province = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.qq.Province);
+                    req.Avatar = _TryValue(context.ExternalIdentity.Claims, Constants.ClaimTypes.qq.Avatar);
                     break;
                 case OAUTH2_LOGIN_PROVIDER_TYPE.TAOBAO:
                     break;
@@ -138,17 +144,17 @@ namespace Murtain.OAuth2.Application.UserAccount
             context.IssuedClaims = new List<Claim>
             {
                     new Claim(Constants.ClaimTypes.SubId, model.SubId),
-                    //new Claim(Constants.ClaimTypes.NickName, model.Name),
-                    //new Claim(Constants.ClaimTypes.Age, model.Age.TryString()),
-                    //new Claim(Constants.ClaimTypes.Birthday, model.Birthday),
-                    //new Claim(Constants.ClaimTypes.Gender, model.Gender),
-                    //new Claim(Constants.ClaimTypes.Avatar, model.Avatar),
-                    //new Claim(Constants.ClaimTypes.Mobile, model.Mobile),
-                    //new Claim(Constants.ClaimTypes.Email, model.Email),
-                    //new Claim(Constants.ClaimTypes.Country, model.Country),
-                    //new Claim(Constants.ClaimTypes.Province, model.Province),
-                    //new Claim(Constants.ClaimTypes.City, model.City),
-                    //new Claim(Constants.ClaimTypes.Address, model.Address)
+                    new Claim(Constants.ClaimTypes.NickName, model.Name),
+                    new Claim(Constants.ClaimTypes.Age, model.Age.TryString()),
+                    new Claim(Constants.ClaimTypes.Birthday, model.Birthday),
+                    new Claim(Constants.ClaimTypes.Gender, model.Gender),
+                    new Claim(Constants.ClaimTypes.Avatar, model.Avatar),
+                    new Claim(Constants.ClaimTypes.Mobile, model.Mobile),
+                    new Claim(Constants.ClaimTypes.Email, model.Email),
+                    new Claim(Constants.ClaimTypes.Country, model.Country),
+                    new Claim(Constants.ClaimTypes.Province, model.Province),
+                    new Claim(Constants.ClaimTypes.City, model.City),
+                    new Claim(Constants.ClaimTypes.Address, model.Address)
                 };
         }
 

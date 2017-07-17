@@ -22,6 +22,12 @@ namespace Murtain.OAuth2.Web.Controllers
             Response.Write(echoStr);
             Response.End();
         }
+
+        public void SignIn()
+        {
+            var user = User.Identity;
+        }
+
         private bool CheckSignature()
         {
             var signature = Request.QueryString["signature"].ToString();

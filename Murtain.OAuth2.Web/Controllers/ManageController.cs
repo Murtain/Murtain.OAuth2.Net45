@@ -6,13 +6,8 @@ using System.Web.Mvc;
 
 namespace Murtain.OAuth2.Web.Controllers
 {
-    [Authorize]
     public class ManageController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult Profile()
         {
@@ -26,11 +21,6 @@ namespace Murtain.OAuth2.Web.Controllers
 
         public ActionResult Permissions()
         {
-            return View();
-        }
-        public virtual ActionResult SignOut()
-        {
-            Request.GetOwinContext().Authentication.SignOut();
             return View();
         }
     }

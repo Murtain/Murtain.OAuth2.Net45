@@ -4,30 +4,154 @@
         <name>Murtain.OAuth2.SDK</name>
     </assembly>
     <members>
-        <member name="T:Murtain.OAuth2.SDK.Captcha.EmailCaptcha">
+        <member name="F:Murtain.OAuth2.SDK.Enum.CAPTCHA_MANAGER_RETURN_CODE.EMAIL_CAPTCHA_SEND_FAILED">
+            <summary>
+            邮件发送失败
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Enum.CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_SEND_FAILED">
+            <summary>
+            短信发送失败
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Enum.CAPTCHA_MANAGER_RETURN_CODE.SMS_SERVICE_NOT_AVAILABLE">
+            <summary>
+            短信服务不可用
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Enum.CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_IS_EXPIRED">
+            <summary>
+            验证码已失效
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Enum.CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_NOT_MATCHA">
+            <summary>
+            验证码错误
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Enum.CAPTCHA_MANAGER_RETURN_CODE.INVALID_GRAPHIC_CAPTCHA">
+            <summary>
+            图形验证码错误
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.Enum.EMAIL_CAPTCHA">
             <summary>
             邮件验证码类型
             </summary>
         </member>
-        <member name="F:Murtain.OAuth2.SDK.Captcha.EmailCaptcha.Bind">
+        <member name="F:Murtain.OAuth2.SDK.Enum.EMAIL_CAPTCHA.BIND">
             <summary>
             绑定
             </summary>
         </member>
-        <!-- 对于成员“F:Murtain.OAuth2.SDK.Captcha.EmailCaptcha.Change”忽略有格式错误的 XML 注释 -->
-        <member name="T:Murtain.OAuth2.SDK.Captcha.MessageCaptcha">
+        <member name="F:Murtain.OAuth2.SDK.Enum.EMAIL_CAPTCHA.CHANGE">
+            <summary>
+            变更
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.Enum.MESSAGE_CAPTCHA_TYPE">
             <summary>
             短信验证码类型
             </summary>
         </member>
-        <member name="F:Murtain.OAuth2.SDK.Captcha.MessageCaptcha.Register">
+        <member name="F:Murtain.OAuth2.SDK.Enum.MESSAGE_CAPTCHA_TYPE.REGISTER">
             <summary>
             注册
             </summary>
         </member>
-        <member name="F:Murtain.OAuth2.SDK.Captcha.MessageCaptcha.RetrievePassword">
+        <member name="F:Murtain.OAuth2.SDK.Enum.MESSAGE_CAPTCHA_TYPE.RETRIEVE_PASSWORD">
             <summary>
             找回密码
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Enum.USER_ACCOUNT_MANAGER_RETURN_CODE.USER_ALREADY_EXISTS">
+            <summary>
+            手机号码已存在
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Enum.USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS">
+            <summary>
+            手机号未注册
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.Enum.USER_ACCOUNT_MANAGER_RETURN_CODE.INVALID_GRAPHIC_CAPTCHA">
+            <summary>
+            图形验证码类型无效
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.LocalRegistrationRequestModel">
+            <summary>
+            本地注册
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.LocalRegistrationRequestModel.Mobile">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.LocalRegistrationRequestModel.CaptchaType">
+            <summary>
+            验证码类型
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.LocalRegistrationRequestModel.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.LOCAL_REGISTRATION_RETURN_CODE">
+            <summary>
+            本地注册返回码
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.UserAccount.LOCAL_REGISTRATION_RETURN_CODE.USER_ALREADY_EXISTS">
+            <summary>
+            手机号码已存在
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.RetrievePasswordRequestModel">
+            <summary>
+            设置/重置密码
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.RetrievePasswordRequestModel.Mobile">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.RetrievePasswordRequestModel.Captcha">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.RetrievePasswordRequestModel.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.RetrievePasswordRequestModel.ConfirmPassword">
+            <summary>
+            确认密码
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.ResendMessageCaptchaRequestModel">
+            <summary>
+            重发短信验证码
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ResendMessageCaptchaRequestModel.GraphicCaptcha">
+            <summary>
+            图像验证码
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ResendMessageCaptchaRequestModel.MessageCaptchaType">
+            <summary>
+            短信验证码类型
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ResendMessageCaptchaRequestModel.Mobile">
+            <summary>
+            手机号码
             </summary>
         </member>
         <member name="T:Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel">
@@ -40,14 +164,74 @@
             图形验证码
             </summary>
         </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel.CaptchaType">
+            <summary>
+            验证码类型
+            </summary>
+        </member>
         <member name="P:Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel.Mobile">
             <summary>
             手机号
             </summary>
         </member>
-        <member name="T:Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptcha">
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE_CAPTCHA_RETURN_CODE">
             <summary>
             验证图形验证码
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.UserAccount.VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE_CAPTCHA_RETURN_CODE.MESSAGES_SENT_OVER_LIMIT">
+            <summary>
+            短信发送次数超出限制
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.UserAccount.VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE_CAPTCHA_RETURN_CODE.SMS_SERVICE_NOT_AVAILABLE">
+            <summary>
+            短信服务不可用
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.UserAccount.VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE_CAPTCHA_RETURN_CODE.MESSAGE_CAPTCHA_SEND_FAILED">
+            <summary>
+            短信发送失败
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaRequestModel">
+            <summary>
+            验证短信验证码，若验证类型注册，验证成功后创建账户，若
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaRequestModel.Captcha">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaRequestModel.CaptchaType">
+            <summary>
+            验证码类型
+            </summary>
+        </member>
+        <member name="P:Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaRequestModel.Mobile">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.VALIDATE_MESSAGE_CAPTCHA_RETURN_CODE">
+            <summary>
+            验证短信验证码返回码
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.UserAccount.VALIDATE_MESSAGE_CAPTCHA_RETURN_CODE.INVALID_PARAMETERS">
+            <summary>
+            参数无效
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.UserAccount.VALIDATE_MESSAGE_CAPTCHA_RETURN_CODE.INVALID_CAPTCHA">
+            <summary>
+            验证码无效
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.SDK.UserAccount.VALIDATE_MESSAGE_CAPTCHA_RETURN_CODE.EXPIRED_CAPTCHA">
+            <summary>
+            验证码已过期，请重新获取验证码
             </summary>
         </member>
     </members>

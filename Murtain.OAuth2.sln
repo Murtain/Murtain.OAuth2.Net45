@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.Core", "Murtain.OAuth2.Core\Murtain.OAuth2.Core.csproj", "{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.Infrastructure", "Murtain.OAuth2.Infrastructure\Murtain.OAuth2.Infrastructure.csproj", "{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.Domain", "Murtain.OAuth2.Domain\Murtain.OAuth2.Domain.csproj", "{4D92E54F-03FF-422F-B77A-F5993C8C1305}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.SDK", "Murtain.OAuth2.SDK\Murtain.OAuth2.SDK.csproj", "{F270FC6F-23AA-46DB-B8AB-F0DD71FF5DEA}"
@@ -33,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Web", "..\Murtain\M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Web.SignalR", "..\Murtain\Murtain.Web.SignalR\Murtain.Web.SignalR.csproj", "{2EA83669-E2DC-41F2-9348-3AF7E4A5A576}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Web.ApiDocument", "..\Murtain\Murtain.Web.ApiDocument\Murtain.Web.ApiDocument.csproj", "{86BC86E6-FC8F-4E0F-A5C5-81B22DD83589}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.Infrastructure", "Murtain.OAuth2.Infrastructure\Murtain.OAuth2.Infrastructure.csproj", "{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AzureWebSites|Any CPU = AzureWebSites|Any CPU
@@ -46,12 +48,6 @@ Global
 		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE269672-1CAF-4919-8E3E-E4C7FE58C77D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
-		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
-		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
 		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
 		{4D92E54F-03FF-422F-B77A-F5993C8C1305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -124,6 +120,18 @@ Global
 		{2EA83669-E2DC-41F2-9348-3AF7E4A5A576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EA83669-E2DC-41F2-9348-3AF7E4A5A576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EA83669-E2DC-41F2-9348-3AF7E4A5A576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86BC86E6-FC8F-4E0F-A5C5-81B22DD83589}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{86BC86E6-FC8F-4E0F-A5C5-81B22DD83589}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
+		{86BC86E6-FC8F-4E0F-A5C5-81B22DD83589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86BC86E6-FC8F-4E0F-A5C5-81B22DD83589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86BC86E6-FC8F-4E0F-A5C5-81B22DD83589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86BC86E6-FC8F-4E0F-A5C5-81B22DD83589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
+		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE69C91-DAED-45F2-8B4A-DCC1E82AD1A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,5 +145,6 @@ Global
 		{08D9807E-C4A2-42AC-9BA0-C408F07C6016} = {AB82BCC1-4DB3-4537-8DA6-1D66BC8F23A0}
 		{60B9D99C-2829-4FB9-982A-F8D26639EDCC} = {AB82BCC1-4DB3-4537-8DA6-1D66BC8F23A0}
 		{2EA83669-E2DC-41F2-9348-3AF7E4A5A576} = {AB82BCC1-4DB3-4537-8DA6-1D66BC8F23A0}
+		{86BC86E6-FC8F-4E0F-A5C5-81B22DD83589} = {AB82BCC1-4DB3-4537-8DA6-1D66BC8F23A0}
 	EndGlobalSection
 EndGlobal

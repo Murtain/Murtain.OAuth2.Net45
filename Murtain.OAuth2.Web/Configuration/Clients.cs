@@ -413,21 +413,21 @@ namespace Murtain.OAuth2.Web.Configuration
 
                     RedirectUris = new List<string>
                     {
-                        "http://localhost:21575/index.html",
-                        "http://localhost:21575/silent_renew.html",
-                        "http://localhost:21575/callback.html",
-                        "http://localhost:21575/frame.html",
-                        "http://localhost:21575/popup.html",
+                        "http://square.x-dva.com/index.html",
+                        "http://square.x-dva.com/silent_renew.html",
+                        "http://square.x-dva.com/callback.html",
+                        "http://square.x-dva.com/frame.html",
+                        "http://square.x-dva.com/popup.html",
                     },
 
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "http://localhost:21575/index.html",
+                        "http://square.x-dva.com/index.html",
                     },
 
                     AllowedCorsOrigins = new List<string>
                     {
-                        "http://localhost:21575",
+                        "http://square.x-dva.com",
                     },
 
                     AccessTokenLifetime = 3600,

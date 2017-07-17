@@ -28,6 +28,9 @@ using System.Web.Http;
 using Murtain.Web.ContractResolver;
 using Murtain.Web.Attributes;
 using Murtain.Web.MessageHandlers;
+using Murtain.OAuth2.Core.CacheSettingProviders;
+using System.Data.Entity;
+using Murtain.OAuth2.Infrastructure;
 
 namespace Murtain.OAuth2.Web
 {
@@ -41,6 +44,13 @@ namespace Murtain.OAuth2.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            // System.InvalidOperationException
+            // The default DbConfiguration instance was used by the Entity Framework before the 'MySqlEFConfiguration' type was discovered.
+            // An instance of 'MySqlEFConfiguration' must be set at application start before using any Entity Framework features or must be registered in the application's config file. 
+            // See http://go.microsoft.com/fwlink/?LinkId=260883 for more information.
+
+            //Database.SetInitializer<ModelsContainer>(null);
+
             //Remove and JsonValueProviderFactory and add JsonDotNetValueProviderFactory
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new SnakeCaseContractResolver();
@@ -48,23 +58,25 @@ namespace Murtain.OAuth2.Web
 
             StartupConfig.RegisterDependency(config =>
                 {
-                //应用程序配置
-                config.GlobalSettingsConfiguration.Providers.Add<AuthorizationSettingProvider>();
+                    //应用程序配置
+                    config.GlobalSettingsConfiguration.Providers.Add<AuthorizationSettingProvider>();
                     config.GlobalSettingsConfiguration.Providers.Add<LocalizationSettingProvider>();
                     config.GlobalSettingsConfiguration.Providers.Add<ResourcesSettingProvider>();
                     config.GlobalSettingsConfiguration.Providers.Add<MessageSettingProvider>();
 
-                //本地化
-                config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Messages, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Messages)));
+                    config.CacheSettingsConfiguration.Providers.Add<MessageCaptchaCacheSettingProvider>();
+
+                    //本地化
+                    config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Messages, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Messages)));
                     config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Events, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Events)));
                     config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Scopes, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Scopes)));
                     config.LocalizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(Constants.Localization.SourceName.Views, new XmlEmbeddedFileLocalizationDictionaryProvider(Assembly.GetExecutingAssembly(), Constants.Localization.RootNamespace.Views)));
 
-                //EF 连接字符串
-                config.UseDataAccessEntityFramework(cfg =>
-                    {
-                        cfg.DefaultNameOrConnectionString = "DefaultConnection";
-                    });
+                    //EF 连接字符串
+                    config.UseDataAccessEntityFramework(cfg =>
+                        {
+                            cfg.DefaultNameOrConnectionString = "DefaultConnection";
+                        });
 
                     config.UseAuditing();
                     config.UseAutoMapper();

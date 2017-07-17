@@ -1,16 +1,30 @@
 ﻿@using Newtonsoft.Json
-
-
-
-@* This is essentially a copy of the embedded HTML that comes from IdSvr, adapted to access the Model server-side *@
-
-<div class="page-header">
-</div>
-<div class="row">
-    <div class="alert alert-danger">
-        @if (Model != null)
-        {
-            @(JsonConvert.SerializeObject(Model))
-        }
+@{
+    ViewBag.Title = "Application Error";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+<div class="x-container x-block animated" ng-cloak>
+    <div class="x-form-wrapper x-form-container">
+        <div class="animated ">
+            <div class="form-group">
+                <div class="x-brand-conatiner">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="x-title">X-DVA ID</div>
+            </div>
+            <div class="form-group">
+                <div>@(Model.ErrorMessage)</div>
+            </div>
+            <div class="form-group">
+                <div>服务器运行错误！点击<a ng-click="model.stack()">这里</a> 查看详情</div>
+            </div>
+            <div class="form-group hidden">
+                <pre>@(JsonConvert.SerializeObject(Model,Formatting.Indented))</pre>
+            </div>
+            <div class="form-group">
+                <a href="/connect" class="x-btn x-btn-submit x-btn-light">@L("我知道了")</a>
+            </div>
+        </div>
     </div>
 </div>

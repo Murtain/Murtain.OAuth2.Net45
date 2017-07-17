@@ -5,9 +5,10 @@ namespace Murtain.OAuth2.Infrastructure.Migrations.ClientConfiguration
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ClientConfigurationDbContext>
+
+    public sealed class ClientConfiguration : DbMigrationsConfiguration<ClientConfigurationDbContext>
     {
-        public Configuration()
+        public ClientConfiguration()
         {
             AutomaticMigrationsEnabled = false;
             MigrationsDirectory = @"Migrations\ClientConfiguration";

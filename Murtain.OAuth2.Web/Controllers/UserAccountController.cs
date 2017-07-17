@@ -26,30 +26,47 @@ namespace Murtain.OAuth2.Web.Controllers
             this.userAccountService = userAccountService;
         }
 
+        /// <summary>
+        /// 本地注册
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/account")]
         public async Task LocalRegistrationAsync([FromBody]LocalRegistrationRequestModel input)
         {
             await userAccountService.LocalRegistrationAsync(input);
         }
-
+        /// <summary>
+        /// 设置密码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("api/account/password")]
-        public async Task ResetPasswordAsync([FromBody]ResetPasswordRequestModel input)
+        public async Task RetrievePasswordAsync([FromBody]RetrievePasswordRequestModel input)
         {
-            await userAccountService.ResetPasswordAsync(input);
+            await userAccountService.RetrievePasswordAsync(input);
         }
-
+        /// <summary>
+        /// 验证图片验证并发送短信验证码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/account/sms")]
-        [ReturnCode(typeof(ValidateGraphicCaptchaAndSendMessageCaptcha))]
+        [ReturnCode(typeof(VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE_CAPTCHA_RETURN_CODE))]
         public async Task ValidateGraphicCaptchaAndSendMessageCaptchaAsync([FromBody]ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel input)
         {
             await userAccountService.ValidateGraphicCaptchaAndSendMessageCaptchaAsync(input);
         }
-
+        /// <summary>
+        /// 验证短信验证码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPut]
-        [ReturnCode(typeof(ValidateMessageCaptcha))]
+        [ReturnCode(typeof(VALIDATE_MESSAGE_CAPTCHA_RETURN_CODE))]
         [Route("api/account/sms-validate")]
         public async Task ValidateMessageCaptchaAsync([FromBody] ValidateMessageCaptchaRequestModel input)
         {

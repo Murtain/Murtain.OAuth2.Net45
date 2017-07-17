@@ -7,14 +7,29 @@ using System.Threading.Tasks;
 
 namespace Murtain.OAuth2.SDK.UserAccount
 {
-    public class ResetPasswordRequestModel
+    /// <summary>
+    /// 设置/重置密码
+    /// </summary>
+    public class RetrievePasswordRequestModel
     {
+        /// <summary>
+        /// 手机号
+        /// </summary>
         [Required]
         public string Mobile { get; set; }
+        /// <summary>
+        /// 验证码
+        /// </summary>
         [Required]
         public string Captcha { get; set; }
+        /// <summary>
+        /// 密码
+        /// </summary>
         [Required]
         public string Password { get; set; }
+        /// <summary>
+        /// 确认密码
+        /// </summary>
         [Required]
         public string ConfirmPassword { get; set; }
     }

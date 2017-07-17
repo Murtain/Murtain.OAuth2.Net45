@@ -59,6 +59,21 @@ namespace Murtain.OAuth2.Web.Configuration
                         { "email", ClaimTypes.Email },
                     }
                 },
+                 new RelyingParty
+                {
+                    Realm = "urn:owinrp:square",
+                    Enabled = true,
+                    ReplyUrl = "http://square.x-dva.com/",
+                    TokenType = TokenTypes.Saml2TokenProfile11,
+                    TokenLifeTime = 1,
+
+                    ClaimMappings = new Dictionary<string, string>
+                    {
+                        { "id", ClaimTypes.NameIdentifier },
+                        { "name", ClaimTypes.Name },
+                        { "email", ClaimTypes.Email },
+                    }
+                },
                 new RelyingParty
                 {
                     Realm = "urn:owinsinalr",

@@ -13,7 +13,6 @@ using Murtain.OAuth2.Domain.Entities;
 
 namespace Murtain.OAuth2.Infrastructure
 {
-
     public partial class ModelsContainer : EntityFrameworkDbContext
     {
         public ModelsContainer()

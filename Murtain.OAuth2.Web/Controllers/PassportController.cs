@@ -10,7 +10,6 @@ using IdentityServer3.Core.ViewModels;
 using IdentityServer3.Core.Models;
 
 using Murtain.OAuth2.Core;
-using Murtain.OAuth2.SDK.Captcha;
 using Murtain.OAuth2.Web.Controllers.Shared;
 using Murtain.Caching;
 using Murtain.Web.Models;

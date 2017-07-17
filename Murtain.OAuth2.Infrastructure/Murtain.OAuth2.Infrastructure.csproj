@@ -32,23 +32,24 @@
   <ItemGroup>
     <Reference Include="AutoMapper, Version=5.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.5.0.2\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="IdentityServer3, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdentityServer3.2.6.0\lib\net45\IdentityServer3.dll</HintPath>
     </Reference>
     <Reference Include="IdentityServer3.EntityFramework, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdentityServer3.EntityFramework.2.5.1\lib\net45\IdentityServer3.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\IdentityServer3.EntityFramework.2.6.0\lib\net45\IdentityServer3.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -63,11 +64,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientConfigurationDbContext.cs" />
-    <Compile Include="Migrations\201706080220131_01.cs" />
-    <Compile Include="Migrations\201706080220131_01.Designer.cs">
-      <DependentUpon>201706080220131_01.cs</DependentUpon>
+    <Compile Include="Extensions\DbModelBuilderExtensions.cs" />
+    <Compile Include="Migrations\201707110844237_01.cs" />
+    <Compile Include="Migrations\201707110844237_01.Designer.cs">
+      <DependentUpon>201707110844237_01.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\ClientConfiguration\201707110727576_01.cs" />
+    <Compile Include="Migrations\ClientConfiguration\201707110727576_01.Designer.cs">
+      <DependentUpon>201707110727576_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ClientConfiguration\Configuration.cs" />
+    <Compile Include="Migrations\ModelsContainerConfiguration.cs" />
+    <Compile Include="Migrations\OperationalConfiguration\201707110728140_01.cs" />
+    <Compile Include="Migrations\OperationalConfiguration\201707110728140_01.Designer.cs">
+      <DependentUpon>201707110728140_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\OperationalConfiguration\Configuration.cs" />
+    <Compile Include="Migrations\ScopeConfiguration\201707110735159_01.cs" />
+    <Compile Include="Migrations\ScopeConfiguration\201707110735159_01.Designer.cs">
+      <DependentUpon>201707110735159_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ScopeConfiguration\Configuration.cs" />
     <Compile Include="ModelsContainer.cs" />
     <Compile Include="OperationalDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,10 +100,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GitHub\IdentityServer3\source\Core\Core.csproj">
-      <Project>{fb9e026e-bab3-498a-a954-b93b05c146a5}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Murtain\Murtain.AutoMapper\Murtain.AutoMapper.csproj">
       <Project>{705e044d-408d-4823-923c-e79e316035a8}</Project>
       <Name>Murtain.AutoMapper</Name>
@@ -105,8 +118,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706080220131_01.resx">
-      <DependentUpon>201706080220131_01.cs</DependentUpon>
+    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707110844237_01.resx">
+      <DependentUpon>201707110844237_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ClientConfiguration\201707110727576_01.resx">
+      <DependentUpon>201707110727576_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\OperationalConfiguration\201707110728140_01.resx">
+      <DependentUpon>201707110728140_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ScopeConfiguration\201707110735159_01.resx">
+      <DependentUpon>201707110735159_01.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

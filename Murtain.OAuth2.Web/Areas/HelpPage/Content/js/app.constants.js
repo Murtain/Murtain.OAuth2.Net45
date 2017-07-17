@@ -3,7 +3,7 @@
 define(['app.module'], function (app) {
 
 	app.constant('constants', {
-        rootPath: 'http://localhost:31208/api',
+        rootPath: 'https://www.x-dva.com/api',
 	});
 
 

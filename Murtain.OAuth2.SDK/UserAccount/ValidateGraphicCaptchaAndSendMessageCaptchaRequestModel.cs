@@ -1,9 +1,10 @@
-﻿using Murtain.OAuth2.SDK.Captcha;
+﻿using Murtain.OAuth2.SDK.Enum;
 using Murtain.SDK;
 using Murtain.SDK.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -19,37 +20,43 @@ namespace Murtain.OAuth2.SDK.UserAccount
         /// <summary>
         /// 图形验证码
         /// </summary>
+        [Required]
         public string GraphicCaptcha { get; set; }
+        /// <summary>
+        /// 验证码类型
+        /// </summary>
+        [Required]
+        public MESSAGE_CAPTCHA_TYPE CaptchaType { get; set; }
         /// <summary>
         /// 手机号
         /// </summary>
+        [Required]
         public string Mobile { get; set; }
     }
 
     /// <summary>
     /// 验证图形验证码
     /// </summary>
-    public enum ValidateGraphicCaptchaAndSendMessageCaptcha
+    public enum VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE_CAPTCHA_RETURN_CODE
     {
-        [Description("参数无效")]
-        [HttpCorresponding(HttpStatusCode.BadRequest)]
-        INVALID_PARAMETERS = SystemReturnCode.INVALID_PARAMETERS,
-
-        [Description("图形验证码无效")]
-        [HttpCorresponding(HttpStatusCode.BadRequest)]
-        INVALID_GRAPHIC_CAPTCHA = MessageCaptchaServer.INVALID_GRAPHIC_CAPTCHA,
-
+        /// <summary>
+        /// 短信发送次数超出限制
+        /// </summary>
         [Description("短信发送次数超出限制")]
         [HttpCorresponding(HttpStatusCode.BadRequest)]
-        MESSAGES_SENT_OVER_LIMIT = MessageCaptchaServer.MESSAGES_SENT_OVER_LIMIT,
-
+        MESSAGES_SENT_OVER_LIMIT = RETURN_CODE_SEED.VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE,
+        /// <summary>
+        /// 短信服务不可用
+        /// </summary>
         [Description("短信服务不可用")]
         [HttpCorresponding(HttpStatusCode.BadGateway)]
-        SMS_SERVICE_NOT_AVAILABLE = MessageCaptchaServer.SMS_SERVICE_NOT_AVAILABLE,
-
+        SMS_SERVICE_NOT_AVAILABLE,
+        /// <summary>
+        /// 短信发送失败
+        /// </summary>
         [Description("短信发送失败")]
         [HttpCorresponding(HttpStatusCode.BadGateway)]
-        MESSAGE_CAPTCHA_SEND_FAILED = MessageCaptchaServer.MESSAGE_CAPTCHA_SEND_FAILED,
+        MESSAGE_CAPTCHA_SEND_FAILED,
     }
 
 

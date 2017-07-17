@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>../Murtain.OAuth2.Web/App_Data/Murtain.OAuth2.SDK.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.DynamicProxy2, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.DynamicProxy2.3.0.7\lib\net40\Autofac.Extras.DynamicProxy2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -42,28 +49,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Captcha\EmailCaptcha.cs" />
-    <Compile Include="Captcha\MessageCaptcha.cs" />
-    <Compile Include="Captcha\MessageCaptchaServer.cs" />
-    <Compile Include="OAUTH2_LOGIN_PROVIDER_TYPE.cs" />
+    <Compile Include="Enum\CAPTCHA_MANAGER_RETURN_CODE.cs" />
+    <Compile Include="Enum\EMAIL_CAPTCHA.cs" />
+    <Compile Include="Enum\MESSAGE_CAPTCHA.cs" />
+    <Compile Include="Enum\OAUTH2_LOGIN_PROVIDER_TYPE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RETURN_CODE_SEED.cs" />
+    <Compile Include="Enum\RETURN_CODE_SEED.cs" />
     <Compile Include="UserAccount\LocalRegistrationRequestModel.cs" />
     <Compile Include="UserAccount\ResetPasswordRequestModel.cs" />
-    <Compile Include="UserAccount\UserAccountManagerServer.cs" />
+    <Compile Include="Enum\USER_ACCOUNT_MANAGER_RETURN_CODE.cs" />
     <Compile Include="UserAccount\ValidateGraphicCaptchaAndResendMessageCaptchaRequestModel.cs" />
     <Compile Include="UserAccount\ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel.cs" />
     <Compile Include="UserAccount\ValidateMessageCaptchaRequestModel.cs" />
-    <Compile Include="IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.cs" />
+    <Compile Include="Enum\IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Murtain\Murtain.SDK\Murtain.SDK.csproj">
       <Project>{08d9807e-c4a2-42ac-9ba0-c408f07c6016}</Project>
       <Name>Murtain.SDK</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Captcha\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

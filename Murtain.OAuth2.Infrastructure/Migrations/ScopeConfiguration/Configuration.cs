@@ -5,9 +5,10 @@ namespace Murtain.OAuth2.Infrastructure.Migrations.ScopeConfiguration
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ScopeConfigurationDbContext>
+
+    internal sealed class ScopeConfiguration : DbMigrationsConfiguration<ScopeConfigurationDbContext>
     {
-        public Configuration()
+        public ScopeConfiguration()
         {
             AutomaticMigrationsEnabled = false;
             MigrationsDirectory = @"Migrations\ScopeConfiguration";

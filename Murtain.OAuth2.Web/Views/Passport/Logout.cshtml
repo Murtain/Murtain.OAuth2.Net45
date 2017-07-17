@@ -1,26 +1,33 @@
 ﻿@model IdentityServer3.Core.ViewModels.LogoutViewModel
 @{
-	ViewBag.Title = "Logout";
+    ViewBag.Title = "Application Loout";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
-
 @* This is essentially a copy of the embedded HTML that comes from IdSvr, adapted to access the Model server-side *@
-
-<div class="page-header">
-	<h1>@ViewBag.Title</h1>
-</div>
-<div class="row">
-    <div class="col-md-6 col-sm-6">
-        <p>Would you like to logout of @Model.SiteName?</p>
-        <form name="form" method="post" action="@Model.LogoutUrl">
-            <input type="hidden" name="@Model.AntiForgery.Name" value="@Model.AntiForgery.Value" />
-            <fieldset>
+<div class="x-container x-block animated" ng-cloak>
+    <div class="x-form-wrapper x-form-container">
+        <div class="animated ">
+            <form name="form" method="post" action="{{app.identity.loginUrl}}" novalidate="novalidate">
+                <i-anti-forgery-token token="app.identity.antiForgery"></i-anti-forgery-token>
                 <div class="form-group">
-                    <button class="btn btn-primary" id="yes">Yes</button>
+                    <div class="x-brand-conatiner">
+                    </div>
                 </div>
-            </fieldset>
-        </form>
+                <div class="form-group">
+                    <div class="x-title">X-DVA 安全退出</div>
+                </div>
+                <div class="form-group">
+                    <div>立即退出会清除您的登录信息，重新访问时需重新授权登录，确定要退出么？</div>
+                </div>
+                <div class="form-group">
+                    <div>An immediate exit will clear your login information. You will need to re - sign the login when you re - visit. Are you sure you want to logout?</div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="x-btn x-btn-submit x-btn-light" value="@L("立即退出")">
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-@section scripts{
-    @Html.Partial("_RenderAngularModel")
-}
+
+@* This is essentially a copy of the embedded HTML that comes from IdSvr, adapted to access the Model server-side *@

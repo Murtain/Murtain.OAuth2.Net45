@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>App_Data\Murtain.OAuth2.Web.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,16 +52,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Extras.DynamicProxy2, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Extras.DynamicProxy2.3.0.7\lib\net40\Autofac.Extras.DynamicProxy2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Facilities.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.LoggingFacility.3.3.0\lib\net45\Castle.Facilities.Logging.dll</HintPath>
@@ -72,11 +71,9 @@
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
@@ -86,12 +83,12 @@
       <HintPath>..\packages\IdentityModel.1.12.0\lib\net45\IdentityModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="IdentityServer3, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdentityServer3.2.5.2\lib\net45\IdentityServer3.dll</HintPath>
+    <Reference Include="IdentityServer3, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdentityServer3.2.6.0\lib\net45\IdentityServer3.dll</HintPath>
     </Reference>
     <Reference Include="IdentityServer3.EntityFramework, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdentityServer3.EntityFramework.2.5.1\lib\net45\IdentityServer3.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\IdentityServer3.EntityFramework.2.6.0\lib\net45\IdentityServer3.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="IdentityServer3.WsFederation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IdentityServer3.WsFederation.2.6.0\lib\net45\IdentityServer3.WsFederation.dll</HintPath>
@@ -113,8 +110,8 @@
     <Reference Include="Microsoft.IdentityModel.Protocol.Extensions">
       <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.0\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
@@ -124,19 +121,18 @@
       <HintPath>..\packages\Microsoft.Owin.Hosting.3.0.1\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OpenIdConnect.3.1.0\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OpenIdConnect.3.0.1\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Tencent.QQ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Tencent.QQ.1.0.0\lib\net452\Microsoft.Owin.Security.Tencent.QQ.dll</HintPath>
@@ -158,13 +154,14 @@
       <HintPath>..\packages\MsieJavaScriptEngine.1.7.0\lib\net40\MsieJavaScriptEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Murtain.Web.ApiDocument, Version=1.0.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Murtain.Web.ApiDocument.1.0.0.18\lib\net452\Murtain.Web.ApiDocument.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Owin.Security.Providers.Weixin, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.Security.Providers.Weixin.1.5.1.0\lib\net45\Owin.Security.Providers.Weixin.dll</HintPath>
@@ -263,6 +260,38 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\DocumentController.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\WebApi\DocumentController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\ApiDescriptionModel.cs" />
+    <Compile Include="Areas\HelpPage\Models\DocumentModel.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Configuration\Certificate.cs" />
     <Compile Include="Configuration\Clients.cs" />
     <Compile Include="Configuration\IdentityServerServiceFactoryHelper.cs" />
@@ -273,21 +302,38 @@
     <Compile Include="Configuration\Services\LocalizationService.cs" />
     <Compile Include="Configuration\Session\AppSession.cs" />
     <Compile Include="Configuration\Users.cs" />
-    <Content Include="Content\app\controllers\captcha_validate_controller.js" />
-    <Content Include="Content\app\controllers\login_web_controller.js" />
-    <Content Include="Content\app\controllers\password_fogot_controller.js" />
-    <Content Include="Content\app\controllers\password_reset_controller.js" />
-    <Content Include="Content\app\controllers\password_set_controller.js" />
-    <Content Include="Content\app\controllers\registration_local_controller.js" />
-    <Content Include="Content\mg\app.constants.js" />
-    <Content Include="Content\mg\app.module.js" />
-    <Content Include="Content\mg\app.js" />
-    <Content Include="Content\app\app.module.js" />
-    <Content Include="Content\mg\app.router.js" />
-    <Content Include="Content\mg\controllers\index_controller.js" />
-    <Content Include="Content\mg\controllers\permissions_controller.js" />
-    <Content Include="Content\mg\controllers\profile_controller.js" />
-    <Content Include="Content\mg\controllers\security_controller.js" />
+    <Content Include="App_Data\DefaultConnection.mdf" />
+    <Content Include="App_Data\DefaultConnection_log.ldf">
+      <DependentUpon>DefaultConnection.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\Murtain.OAuth2.SDK.xml" />
+    <Content Include="App_Data\Murtain.OAuth2.Web.xml" />
+    <Content Include="App_Data\Murtain.OAuth2.WebApi-20160826051002.mdf" />
+    <Content Include="App_Data\Murtain.OAuth2.WebApi-20160826051002_log.ldf">
+      <DependentUpon>Murtain.OAuth2.WebApi-20160826051002.mdf</DependentUpon>
+    </Content>
+    <Content Include="Areas\HelpPage\Content\bootstrap.css" />
+    <Content Include="Areas\HelpPage\Content\bootstrap.min.css" />
+    <Content Include="Areas\HelpPage\Content\css\style.css" />
+    <Content Include="Areas\HelpPage\Content\js\app.constants.js" />
+    <Content Include="Areas\HelpPage\Content\js\app.js" />
+    <Content Include="Areas\HelpPage\Content\js\app.module.js" />
+    <Content Include="Areas\HelpPage\Content\js\app.router.js" />
+    <Content Include="Areas\HelpPage\Content\js\controllers\document-api-description.js" />
+    <Content Include="Areas\HelpPage\Content\js\controllers\document-model-description.js" />
+    <Content Include="Areas\HelpPage\Content\js\controllers\document-readme.js" />
+    <Content Include="Areas\HelpPage\Content\js\controllers\document.js" />
+    <Content Include="Areas\HelpPage\Content\js\main.js" />
+    <Content Include="Areas\HelpPage\Content\js\services\document-service.js" />
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="wwwroot\app.config.js" />
+    <Content Include="wwwroot\controllers\captcha_validate.js" />
+    <Content Include="wwwroot\controllers\login_web.js" />
+    <Content Include="wwwroot\controllers\password_set.js" />
+    <Content Include="wwwroot\controllers\permissions.js" />
+    <Content Include="wwwroot\controllers\profile.js" />
+    <Content Include="wwwroot\controllers\id_validate.js" />
+    <Content Include="wwwroot\app.module.js" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PassportController.cs" />
@@ -299,52 +345,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Content Include="www\app.constants.js" />
-    <Content Include="www\app.js" />
-    <Content Include="www\app.module.js" />
-    <Content Include="www\app.router.js" />
-    <Content Include="www\controllers\captcha_validate_controller.js" />
-    <Content Include="www\controllers\login_web_controller.js" />
-    <Content Include="www\controllers\password_fogot_controller.js" />
-    <Content Include="www\controllers\password_reset_controller.js" />
-    <Content Include="www\controllers\password_set_controller.js" />
-    <Content Include="www\controllers\registration_local_controller.js" />
-    <Content Include="www\directives\iAntiForgeryToken.js" />
-    <Content Include="www\factories\Browser.js" />
-    <Content Include="www\factories\identity-server.js" />
-    <Content Include="www\factories\Logger.js" />
-    <Content Include="www\libs\angular\angular.1.2.13.js" />
-    <Content Include="www\libs\angular\angular.1.2.13.min.js" />
-    <Content Include="www\libs\bootstrap\css\bootstrap-theme.css" />
-    <Content Include="www\libs\bootstrap\css\bootstrap-theme.min.css" />
-    <Content Include="www\libs\bootstrap\css\bootstrap.css" />
-    <Content Include="www\libs\bootstrap\css\bootstrap.min.css" />
-    <Content Include="www\libs\bootstrap\custom.css" />
-    <Content Include="www\libs\bootstrap\custom.min.css" />
-    <Content Include="www\libs\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="www\libs\bootstrap\js\bootstrap.js" />
-    <Content Include="www\libs\bootstrap\js\bootstrap.min.js" />
-    <Content Include="www\libs\bootstrap\less\bootstrap.css" />
-    <Content Include="www\libs\bootstrap\less\bootstrap.min.css" />
-    <Content Include="www\libs\encoder\encoder.js" />
-    <Content Include="www\libs\encoder\encoder.min.js" />
-    <Content Include="www\libs\jquery\jquery-1.11.0.js" />
-    <Content Include="www\libs\jquery\jquery-1.11.0.min.js" />
-    <Content Include="www\main.js" />
-    <Content Include="www\services\account_service.js" />
-    <Content Include="www\services\captcha_service.js" />
-    <Content Include="www\views\consent.html" />
-    <Content Include="www\views\error.html" />
-    <Content Include="www\templates\login-web.html" />
-    <Content Include="www\views\login.html" />
-    <Content Include="www\views\logout.html" />
-    <Content Include="www\views\permissions.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Murtain.OAuth2.WebApi-20160826051002.mdf" />
-    <Content Include="App_Data\Murtain.OAuth2.WebApi-20160826051002_log.ldf">
-      <DependentUpon>Murtain.OAuth2.WebApi-20160826051002.mdf</DependentUpon>
-    </Content>
     <EmbeddedResource Include="Configuration\Localization\Events\Events-en.xml" />
     <EmbeddedResource Include="Configuration\Localization\Events\Events.xml" />
     <EmbeddedResource Include="Configuration\Localization\Messages\Messages-en.xml" />
@@ -353,43 +355,123 @@
     <EmbeddedResource Include="Configuration\Localization\Scopes\Scopes-en.xml" />
     <EmbeddedResource Include="Configuration\Localization\Views\Views-en.xml" />
     <EmbeddedResource Include="Configuration\Localization\Views\Views.xml" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css\passport.css" />
-    <Content Include="Content\css\font.css" />
-    <Content Include="Content\css\index.css" />
-    <Content Include="Content\images\avtar.jpg" />
-    <Content Include="Content\images\background.jpg" />
-    <Content Include="Content\images\blur.jpg" />
-    <Content Include="Content\images\captcha.jpg" />
-    <Content Include="Content\images\dialog-input-icons_e7e327a2b8.png" />
-    <Content Include="Content\images\icons_86423c6fdc.png" />
-    <Content Include="Content\images\link_arrow_dbd0493592.png" />
-    <Content Include="Content\images\logo.png" />
-    <Content Include="Content\images\ui-p_6b80ebe114.png" />
-    <Content Include="Content\app\app.js" />
-    <Content Include="Content\mg\main.js" />
-    <Content Include="Content\app\main.js" />
-    <Content Include="Content\app\app.router.js" />
-    <Content Include="Content\app\services\account_service.js" />
-    <Content Include="Content\app\services\captcha_service.js" />
-    <Content Include="Content\Login.css" />
+    <Content Include="wwwroot\controllers\security.js" />
+    <Content Include="wwwroot\css\manage.css" />
+    <Content Include="wwwroot\css\passport.css" />
+    <Content Include="wwwroot\css\font.css" />
+    <Content Include="wwwroot\css\index.css" />
+    <Content Include="wwwroot\directives\i_anti_forgery_token.js" />
+    <Content Include="wwwroot\factories\browser.js" />
+    <Content Include="wwwroot\factories\identity_server.js" />
+    <Content Include="wwwroot\factories\logger.js" />
+    <Content Include="wwwroot\images\avtar.jpg" />
+    <Content Include="wwwroot\images\background.jpg" />
+    <Content Include="wwwroot\images\blur.jpg" />
+    <Content Include="wwwroot\images\captcha.jpg" />
+    <Content Include="wwwroot\images\dialog-input-icons_e7e327a2b8.png" />
+    <Content Include="wwwroot\images\icons_86423c6fdc.png" />
+    <Content Include="wwwroot\images\link_arrow_dbd0493592.png" />
+    <Content Include="wwwroot\images\logo.png" />
+    <Content Include="wwwroot\images\ui-p_6b80ebe114.png" />
+    <Content Include="wwwroot\app.js" />
+    <Content Include="wwwroot\libs\angular\angular.1.2.13.js" />
+    <Content Include="wwwroot\libs\angular\angular.1.2.13.min.js" />
+    <Content Include="wwwroot\libs\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="wwwroot\libs\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="wwwroot\libs\bootstrap\css\bootstrap.css" />
+    <Content Include="wwwroot\libs\bootstrap\css\bootstrap.min.css" />
+    <Content Include="wwwroot\libs\bootstrap\custom.css" />
+    <Content Include="wwwroot\libs\bootstrap\custom.min.css" />
+    <Content Include="wwwroot\libs\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="wwwroot\libs\bootstrap\js\bootstrap.js" />
+    <Content Include="wwwroot\libs\bootstrap\js\bootstrap.min.js" />
+    <Content Include="wwwroot\libs\bootstrap\less\bootstrap.css" />
+    <Content Include="wwwroot\libs\bootstrap\less\bootstrap.min.css" />
+    <Content Include="wwwroot\libs\encoder\encoder.js" />
+    <Content Include="wwwroot\libs\encoder\encoder.min.js" />
+    <Content Include="wwwroot\libs\jquery\jquery-1.11.0.js" />
+    <Content Include="wwwroot\libs\jquery\jquery-1.11.0.min.js" />
+    <Content Include="wwwroot\main.js" />
+    <Content Include="wwwroot\app.router.js" />
+    <Content Include="wwwroot\services\account_service.js" />
+    <Content Include="wwwroot\services\captcha_service.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Configuration\log4net.config" />
     <EmbeddedResource Include="Configuration\Murtian.OAuth2.Web.pfx" />
-    <Content Include="Content\fonts\myriad-set-pro_medium.woff" />
-    <Content Include="Content\fonts\myriad-set-pro_text.woff" />
-    <Content Include="Content\fonts\myriad-set-pro_thin.woff" />
-    <Content Include="Content\app\app.constants.js" />
+    <Content Include="wwwroot\fonts\myriad-set-pro_medium.woff" />
+    <Content Include="wwwroot\fonts\myriad-set-pro_text.woff" />
+    <Content Include="wwwroot\fonts\myriad-set-pro_thin.woff" />
+    <Content Include="wwwroot\app.constants.js" />
+    <Content Include="wwwroot\libs\bootstrap\custom.less" />
+    <Content Include="wwwroot\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="wwwroot\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="wwwroot\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="wwwroot\libs\bootstrap\less\alerts.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\badges.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\bootstrap.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\breadcrumbs.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\button-groups.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\buttons.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\carousel.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\close.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\code.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\component-animations.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\dropdowns.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\forms.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\glyphicons.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\grid.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\input-groups.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\jumbotron.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\labels.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\list-group.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\media.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\mixins.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\modals.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\navbar.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\navs.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\normalize.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\pager.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\pagination.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\panels.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\popovers.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\print.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\progress-bars.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\responsive-utilities.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\scaffolding.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\tables.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\theme.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\thumbnails.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\tooltip.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\type.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\utilities.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\variables.less" />
+    <Content Include="wwwroot\libs\bootstrap\less\wells.less" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Document\Readme.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Document\Model.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Document\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Document\Api.cshtml" />
     <None Include="Properties\PublishProfiles\Murtain.OAuth2.Web.Dev.pubxml" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -406,83 +488,27 @@
     <Content Include="Views\Passport\LoggedOut.cshtml" />
     <Content Include="Views\Passport\Login.cshtml" />
     <Content Include="Views\Passport\Logout.cshtml" />
-    <Content Include="Views\Login\LocalRegistration.cshtml" />
+    <Content Include="Views\Login\ValidateID.cshtml" />
     <Content Include="Views\Manage\Permissions.cshtml" />
     <Content Include="Views\Passport\Consent.cshtml" />
     <Content Include="Views\Login\ValidateCaptcha.cshtml" />
     <Content Include="Views\Login\SetPassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\Authorize.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />
     <Content Include="Views\Manage\Security.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Passport\_RenderAngularModel.cshtml" />
     <Content Include="Views\Passport\Permissions.cshtml" />
-    <Content Include="www\libs\bootstrap\custom.less" />
-    <Content Include="www\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="www\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="www\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="www\libs\bootstrap\less\alerts.less" />
-    <Content Include="www\libs\bootstrap\less\badges.less" />
-    <Content Include="www\libs\bootstrap\less\bootstrap.less" />
-    <Content Include="www\libs\bootstrap\less\breadcrumbs.less" />
-    <Content Include="www\libs\bootstrap\less\button-groups.less" />
-    <Content Include="www\libs\bootstrap\less\buttons.less" />
-    <Content Include="www\libs\bootstrap\less\carousel.less" />
-    <Content Include="www\libs\bootstrap\less\close.less" />
-    <Content Include="www\libs\bootstrap\less\code.less" />
-    <Content Include="www\libs\bootstrap\less\component-animations.less" />
-    <Content Include="www\libs\bootstrap\less\dropdowns.less" />
-    <Content Include="www\libs\bootstrap\less\forms.less" />
-    <Content Include="www\libs\bootstrap\less\glyphicons.less" />
-    <Content Include="www\libs\bootstrap\less\grid.less" />
-    <Content Include="www\libs\bootstrap\less\input-groups.less" />
-    <Content Include="www\libs\bootstrap\less\jumbotron.less" />
-    <Content Include="www\libs\bootstrap\less\labels.less" />
-    <Content Include="www\libs\bootstrap\less\list-group.less" />
-    <Content Include="www\libs\bootstrap\less\media.less" />
-    <Content Include="www\libs\bootstrap\less\mixins.less" />
-    <Content Include="www\libs\bootstrap\less\modals.less" />
-    <Content Include="www\libs\bootstrap\less\navbar.less" />
-    <Content Include="www\libs\bootstrap\less\navs.less" />
-    <Content Include="www\libs\bootstrap\less\normalize.less" />
-    <Content Include="www\libs\bootstrap\less\pager.less" />
-    <Content Include="www\libs\bootstrap\less\pagination.less" />
-    <Content Include="www\libs\bootstrap\less\panels.less" />
-    <Content Include="www\libs\bootstrap\less\popovers.less" />
-    <Content Include="www\libs\bootstrap\less\print.less" />
-    <Content Include="www\libs\bootstrap\less\progress-bars.less" />
-    <Content Include="www\libs\bootstrap\less\responsive-utilities.less" />
-    <Content Include="www\libs\bootstrap\less\scaffolding.less" />
-    <Content Include="www\libs\bootstrap\less\tables.less" />
-    <Content Include="www\libs\bootstrap\less\theme.less" />
-    <Content Include="www\libs\bootstrap\less\thumbnails.less" />
-    <Content Include="www\libs\bootstrap\less\tooltip.less" />
-    <Content Include="www\libs\bootstrap\less\type.less" />
-    <Content Include="www\libs\bootstrap\less\utilities.less" />
-    <Content Include="www\libs\bootstrap\less\variables.less" />
-    <Content Include="www\libs\bootstrap\less\wells.less" />
+    <Content Include="Views\Shared\_Layout_Login.cshtml" />
+    <Content Include="Views\Shared\_Partial_Layout_Footer.cshtml" />
+    <Content Include="Views\Shared\_Partial_Layout_NavcationBar.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\app\directives\" />
-    <Folder Include="Content\app\factories\" />
-    <Folder Include="Content\mg\directives\" />
-    <Folder Include="Content\mg\factories\" />
-    <Folder Include="Content\mg\services\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GitHub\IdentityServer3\source\Core\Core.csproj">
-      <Project>{fb9e026e-bab3-498a-a954-b93b05c146a5}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Murtain\Murtain.AutoMapper\Murtain.AutoMapper.csproj">
       <Project>{705e044d-408d-4823-923c-e79e316035a8}</Project>
       <Name>Murtain.AutoMapper</Name>
@@ -546,7 +572,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>31208</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44373</IISUrl>
+          <IISUrl>http://localhost:31208</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -2,40 +2,46 @@
     ViewBag.Title = L("短信验证码验证");
     Layout = null;
 }
+<div class="x-form-wrapper x-form-container">
+    <div class="animated fadeIn">
+        <div class="form-group">
+            <div class="x-brand-conatiner">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="x-title">X-DVA ID</div>
+        </div>
+        <div class="form-group x-captcha-tip">
+            <p><span class="">@L("我们已经发送一条验证短信至")</span> <span class="x-font-color-primary">+86 {{model.payload.mobile}}</span> </p>
+            <p class="">@L("请输入短信中的验证码")</p>
+        </div>
+        <div class="form-group">
+            <div ng-show="!!model.error.message">
+                <span class="x-warning-icon">{{model.error.message}}</span>
+            </div>
+            <div class="x-input x-password">
+                <span class="x-icon"><i>@L("验证码")</i></span>
+                <input type="text" placeholder="@L("验证码")" name="captcha" class="x-captcha" ng-model="model.payload.captcha" />
+                <a placeholder="获取验证码" class="x-refresh-captcha" ng-bind="model.timer.text" ng-click="model.resendCaptcha()">@L("重新发送")</a>
+            </div>
+            <div class="x-btn-link">
+                <p class="x-agreement">
+                    <input type="checkbox" class="x-check-box" checked="checked" disabled="disabled" />
+                    <label class="x-check-lable">@L("我已阅读并同意遵守")<a href="{{model.endpoint.agreement}}" target="_blank">@L("法律声明")</a> @L("和")<a href="{{model.endpoint.privacy}}" target="_blank">@L("隐私条款")</a></label>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="x-btn-submit">
+                <input type="button" class="x-btn-submit" value="@L("下一步")" ng-click="model.next()">
+            </div>
+        </div>
 
-<div class="form-group">
-    <div class="logo-image"></div>
-    <div class="title"></div>
-</div>
-<div class="form-group captcha-tip">
-    <p>@L("我们已经发送一条验证短信至") +86 {{model.payload.mobile}}</p>
-    <p>@L("请输入短信中的验证码")</p>
-</div>
-<div class="form-group">
-    <div ng-show="!!model.error.message">
-        <span class="warningicon">{{model.error.message}}</span>
+        <div class="x-line"></div>
+        <div class="form-group">
+            <p class="x-go-signin">
+                <a href="{{model.endpoint.login}}" class="">@("如果您已拥有账号，则可在此") <span>@L("登录")</span></a>
+            </p>
+        </div>
     </div>
-    <div class="input password">
-        <span class="icon"><i>@L("验证码")</i></span>
-        <input type="text" placeholder="@L("验证码")" name="captcha" class="captcha" ng-model="model.payload.captcha"/>
-        <a placeholder="获取验证码" class="refresh-captcha" ng-bind="model.timer.text" ng-click="model.fnResendCaptcha()">@L("重新发送")</a>
-    </div>
-    <div class="btn-link">
-        <p class="agreement">
-            <input type="checkbox" class="check-box" checked="checked" disabled="disabled" />
-            <label class="check-lable">@L("我已阅读并同意遵守")<a href="{{model.endpoint.agreement}}" target="_blank">@L("法律声明")</a> @L("和")<a href="{{model.endpoint.privacy}}" target="_blank">@L("隐私条款")</a></label>
-        </p>
-    </div>
-</div>
-<div class="form-group">
-    <div class="btn-submit">
-        <input type="button" class="btn-submit" value="@L("下一步")" ng-click="model.fnNext()">
-    </div>
-</div>
-
-<div class="line"></div>
-<div class="form-group">
-    <p class="go-signin">
-        <a href="{{model.endpoint.login}}" class="">@("如果您已拥有账号，则可在此") <span>@L("登录")</span></a>
-    </p>
 </div>

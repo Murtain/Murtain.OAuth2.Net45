@@ -5,23 +5,23 @@
 <div class="section x-section security">
     <h2 class="x-title">应用授权</h2>
     <div class="x-detail">
-        <div class="col-sm-8" ng-show="model.permissions.ErrorMessage != null">
+        <div class="col-sm-8" ng-show="model.identity.errorMessage != null">
             <div class="alert alert-danger">
-                <strong>Error:</strong>{{model.permissions.ErrorMessage}}
+                <strong>Error:</strong>{{model.identity.errorMessage}}
             </div>
         </div>
-        <div class="col-sm-8" ng-show="model.permissions.Clients.length == 0">
+        <div class="col-sm-8" ng-show="model.identity.clients.length == 0">
             <div class="alert alert-info">
                 You have not given permission to any applications
             </div>
         </div>
-        <div class="permission" ng-repeat=" client in model.permissions.Clients">
+        <div class="permission" ng-repeat=" client in model.identity.clients">
             <div class="col-sm-1">
-                <img ng-src="client.ClientLogoUrl" ng-if="client.ClientLogoUrl != null">
-                <div class="x-default-icon" ng-if="client.ClientLogoUrl == null"></div>
+                <img ng-src="client.clientLogoUrl" ng-if="client.clientLogoUrl != null">
+                <div class="x-default-icon" ng-if="client.clientLogoUrl == null"></div>
             </div>
             <div class="col-sm-7">
-                <div class="client-name"><a class="x-btn x-btn-ghost">{{client.ClientName}}</a></div>
+                <div class="client-name"><a class="x-btn x-btn-ghost">{{client.clientName}}</a></div>
                 <div class="client-descrition">这是一个用来演示OAUTH2客户端授权流程的MVC项目</div>
             </div>
             <div class="col-sm-2">
@@ -29,9 +29,9 @@
             </div>
             <div class="col-sm-2">
                 <div class="client-opration x-text-align-right">
-                    <form name="form" id="permission-form" method="post" ng-click="model.submit($index,model.permissions.Clients)" class="consent-form">
-                        <input type="hidden" name="{{model.permissions.AntiForgery.Name}}" value="{{model.permissions.AntiForgery.Value}}" />
-                        <input type="hidden" name="clientId" value="{{client.ClientId}}">
+                    <form name="form" id="permission-form" method="post" ng-click="model.submit($index,model.identity.clients)" class="consent-form">
+                        <i-anti-forgery-token token="model.identity.antiForgery"></i-anti-forgery-token>
+                        <input type="hidden" name="clientId" value="{{client.clientId}}">
                         <a class="x-btn x-btn-ghost">取消授权</a>
                     </form>
                 </div>
@@ -39,5 +39,3 @@
         </div>
     </div>
 </div>
-
-<input type="hidden" name="model" id="permissions" value="@(Newtonsoft.Json.JsonConvert.SerializeObject(Model))" />

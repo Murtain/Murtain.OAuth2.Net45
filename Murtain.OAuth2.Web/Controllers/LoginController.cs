@@ -6,7 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 
 using Murtain.OAuth2.Application.UserAccount;
-
+using Murtain.OAuth2.SDK.Enum;
+using Murtain.SDK.Attributes;
+using Murtain.OAuth2.SDK.UserAccount;
 
 namespace Murtain.OAuth2.Web.Controllers
 {
@@ -34,21 +36,15 @@ namespace Murtain.OAuth2.Web.Controllers
         {
             return View();
         }
-        public virtual ActionResult ForgotPassword()
+        public virtual ActionResult ValidateID()
         {
             return View();
         }
 
-
         [HttpGet]
-        public async Task<ActionResult> GetLocalRistrationGraphicCaptchaAsync()
+        public async Task<ActionResult> GetGraphicCaptchaAsync(MESSAGE_CAPTCHA_TYPE type)
         {
-            return File(await userAccountService.GetLocalRistrationGraphicCaptcha(), @"image/jpeg");
-        }
-        [HttpGet]
-        public async Task<ActionResult> GetResetPasswordGraphicCaptchaAsync()
-        {
-            return File(await userAccountService.GetResetPasswordGraphicCaptcha(), @"image/jpeg");
+            return File(await userAccountService.GetGraphicCaptchaAsync(type), @"image/jpeg");
         }
 
     }

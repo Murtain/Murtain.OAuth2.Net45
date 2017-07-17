@@ -1,38 +1,58 @@
-﻿<!DOCTYPE html>
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Serialization;
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mvc ViewService Sample</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>账号登录</title>
+    <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
+    <meta name="description" content="一个关注互联网的科技博客" />
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+
+    <link rel="stylesheet" href="http://static.x-dva.com/resources/css/font.css">
+    <link rel="stylesheet" href="~/wwwroot/css/index.css">
+    <link rel="stylesheet" href="~/wwwroot/css/manage.css">
+
+
+    <script src="https://cdn.bootcss.com/require.js/2.3.2/require.min.js" defer async="true" data-main="/wwwroot/main.js"></script>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="\" class="navbar-brand">Mvc ViewService Sample</a>
+<body ng-controller="index as model">
+    <input type="hidden" name="model" id="IdentityModelString" value="@(JsonConvert.SerializeObject(Model,Formatting.None,new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }))" />
+
+    <div class="x-backgroud">
+        <div class='x-backgroud-frosted-glass'></div>
+        <div class="x-welcome ng-cloak"  ng-cloak>
+            <div class="x-welcome-text-container">
+                <div class="x-welcome-text"  ng-show="model.identity.currentUser != null">
+                    <p>穆轻寒</p>
+                    <p>您的 账户ID 是 {{model.identity.currentUser}}</p>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
-            </div>
+            <a class="x-welcome-logout x-btn" href="{{model.identity.logoutUrl}}">注销</a>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Enhanced Coding</p>
-        </footer>
+    <div class="x-nav">
+        <div class="x-nav-box">
+            <ul class="pull-left">
+                <li class="x-nav-avatar"><img ng-src="/content/images/avtar.jpg" alt="" ng-show="model.identity.currentUser != null" /></li>
+                <li class="x-nav-brand"></li>
+            </ul>
+            <ul class="pull-right">
+                <li class="active"><a href="#/profile">个人信息</a></li>
+                <li><a href="#/security">账号安全</a></li>
+                <li><a href="#/permissions">应用授权</a></li>
+                <li><a href="#/support">技术支持</a></li>
+            </ul>
+        </div>
     </div>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    @RenderSection("scripts", required: false)
+    @RenderBody()
+    @Html.Partial("_Partial_Layout_Footer")
 </body>
 </html>

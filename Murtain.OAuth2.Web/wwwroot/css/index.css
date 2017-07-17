@@ -1,0 +1,270 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Myriad Set Pro", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+    font-size: 17px;
+    font-weight: 100 !important;
+    height: 100%;
+    line-height: 1.42857;
+    color: #333333;
+    background-color: #fff;
+}
+
+ul {
+    list-style: none;
+}
+
+a:hover {
+    color: #406dd6;
+}
+
+a {
+    color: #5079d9;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 100 !important;
+}
+
+
+pre {
+    display: block;
+    padding: 10px;
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #4CAF50;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #3a312c;
+    border: 1px solid #fff;
+    border-radius: 4px;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 100;
+}
+
+.form-group {
+    width: 414px;
+    margin: 0px auto;
+    margin-top: 30px;
+}
+
+.form-control {
+    box-shadow: none;
+    width: 275px;
+    margin-top: 5px;
+}
+
+.popover {
+    min-width: 375px;
+}
+
+.popover-title {
+    background: none;
+    border-bottom: none;
+    padding-top: 15px;
+}
+
+.popover-footer {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.popover-footer a {
+    text-align: right;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 2px;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-track {
+    width: 5px;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: transparent;
+}
+
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+    display: none !important;
+}
+
+ng\:form {
+    display: block;
+}
+
+.ng-animate-block-transitions {
+    transition: 0s all !important;
+    -webkit-transition: 0s all !important;
+}
+
+
+.x-btn {
+    font-size: 18px;
+    color: #ffffff;
+    height: 40px;
+    padding: 0px 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 3px;
+}
+
+.x-btn-small {
+    height: 30px;
+}
+
+.x-btn:hover {
+    opacity: .7
+}
+
+.x-btn-light {
+    color: #0070c9;
+    background: none;
+    border: 1px solid #0070c9;
+}
+
+.x-btn-primary {
+    color: #0070c9;
+    background-color: rgba(1, 121, 252, 0.15)
+}
+
+.x-btn-ghost {
+    color: #0070c9;
+    background: none;
+}
+
+.x-border-bottom-none {
+    border-bottom: none !important
+}
+
+
+.x-text-align-right {
+    text-align: right;
+}
+
+
+.x-alert-danger {
+    color: #d45050;
+    background-color: rgba(58, 49, 44, 0.08);
+    border-color: #ffffff;
+}
+
+
+
+.x-font-color-primary {
+    color: #5079d9;
+}
+
+.x-font-color-secondary {
+    color: #999;
+}
+
+
+
+
+
+
+.x-footer {
+    font-size: 11px;
+    line-height: 1.45455;
+    font-weight: 400;
+    letter-spacing: .005em;
+    font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Apple Legacy Chevron","Helvetica Neue","Helvetica","Arial",sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    min-width: 1200px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.x-footer a {
+    color: #555;
+    text-decoration: none;
+}
+
+.x-footer-content {
+    margin: 0 auto;
+    padding: 0 22px;
+    max-width: 1200px;
+    color: #888;
+    padding: 34px 0 21px;
+}
+
+.x-footer-shop {
+    margin-bottom: 7px;
+    padding-bottom: 6px;
+}
+
+.x-footer-locale {
+    float: right;
+    margin-top: 3px;
+    position: relative;
+    top: -3px;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.x-footer-legal {
+    margin-bottom: 35px;
+}
+
+.x-footer-legal-copyright {
+    float: left;
+    margin-right: 30px;
+    float: left;
+    margin-top: 3px;
+}
+
+.x-footer-legal-links {
+    float: left;
+}
+
+.x-footer-legal-link {
+    border-right: 1px solid #d6d6d6;
+    margin-right: 10px;
+    padding-right: 12px;
+    display: inline-block;
+    margin-top: 3px;
+    white-space: nowrap;
+}

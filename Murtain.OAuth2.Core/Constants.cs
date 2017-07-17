@@ -42,6 +42,23 @@ namespace Murtain.OAuth2.Core
                 public const string Address = "address";
 
             }
+
+            public static class qq
+            {
+                public const string Name = "name";
+                public const string NickName = "nick_name";
+                public const string Birthday = "birthday";
+                public const string Age = "age";
+                public const string Gender = "sex";
+                public const string Avatar = "headimgurl";
+                public const string Mobile = "mobile";
+                public const string Email = "email";
+                public const string Country = "country";
+                public const string Province = "province";
+                public const string City = "city";
+                public const string Address = "address";
+
+            }
         }
 
         public static class Localization
@@ -149,14 +166,14 @@ namespace Murtain.OAuth2.Core
 
         public static class CacheNames
         {
-            public const string MessageCaptcha = "AUTHORIZATION:MESSAGE_CAPTCHA_CODE:{0}_{1}_{2}";
-            public const string EmailCaptcha = "AUTHORIZATION:EMAIL_CAPTCH_CODE:{0}_{1}_{2}";
+            public const string MessageCaptcha = "Settings.Cache.MessageCaptcha";
+            public const string EmailCaptcha = "Settings.Cache.EmailCaptcha";
         }
 
         public static class CookieNames
         {
-            public const string LocalRistration = "Murtain.Passport.Restration.Local";
-            public const string LocalRestrationSetPassword = "Murtain.Passport.Restration.SetPassword";
+            public const string LocalRistrationGraphicCaptcha = "Cookie.LocalRistration.GraphicCaptcha";
+            public const string LocalRistrationResetPasswordGraphicCaptcha = "Cookie.LocalRistration.ResetPasswordGraphicCaptcha";
 
         }
 

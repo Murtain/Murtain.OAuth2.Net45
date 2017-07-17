@@ -15,7 +15,7 @@ namespace Murtain.OAuth2.Core
     /// <summary>
     /// This interface is about the user account services.
     /// </summary>
-    public interface IUserAccountManager : IApplicationService,IUnitOfWorkService
+    public interface IUserAccountManager : IApplicationService, IUnitOfWorkService
     {
         /// <summary>
         /// This method get the user account entity by username and password.
@@ -39,22 +39,28 @@ namespace Murtain.OAuth2.Core
         /// <returns></returns>
         Task<Domain.Entities.UserAccount> GetProfileDataAsync(string subId);
         /// <summary>
-        /// 手机号注册
+        /// local registration by mobile
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task LocalRegistrationAsync(LocalRegistrationRequestModel request);
-        ///// <summary>
-        ///// 设置/修改密码
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //SetPasswordResponseModel SetPassword(SetPasswordRequestModel request);
-        ///// <summary>
-        ///// 设置/修改邮箱
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //SetEmailResponseModel SetEmail(SetEmailRequestModel request);
+        Task LocalRegistrationAsync(string mobile, string password);
+        /// <summary>
+        /// check user mobile is exist
+        /// </summary>
+        /// <param name="mobile"></param>
+        /// <returns></returns>
+        Task<Domain.Entities.UserAccount> FindAsync(string mobile);
+        /// <summary>
+        /// set or change password
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task SavePasswordAsync(string mobile, string password);
+        /// <summary>
+        /// set or change email
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task SaveEmailAsync(string mobile, string email);
     }
 }

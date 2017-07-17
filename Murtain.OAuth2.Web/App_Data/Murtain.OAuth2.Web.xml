@@ -245,6 +245,50 @@
             用户账户服务
             </summary>
         </member>
+        <member name="M:Murtain.OAuth2.Web.Controllers.UserAccountController.LocalRegistrationAsync(Murtain.OAuth2.SDK.UserAccount.LocalRegistrationRequestModel)">
+            <summary>
+            本地注册
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Murtain.OAuth2.Web.Controllers.UserAccountController.RetrievePasswordAsync(Murtain.OAuth2.SDK.UserAccount.RetrievePasswordRequestModel)">
+            <summary>
+            设置密码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Murtain.OAuth2.Web.Controllers.UserAccountController.ValidateGraphicCaptchaAndSendMessageCaptchaAsync(Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel)">
+            <summary>
+            验证图片验证并发送短信验证码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Murtain.OAuth2.Web.Controllers.UserAccountController.ValidateMessageCaptchaAsync(Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaRequestModel)">
+            <summary>
+            验证短信验证码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Murtain.OAuth2.Web.Startup.DOMAIN">
+            <summary>
+            域名 
+            </summary>
+        </member>
+        <member name="F:Murtain.OAuth2.Web.Startup.WECHANT_OAUTH2_ENDPOINT">
+            <summary>
+            微信内部网页授权地址,默认PC扫码登录地址
+            </summary>
+        </member>
+        <member name="M:Murtain.OAuth2.Web.Startup.Configuration(Owin.IAppBuilder)">
+            <summary>
+            应用程序配置
+            </summary>
+            <param name="app"></param>
+        </member>
         <member name="M:Murtain.Web.ApiDocument.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
