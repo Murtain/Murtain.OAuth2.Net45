@@ -47,7 +47,7 @@ namespace Murtain.OAuth2.Web.Configuration
                 /////////////////////////////////////////////////////////////
                 new Client
                 {
-                    Enabled = true,                                                     
+                    Enabled = true,
                     ClientName = "MVC 隐式授权认证客户端",
                     ClientId = "mvc_owin_implicit",
                     Flow = Flows.Implicit,
@@ -413,21 +413,20 @@ namespace Murtain.OAuth2.Web.Configuration
 
                     RedirectUris = new List<string>
                     {
-                        "http://square.x-dva.com/index.html",
-                        "http://square.x-dva.com/silent_renew.html",
-                        "http://square.x-dva.com/callback.html",
-                        "http://square.x-dva.com/frame.html",
-                        "http://square.x-dva.com/popup.html",
+                        "http://localhost:8989/index.html",
+                        "http://localhost:8989#/callback#",
                     },
 
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "http://square.x-dva.com/index.html",
+                        "http://localhost:8989/",
                     },
+                    LogoutSessionRequired = false,
+                    RequireSignOutPrompt =false,
 
                     AllowedCorsOrigins = new List<string>
                     {
-                        "http://square.x-dva.com",
+                        "http://localhost:8989",
                     },
 
                     AccessTokenLifetime = 3600,

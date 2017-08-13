@@ -154,8 +154,8 @@
       <HintPath>..\packages\MsieJavaScriptEngine.1.7.0\lib\net40\MsieJavaScriptEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Murtain.Web.ApiDocument, Version=1.0.0.18, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Murtain.Web.ApiDocument.1.0.0.18\lib\net452\Murtain.Web.ApiDocument.dll</HintPath>
+    <Reference Include="Murtain.Web.ApiDocument, Version=1.0.0.22, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Murtain.Web.ApiDocument.1.0.0.22\lib\net452\Murtain.Web.ApiDocument.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -447,8 +447,9 @@
     <Content Include="wwwroot\libs\bootstrap\less\utilities.less" />
     <Content Include="wwwroot\libs\bootstrap\less\variables.less" />
     <Content Include="wwwroot\libs\bootstrap\less\wells.less" />
-    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Document\Api.cshtml" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
@@ -470,7 +471,6 @@
     <Content Include="Areas\HelpPage\Views\Document\Readme.cshtml" />
     <Content Include="Areas\HelpPage\Views\Document\Model.cshtml" />
     <Content Include="Areas\HelpPage\Views\Document\Index.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Document\Api.cshtml" />
     <None Include="Properties\PublishProfiles\Murtain.OAuth2.Web.Dev.pubxml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

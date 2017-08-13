@@ -261,7 +261,7 @@
         </member>
         <member name="M:Murtain.OAuth2.Web.Controllers.UserAccountController.ValidateGraphicCaptchaAndSendMessageCaptchaAsync(Murtain.OAuth2.SDK.UserAccount.ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel)">
             <summary>
-            验证图片验证并发送短信验证码
+            发送短信验证码
             </summary>
             <param name="input"></param>
             <returns></returns>

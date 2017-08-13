@@ -65,7 +65,7 @@ namespace Murtain.OAuth2.Core
 
                 if (!result.Equals("OK", StringComparison.OrdinalIgnoreCase))
                 {
-                    throw new UserFriendlyExceprion(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_SEND_FAILED);
+                    throw new UserFriendlyException(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_SEND_FAILED);
                 }
 
                 // set cache
@@ -76,7 +76,7 @@ namespace Murtain.OAuth2.Core
             {
                 Logger.Error(e.Message, e);
 
-                throw new UserFriendlyExceprion(CAPTCHA_MANAGER_RETURN_CODE.SMS_SERVICE_NOT_AVAILABLE);
+                throw new UserFriendlyException(CAPTCHA_MANAGER_RETURN_CODE.SMS_SERVICE_NOT_AVAILABLE);
             }
         }
         public async Task EmailCaptchaSendAsync(MESSAGE_CAPTCHA_TYPE type, string email, int expiredTime)
@@ -103,7 +103,7 @@ namespace Murtain.OAuth2.Core
             catch (Exception e)
             {
                 Logger.Error(e.Message, e);
-                throw new UserFriendlyExceprion(CAPTCHA_MANAGER_RETURN_CODE.EMAIL_CAPTCHA_SEND_FAILED);
+                throw new UserFriendlyException(CAPTCHA_MANAGER_RETURN_CODE.EMAIL_CAPTCHA_SEND_FAILED);
             }
         }
 
@@ -121,12 +121,12 @@ namespace Murtain.OAuth2.Core
             // if cache data expired 
             if (cache == null)
             {
-                throw new UserFriendlyExceprion(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_IS_EXPIRED);
+                throw new UserFriendlyException(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_IS_EXPIRED);
             }
             // if cache data not match
             if (cache != code)
             {
-                throw new UserFriendlyExceprion(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_NOT_MATCHA);
+                throw new UserFriendlyException(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_NOT_MATCHA);
             }
 
             return Task.FromResult(0);
@@ -140,13 +140,13 @@ namespace Murtain.OAuth2.Core
             // if cache data expired 
             if (cache == null)
             {
-                throw new UserFriendlyExceprion(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_IS_EXPIRED);
+                throw new UserFriendlyException(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_IS_EXPIRED);
             }
 
             // if cache data not match
             if (cache != code)
             {
-                throw new UserFriendlyExceprion(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_NOT_MATCHA);
+                throw new UserFriendlyException(CAPTCHA_MANAGER_RETURN_CODE.MESSAGE_CAPTCHA_NOT_MATCHA);
             }
 
             return Task.FromResult(0);
@@ -158,7 +158,7 @@ namespace Murtain.OAuth2.Core
             // if cookie value not match
             if (CookieManager.GetCookieValue(cookiename) != CryptoManager.EncryptDES(captcha))
             {
-                throw new UserFriendlyExceprion(CAPTCHA_MANAGER_RETURN_CODE.INVALID_GRAPHIC_CAPTCHA);
+                throw new UserFriendlyException(CAPTCHA_MANAGER_RETURN_CODE.INVALID_GRAPHIC_CAPTCHA);
             }
 
             return Task.FromResult(0);

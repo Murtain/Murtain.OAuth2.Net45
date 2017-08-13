@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using Murtain.SDK;
 using Murtain.SDK.Attributes;
 using Murtain.OAuth2.SDK.Enum;
+using Murtain.Web.Models;
 
 namespace Murtain.OAuth2.SDK.UserAccount
 {
@@ -61,4 +62,41 @@ namespace Murtain.OAuth2.SDK.UserAccount
         EXPIRED_CAPTCHA,
 
     }
+
+    /// <summary>
+    /// Validate message captcha  samples
+    /// </summary>
+    public class ValidateMessageCaptchaSample : IJsonSampleModel
+    {
+        /// <summary>
+        /// get error sample model
+        /// </summary>
+        /// <returns></returns>
+        public object GetErrorSampleModel()
+        {
+            return new ResponseContentModel(VALIDATE_MESSAGE_CAPTCHA_RETURN_CODE.EXPIRED_CAPTCHA, "api/account/sms-validate");
+        }
+        /// <summary>
+        /// get request sample model
+        /// </summary>
+        /// <returns></returns>
+        public object GetRequestSampleModel()
+        {
+            return new ValidateMessageCaptchaRequestModel()
+            {
+                CaptchaType = MESSAGE_CAPTCHA_TYPE.REGISTER,
+                Captcha = "600103",
+                Mobile = "15618275257"
+            };
+        }
+        /// <summary>
+        /// get response sample model
+        /// </summary>
+        /// <returns></returns>
+        public object GetResponseSampleModel()
+        {
+            return null;
+        }
+    }
+
 }

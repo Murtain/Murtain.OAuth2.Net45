@@ -107,7 +107,7 @@ namespace Murtain.OAuth2.Application.UserAccount
             var user = await userAccountManager.AuthenticateExternalAsync(req);
             if (user == null)
             {
-                throw new UserFriendlyExceprion(IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.AUTHENTICATEEXTERNAL_FAILED);
+                throw new UserFriendlyException(IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.AUTHENTICATEEXTERNAL_FAILED);
             }
 
             context.AuthenticateResult = new AuthenticateResult(
@@ -137,7 +137,7 @@ namespace Murtain.OAuth2.Application.UserAccount
 
             if (model == null)
             {
-                throw new UserFriendlyExceprion(IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.GET_PROFILE_DATA_FAILED);
+                throw new UserFriendlyException(IDENTITY_SERVER_USER_SERVICE_RETURN_CODE.GET_PROFILE_DATA_FAILED);
             }
 
 

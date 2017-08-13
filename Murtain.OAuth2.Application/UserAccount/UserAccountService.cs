@@ -54,7 +54,7 @@ namespace Murtain.OAuth2.Application.UserAccount
                     // validate user mobile is exsit
                     if (user != null)
                     {
-                        throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_ALREADY_EXISTS);
+                        throw new UserFriendlyException(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_ALREADY_EXISTS);
                     }
 
                     // validate register graphic captcha 
@@ -71,7 +71,7 @@ namespace Murtain.OAuth2.Application.UserAccount
 
                     if (user == null)
                     {
-                        throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS);
+                        throw new UserFriendlyException(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS);
                     }
                     // validate retrieve password graphic captcha 
                     await captchaManager.ValidateGraphicCaptchaAsync(Constants.CookieNames.LocalRistrationResetPasswordGraphicCaptcha, input.GraphicCaptcha);
@@ -111,7 +111,7 @@ namespace Murtain.OAuth2.Application.UserAccount
                     break;
             }
 
-            throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.INVALID_GRAPHIC_CAPTCHA);
+            throw new UserFriendlyException(USER_ACCOUNT_MANAGER_RETURN_CODE.INVALID_GRAPHIC_CAPTCHA);
         }
 
         public async Task ResendMessageCaptchaAsync(ResendMessageCaptchaRequestModel input)

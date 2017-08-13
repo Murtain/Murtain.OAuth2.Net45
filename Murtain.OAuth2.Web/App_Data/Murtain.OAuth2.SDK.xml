@@ -234,5 +234,28 @@
             验证码已过期，请重新获取验证码
             </summary>
         </member>
+        <member name="T:Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaSample">
+            <summary>
+            示例
+            </summary>
+        </member>
+        <member name="M:Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaSample.GetErrorSampleModel">
+            <summary>
+            get error sample model
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaSample.GetRequestSampleModel">
+            <summary>
+            get request sample model
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Murtain.OAuth2.SDK.UserAccount.ValidateMessageCaptchaSample.GetResponseSampleModel">
+            <summary>
+            get response sample model
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

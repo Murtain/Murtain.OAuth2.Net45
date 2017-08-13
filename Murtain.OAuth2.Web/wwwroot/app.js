@@ -28,7 +28,8 @@ define(['app.module', 'angular-AMD', 'angular-AMD-ngload', 'app.router', 'app.co
         fnActived();
 
         function fnActived() {
-            $timeout(function () {
+
+            //$timeout(function () {
                 that.identity = window.identityServer.getModel();
 
                 console.log(that.identity);
@@ -41,10 +42,8 @@ define(['app.module', 'angular-AMD', 'angular-AMD-ngload', 'app.router', 'app.co
                         window.location = that.identity.redirectUrl;
                     }, that.identity.autoRedirectDelay * 1000);
                 }
-            });
+            //});
         }
-
-
     }
 
     return angularAMD.bootstrap(app);

@@ -72,6 +72,10 @@
       <Project>{08d9807e-c4a2-42ac-9ba0-c408f07c6016}</Project>
       <Name>Murtain.SDK</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Murtain\Murtain.Web\Murtain.Web.csproj">
+      <Project>{60B9D99C-2829-4FB9-982A-F8D26639EDCC}</Project>
+      <Name>Murtain.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Captcha\" />

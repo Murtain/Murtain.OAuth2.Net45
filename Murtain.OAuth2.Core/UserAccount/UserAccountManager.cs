@@ -30,7 +30,7 @@ namespace Murtain.OAuth2.Core.UserAccount
         {
             if (userAccountRepository.Any(x => x.Mobile == mobile))
             {
-                throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_ALREADY_EXISTS);
+                throw new UserFriendlyException(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_ALREADY_EXISTS);
             }
 
             var entity = new Domain.Entities.UserAccount
@@ -85,7 +85,7 @@ namespace Murtain.OAuth2.Core.UserAccount
 
             if (user == null)
             {
-                throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS);
+                throw new UserFriendlyException(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS);
             }
 
             user.Password = encryptPassword(password);
@@ -99,7 +99,7 @@ namespace Murtain.OAuth2.Core.UserAccount
 
             if (user == null)
             {
-                throw new UserFriendlyExceprion(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS);
+                throw new UserFriendlyException(USER_ACCOUNT_MANAGER_RETURN_CODE.USER_NOT_EXISTS);
             }
 
             user.Email = email;

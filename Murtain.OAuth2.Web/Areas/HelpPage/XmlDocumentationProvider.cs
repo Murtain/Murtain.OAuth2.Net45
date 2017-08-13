@@ -16,7 +16,7 @@ namespace Murtain.Web.ApiDocument.Areas.HelpPage
     /// </summary>
     public class XmlDocumentationProvider : IDocumentationProvider, IModelDocumentationProvider
     {
-        
+
         private List<XPathNavigator> _documentNavigators = new List<XPathNavigator>();
 
         private const string TypeExpression = "/doc/members/member[@name='T:{0}']";
@@ -60,7 +60,7 @@ namespace Murtain.Web.ApiDocument.Areas.HelpPage
         //
         //   T:System.Xml.XPath.XPathException:
         //     XPath ²éÑ¯ÎÞÐ§¡£
-        private  XPathNavigator SelectSingleNode(string selectExpression)
+        private XPathNavigator SelectSingleNode(string selectExpression)
         {
             foreach (var navigator in _documentNavigators)
             {

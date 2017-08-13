@@ -15,13 +15,13 @@
                 <div class="x-title">X-DVA 安全退出</div>
             </div>
             <div class="form-group">
-                <div>您已经成功退出登录！点击<a href="/connect">这里</a> 返回首页</div>
+                <div>您已经成功退出登录！点击<a ng-href="{{app.identity.redirectUrl}}">这里</a> 返回首页</div>
             </div>
             <div class="form-group">
-                <div>You are now logged out. Click <a href="/connect">here</a> to return to the home page</div>
+                <div>You are now logged out. Click <a ng-href="{{app.identity.redirectUrl}}">here</a> to return to the home page</div>
             </div>
             <div class="form-group">
-                <a  href="/connect" class="x-btn x-btn-submit x-btn-light" >@L("我知道了")</a>
+                <a ng-href="{{app.identity.redirectUrl}}" class="x-btn x-btn-submit x-btn-light">@L("我知道了")</a>
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@ define(['app.config'], function (config) {
             'angular-bindonce': "https://pasvaz.github.io/bindonce/javascripts/bindonce-0.3.1/bindonce.min",
             'angular-loading-bar': "https://cdn.bootcss.com/angular-loading-bar/0.9.0/loading-bar.min",
             'angular-ui-router': "https://cdn.bootcss.com/angular-ui-router/1.0.0-beta.3/angular-ui-router.min",
-            'angular-toastr': 'https://unpkg.com/angular-toastr@2.1.1/dist/angular-toastr.tpls',
+            'angular-toastr': 'http://static.x-dva.com/resources/plugins/angular-toast/angular-toastr.tpls',
 
             'app': '/wwwroot/app',
 

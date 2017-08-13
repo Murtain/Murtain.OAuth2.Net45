@@ -9,6 +9,8 @@ using Murtain.OAuth2.SDK.UserAccount;
 using Murtain.OAuth2.Application.UserAccount;
 using Murtain.Web.Attributes;
 using Murtain.SDK.Attributes;
+using Murtain.OAuth2.SDK.Enum;
+using Murtain.Extensions;
 
 namespace Murtain.OAuth2.Web.Controllers
 {
@@ -49,12 +51,13 @@ namespace Murtain.OAuth2.Web.Controllers
             await userAccountService.RetrievePasswordAsync(input);
         }
         /// <summary>
-        /// 验证图片验证并发送短信验证码
+        /// 发送短信验证码
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("api/account/sms")]
+        [JsonSample(typeof(ValidateGraphicCaptchaAndSendMessageCaptchaSample))]
         [ReturnCode(typeof(VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE_CAPTCHA_RETURN_CODE))]
         public async Task ValidateGraphicCaptchaAndSendMessageCaptchaAsync([FromBody]ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel input)
         {
@@ -68,9 +71,11 @@ namespace Murtain.OAuth2.Web.Controllers
         [HttpPut]
         [ReturnCode(typeof(VALIDATE_MESSAGE_CAPTCHA_RETURN_CODE))]
         [Route("api/account/sms-validate")]
+        [JsonSample(typeof(ValidateMessageCaptchaSample))]
         public async Task ValidateMessageCaptchaAsync([FromBody] ValidateMessageCaptchaRequestModel input)
         {
             await userAccountService.ValidateMessageCaptchaAsync(input);
         }
     }
+
 }

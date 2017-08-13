@@ -1,6 +1,7 @@
 ﻿using Murtain.OAuth2.SDK.Enum;
 using Murtain.SDK;
 using Murtain.SDK.Attributes;
+using Murtain.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,6 +60,27 @@ namespace Murtain.OAuth2.SDK.UserAccount
         MESSAGE_CAPTCHA_SEND_FAILED,
     }
 
+    public class ValidateGraphicCaptchaAndSendMessageCaptchaSample : IJsonSampleModel
+    {
+        public object GetErrorSampleModel()
+        {
+            return new ResponseContentModel(VALIDATE_GRAPHIC_CAPTCHA_AND_SEND_MESSAGE_CAPTCHA_RETURN_CODE.MESSAGES_SENT_OVER_LIMIT, "api/account/sms");
+        }
 
+        public object GetRequestSampleModel()
+        {
+            return new ValidateGraphicCaptchaAndSendMessageCaptchaRequestModel
+            {
+                CaptchaType = MESSAGE_CAPTCHA_TYPE.REGISTER,
+                GraphicCaptcha = "THAG5A",
+                Mobile = "15618275259"
+            };
+        }
+
+        public object GetResponseSampleModel()
+        {
+            return null;
+        }
+    }
 
 }

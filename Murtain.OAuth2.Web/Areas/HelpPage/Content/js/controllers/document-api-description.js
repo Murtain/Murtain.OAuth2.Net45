@@ -8,8 +8,6 @@ define(['app.module', 'app.constants', 'services/document-service'], function (a
 
     function fnDocumentApisController($scope, $timeout, document_service, constants, $stateParams) {
 
-        console.log("document_api_controller running ...");
-
         var that = {
             api_description: {},
         };
@@ -22,15 +20,17 @@ define(['app.module', 'app.constants', 'services/document-service'], function (a
         function active() {
 
             // load document
-            document_service.fnGetApiDescription($stateParams.controller_name,$stateParams.id).then(function (data) {
+            document_service.fnGetApiDescription($stateParams.controller_name, $stateParams.id).then(function (data) {
 
                 // sample
-
+                if (data.sample_requests['application/json']) {
+                    data.sample_request = angular.toJson(data.sample_requests['application/json'], true);
+                }
                 if (data.sample_responses['application/json']) {
-                    data.sample1 = angular.toJson(data.sample_responses['application/json'], true);
+                    data.sample_response = angular.toJson(data.sample_responses['application/json'], true);
                 }
                 if (data.sample_responses['application/x-error']) {
-                    data.sample2 = angular.toJson(data.sample_responses['application/x-error'], true);
+                    data.sample_response_error = angular.toJson(data.sample_responses['application/x-error'], true);
                 };
 
                 // http_status_code
@@ -51,6 +51,9 @@ define(['app.module', 'app.constants', 'services/document-service'], function (a
                         code.http_status_code = http_status_code;
                     }
                 }
+
+                data.relative_path = window.location.protocol + '//' + window.location.host + '/' + data.relative_path;
+
                 that.api_description = data;
             });
         }
