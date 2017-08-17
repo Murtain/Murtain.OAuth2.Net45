@@ -31,6 +31,7 @@ using Murtain.Web.MessageHandlers;
 using Murtain.OAuth2.Core.CacheSettingProviders;
 using System.Data.Entity;
 using Murtain.OAuth2.Infrastructure;
+using Murtain.Dependency;
 
 namespace Murtain.OAuth2.Web
 {
@@ -85,7 +86,6 @@ namespace Murtain.OAuth2.Web
                     config.RegisterWebApiApplication();
                 });
         }
-
         public class ConventionalRegistrarConfig : Autofac.Module
         {
             protected override void Load(Autofac.ContainerBuilder builder)

@@ -45,7 +45,7 @@ namespace Murtain.OAuth2.Web
 
 
             config.Filters.Add(new WebApiExceptionFilterAttribute());
-            config.Filters.Add(new ValidateModelAttribute());
+            config.Filters.Add(new ModelValidateAttribute());
         }
     }
 }

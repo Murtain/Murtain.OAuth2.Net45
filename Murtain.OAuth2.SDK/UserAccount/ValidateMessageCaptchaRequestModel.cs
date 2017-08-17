@@ -11,6 +11,7 @@ using Murtain.SDK;
 using Murtain.SDK.Attributes;
 using Murtain.OAuth2.SDK.Enum;
 using Murtain.Web.Models;
+using Murtain.SDK.Models;
 
 namespace Murtain.OAuth2.SDK.UserAccount
 {
@@ -42,12 +43,6 @@ namespace Murtain.OAuth2.SDK.UserAccount
     /// </summary>
     public enum VALIDATE_MESSAGE_CAPTCHA_RETURN_CODE
     {
-        /// <summary>
-        /// 参数无效
-        /// </summary>
-        [Description("参数无效")]
-        [HttpCorresponding(HttpStatusCode.BadRequest)]
-        INVALID_PARAMETERS = SystemReturnCode.INVALID_PARAMETERS,
         /// <summary>
         /// 验证码无效
         /// </summary>

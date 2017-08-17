@@ -52,7 +52,7 @@ namespace Murtain.OAuth2.Web.Configuration
             factory.ViewService = new Registration<IViewService, AccountViewService<PassportController>>();
             //factory.ViewService = new Registration<IViewService, PassportViewService>();
 
-            factory.LocalizationService = new Registration<ILocalizationService>(resolver => IocManager.Container.Resolve<ILocalizationService>());
+            factory.LocalizationService = new Registration<ILocalizationService>(resolver => IocManager.Instance.Resolve<ILocalizationService>());
 
             // These registrations are also needed since these are dealt with using non-standard construction
             factory.Register(new Registration<HttpContext>(resolver => HttpContext.Current));
@@ -63,7 +63,7 @@ namespace Murtain.OAuth2.Web.Configuration
             factory.Register(new Registration<HttpSessionStateBase>(resolver => resolver.Resolve<HttpContextBase>().Session));
 
 
-            factory.Register(new Registration<IUserAccountManager>(resolver => IocManager.Container.Resolve<IUserAccountManager>()));
+            factory.Register(new Registration<IUserAccountManager>(resolver => IocManager.Instance.Resolve<IUserAccountManager>()));
 
 
             return factory;

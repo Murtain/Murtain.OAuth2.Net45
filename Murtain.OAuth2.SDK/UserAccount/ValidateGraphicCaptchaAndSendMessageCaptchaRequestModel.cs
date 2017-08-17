@@ -1,6 +1,7 @@
 ﻿using Murtain.OAuth2.SDK.Enum;
 using Murtain.SDK;
 using Murtain.SDK.Attributes;
+using Murtain.SDK.Models;
 using Murtain.Web.Models;
 using System;
 using System.Collections.Generic;
